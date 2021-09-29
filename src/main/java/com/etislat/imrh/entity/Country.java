@@ -35,9 +35,6 @@ public class Country extends BaseEntity {
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private List<Wallet> wallets = new ArrayList<>();
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-    private List<PartnerCountryProduct> partnerCountryProducts = new ArrayList<>();
-
     public Country() { }
 
     public String getCountryCode() {
@@ -80,13 +77,6 @@ public class Country extends BaseEntity {
     }
     public void setWallets(List<Wallet> wallets) {
         this.wallets = wallets;
-    }
-
-    public List<PartnerCountryProduct> getPartnerCountryProducts() {
-        return partnerCountryProducts;
-    }
-    public void setPartnerCountryProducts(List<PartnerCountryProduct> partnerCountryProducts) {
-        this.partnerCountryProducts = partnerCountryProducts;
     }
 
     @Override

@@ -35,9 +35,6 @@ public class Product extends BaseEntity {
     @Column(name="PRODUCT_NAME", nullable=false)
     private String productName;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<PartnerCountryProduct> partnerCountryProducts = new ArrayList<>();
-
     public Product() {}
 
     public Long getProductId() {
@@ -52,13 +49,6 @@ public class Product extends BaseEntity {
     }
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public List<PartnerCountryProduct> getPartnerCountryProducts() {
-        return partnerCountryProducts;
-    }
-    public void setPartnerCountryProducts(List<PartnerCountryProduct> partnerCountryProducts) {
-        this.partnerCountryProducts = partnerCountryProducts;
     }
 
     @Override

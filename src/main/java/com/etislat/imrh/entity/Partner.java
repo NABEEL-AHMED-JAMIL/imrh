@@ -82,9 +82,6 @@ public class Partner extends BaseEntity {
             inverseJoinColumns=@JoinColumn(name="COUNTRY_CODE"))
     private Set<Country> countries  = new HashSet<>();
 
-    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
-    private List<PartnerCountryProduct> partnerCountryProducts = new ArrayList<>();
-
     public Partner() {}
 
     public Long getPartnerId() {
@@ -176,13 +173,6 @@ public class Partner extends BaseEntity {
     }
     public void setCountries(Set<Country> countries) {
         this.countries = countries;
-    }
-
-    public List<PartnerCountryProduct> getPartnerCountryProducts() {
-        return partnerCountryProducts;
-    }
-    public void setPartnerCountryProducts(List<PartnerCountryProduct> partnerCountryProducts) {
-        this.partnerCountryProducts = partnerCountryProducts;
     }
 
     @Override

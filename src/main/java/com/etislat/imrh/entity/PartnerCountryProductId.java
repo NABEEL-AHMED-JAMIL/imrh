@@ -1,19 +1,12 @@
 package com.etislat.imrh.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
-import javax.persistence.*;
 
-/**
- * @author Nabeel Ahmed
- */
-@Entity
-@Table(name = "PARTNER_COUNTRY_PRODUCT")
-@IdClass(PartnerCountryProductId.class)
-@JsonIgnoreProperties(ignoreUnknown=true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class PartnerCountryProduct extends BaseEntity {
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+public class PartnerCountryProductId implements Serializable {
 
     @Id
     @Column(name="PARTNER_ID")
@@ -27,13 +20,9 @@ public class PartnerCountryProduct extends BaseEntity {
     @Column(name="PRODUCT_ID")
     private Long productId;
 
-    @Column(name = "PARTNER_AVAILABILITY",
-        columnDefinition = "CHAR(1)", nullable = false)
-    private String partnerAvailability;
+    public PartnerCountryProductId() {}
 
-    public PartnerCountryProduct() {}
-
-    public PartnerCountryProduct(Long partnerId, String countryCode, Long productId) {
+    public PartnerCountryProductId(Long partnerId, String countryCode, Long productId) {
         this.partnerId = partnerId;
         this.countryCode = countryCode;
         this.productId = productId;
@@ -60,15 +49,10 @@ public class PartnerCountryProduct extends BaseEntity {
         this.productId = productId;
     }
 
-    public String getPartnerAvailability() {
-        return partnerAvailability;
-    }
-    public void setPartnerAvailability(String partnerAvailability) {
-        this.partnerAvailability = partnerAvailability;
-    }
-
     @Override
     public String toString() {
         return new Gson().toJson(this);
     }
+
+
 }
