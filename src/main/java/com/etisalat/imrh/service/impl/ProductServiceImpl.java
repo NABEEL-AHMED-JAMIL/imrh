@@ -37,7 +37,8 @@ public class ProductServiceImpl implements ProductService {
         if (product.isPresent()) {
             product.get().setProductName(productDto.getProductName());
             product.get().setEnabled(productDto.getEnable().name());
-            return CommonUtils.getResponseWithData(this.productRepository.save(product.get()), HttpStatus.OK.series().name(),
+            this.productRepository.save(product.get());
+            return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
                 null, String.format("Product update successfully with %d.", productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
@@ -53,13 +54,13 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = this.productRepository.findById(productDto.getProductId());
         if (product.isPresent()) {
             product.get().setEnabled(productDto.getEnable().name());
-            return CommonUtils.getResponseWithData(this.productRepository.save(product.get()), HttpStatus.OK.series().name(),
+            this.productRepository.save(product.get());
+            return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
                     null, String.format("Product update successfully with %d.", productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Product not found with %d.", productDto.getProductId()));
     }
-
 
     @Override
     public GenericResponseDto<Object> enableDisableAllProduct(Enable enable) {

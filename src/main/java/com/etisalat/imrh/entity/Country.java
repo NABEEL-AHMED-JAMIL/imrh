@@ -26,13 +26,13 @@ public class Country extends BaseEntity {
     @Column(name="COUNTRY_LEGACY_CODE", unique=true, nullable=false)
     private String countryLegacyCode;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<City> cities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Bank> banks = new ArrayList<>();
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wallet> wallets = new ArrayList<>();
 
     public Country() { }
