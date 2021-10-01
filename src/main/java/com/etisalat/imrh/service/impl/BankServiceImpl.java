@@ -7,6 +7,7 @@ import com.etisalat.imrh.entity.Bank;
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.BankRepository;
 import com.etisalat.imrh.repository.CountryRepository;
+import com.etisalat.imrh.repository.PartnerRepository;
 import com.etisalat.imrh.service.BankService;
 import com.etisalat.imrh.util.CommonUtils;
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +32,8 @@ public class BankServiceImpl implements BankService {
     private BankRepository bankRepository;
     @Autowired
     private CountryRepository countryRepository;
+    @Autowired
+    private PartnerRepository partnerRepository;
 
     @Override
     public GenericResponseDto<Object> createBank(BankDto bankDto) {
@@ -110,6 +113,9 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public GenericResponseDto<Object> deleteBank(Long bankId) {
-        return null;
+        this.partnerRepository.deletePartnerBankByBankId(bankId);
+        this.bankRepository.deleteById(bankId);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("Bank delete successfully with %d.", bankId));
     }
 }

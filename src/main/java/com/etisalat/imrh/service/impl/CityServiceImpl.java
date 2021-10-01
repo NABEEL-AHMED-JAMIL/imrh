@@ -7,6 +7,7 @@ import com.etisalat.imrh.entity.City;
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.CityRepository;
 import com.etisalat.imrh.repository.CountryRepository;
+import com.etisalat.imrh.repository.PartnerRepository;
 import com.etisalat.imrh.service.CityService;
 import com.etisalat.imrh.util.CommonUtils;
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +32,8 @@ public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
     @Autowired
     private CountryRepository countryRepository;
+    @Autowired
+    private PartnerRepository partnerRepository;
 
     @Override
     public GenericResponseDto<Object> createCity(CityDto cityDto) {
@@ -110,7 +113,10 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public GenericResponseDto<Object> deleteCity(Long cityId) {
-        return null;
+        this.partnerRepository.deletePartnerCityByCityId(cityId);
+        this.cityRepository.deleteById(cityId);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("City delete successfully with %d.", cityId));
     }
 
 }

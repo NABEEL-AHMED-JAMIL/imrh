@@ -6,6 +6,7 @@ import com.etisalat.imrh.dto.WalletDto;
 import com.etisalat.imrh.entity.Wallet;
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.CountryRepository;
+import com.etisalat.imrh.repository.PartnerRepository;
 import com.etisalat.imrh.repository.WalletRepository;
 import com.etisalat.imrh.service.WalletService;
 import com.etisalat.imrh.util.CommonUtils;
@@ -31,6 +32,8 @@ public class WalletServiceImpl implements WalletService {
     public WalletRepository walletRepository;
     @Autowired
     public CountryRepository countryRepository;
+    @Autowired
+    private PartnerRepository partnerRepository;
 
     @Override
     public GenericResponseDto<Object> createWallet(WalletDto walletDto) {
@@ -110,7 +113,10 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public GenericResponseDto<Object> deleteWallet(Long walletId) {
-        return null;
+        this.partnerRepository.deletePartnerWalletByWalletId(walletId);
+        this.walletRepository.deleteById(walletId);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("Wallet delete successfully with %d.", walletId));
     }
 
 }
