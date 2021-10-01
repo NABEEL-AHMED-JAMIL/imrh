@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @RestController
 @RequestMapping("/imrh/country")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,7 +30,8 @@ public class ProductController {
         try {
             return this.productService.updateProduct(productDto);
         } catch (Exception ex) {
-            logger.error("An error occurred while updateProduct", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while updateProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -38,7 +42,8 @@ public class ProductController {
         try {
             return this.productService.enableDisableProduct(productDto);
         } catch (Exception ex) {
-            logger.error("An error occurred while enableDisableProduct", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while enableDisableProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -49,7 +54,8 @@ public class ProductController {
         try {
             return this.productService.enableDisableAllProduct(enable);
         } catch (Exception ex) {
-            logger.error("An error occurred while updateAllProduct", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while updateAllProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -60,7 +66,8 @@ public class ProductController {
         try {
             return this.productService.fetchAllProduct();
         } catch (Exception ex) {
-            logger.error("An error occurred while fetchAllProduct", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while fetchAllProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                 "Some Internal error accrue contact with support team.");
         }

@@ -14,7 +14,7 @@ public class CityDto {
     private Long cityId;
     private String cityName;
     private Enable enable;
-    private CountryDto countryDto;
+    private CountryDto country;
 
     public CityDto() { }
 
@@ -39,11 +39,11 @@ public class CityDto {
         this.enable = enable;
     }
 
-    public CountryDto getCountryDto() {
-        return countryDto;
+    public CountryDto getCountry() {
+        return country;
     }
-    public void setCountryDto(CountryDto countryDto) {
-        this.countryDto = countryDto;
+    public void setCountry(CountryDto country) {
+        this.country = country;
     }
 
     @Override

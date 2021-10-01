@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author Nabeel Ahmed
  */
 @Repository
-public interface PartnerCountryProductRepository extends JpaRepository<PartnerCountryProduct, PartnerCountryProductId> {
+public interface PartnerCountryProductRepository extends
+    JpaRepository<PartnerCountryProduct, PartnerCountryProductId> {
 }

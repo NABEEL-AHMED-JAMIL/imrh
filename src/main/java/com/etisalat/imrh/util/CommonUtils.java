@@ -1,7 +1,6 @@
 package com.etisalat.imrh.util;
 
 import com.etisalat.imrh.dto.GenericResponseDto;
-
 import java.util.Date;
 
 public class CommonUtils {

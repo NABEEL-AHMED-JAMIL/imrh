@@ -55,32 +55,32 @@ public class Partner extends BaseEntity {
     @Column(name="PARTNER_TXT_ID_LABEL")
     private String partnerTxtIdLabel;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="PARTNER_COUNTRY",
+            joinColumns=@JoinColumn(name="PARTNER_ID"),
+            inverseJoinColumns=@JoinColumn(name="COUNTRY_CODE"))
+    private Set<Country> countries  = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="PARTNER_CITY",
         joinColumns=@JoinColumn(name="PARTNER_ID"),
         inverseJoinColumns=@JoinColumn(name="CITY_ID"))
     private Set<City> cities = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="PARTNER_BANK",
             joinColumns=@JoinColumn(name="PARTNER_ID"),
             inverseJoinColumns=@JoinColumn(name="BANK_ID"))
     private Set<Bank> banks = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="PARTNER_WALLET",
             joinColumns=@JoinColumn(name="PARTNER_ID"),
             inverseJoinColumns=@JoinColumn(name="WALLET_ID"))
     private Set<Wallet> wallets  = new HashSet<>();
 
-    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PartnerCustomer> partnerCustomers = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name="PARTNER_COUNTRY",
-            joinColumns=@JoinColumn(name="PARTNER_ID"),
-            inverseJoinColumns=@JoinColumn(name="COUNTRY_CODE"))
-    private Set<Country> countries  = new HashSet<>();
 
     public Partner() {}
 
@@ -140,6 +140,13 @@ public class Partner extends BaseEntity {
         this.partnerTxtIdLabel = partnerTxtIdLabel;
     }
 
+    public Set<Country> getCountries() {
+        return countries;
+    }
+    public void setCountries(Set<Country> countries) {
+        this.countries = countries;
+    }
+
     public Set<City> getCities() {
         return cities;
     }
@@ -166,13 +173,6 @@ public class Partner extends BaseEntity {
     }
     public void setPartnerCustomers(List<PartnerCustomer> partnerCustomers) {
         this.partnerCustomers = partnerCustomers;
-    }
-
-    public Set<Country> getCountries() {
-        return countries;
-    }
-    public void setCountries(Set<Country> countries) {
-        this.countries = countries;
     }
 
     @Override

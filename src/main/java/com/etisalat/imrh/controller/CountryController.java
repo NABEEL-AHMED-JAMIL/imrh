@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @RestController
 @RequestMapping("/imrh/country")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,7 +30,8 @@ public class CountryController {
         try {
             return this.countryService.enableDisableCountry(countryDto);
         } catch (Exception ex) {
-            logger.error("An error occurred while enableDisableCountry", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while enableDisableCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -38,7 +42,8 @@ public class CountryController {
         try {
             return this.countryService.enableDisableAllCountry(enable);
         } catch (Exception ex) {
-            logger.error("An error occurred while enableDisableAllCountry", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while enableDisableAllCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -49,7 +54,8 @@ public class CountryController {
         try {
             return this.countryService.fetchAllCountry();
         } catch (Exception ex) {
-            logger.error("An error occurred while fetchAllCountry", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while fetchAllCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -60,7 +66,8 @@ public class CountryController {
         try {
             return this.countryService.fetchAllCityByCountryCode(countryCode);
         } catch (Exception ex) {
-            logger.error("An error occurred while fetchAllCityByCountryCode", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while fetchAllCityByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -71,7 +78,8 @@ public class CountryController {
         try {
             return this.countryService.fetchAllBankByCountryCode(countryCode);
         } catch (Exception ex) {
-            logger.error("An error occurred while fetchAllBankByCountryCode", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while fetchAllBankByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
@@ -82,7 +90,8 @@ public class CountryController {
         try {
             return this.countryService.fetchAllWalletsByCountryCode(countryCode);
         } catch (Exception ex) {
-            logger.error("An error occurred while fetchAllWalletsByCountryCode", ExceptionUtil.getRootCauseMessage(ex));
+            ex.printStackTrace();
+            logger.error("An error occurred while fetchAllWalletsByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }

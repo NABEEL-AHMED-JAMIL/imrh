@@ -1,10 +1,22 @@
 package com.etisalat.imrh.service;
 
+import com.etisalat.imrh.dto.CityDto;
+import com.etisalat.imrh.dto.Enable;
+import com.etisalat.imrh.dto.GenericResponseDto;
+
+/**
+ * @author Nabeel Ahmed
+ */
 public interface CityService {
 
-    public void createCity();
-    public void updateCity();
-    public void deleteCity();
-    public void disableCity();
-    public void fetchCity();
+    public GenericResponseDto<Object> createCity(CityDto cityDto);
+
+    public GenericResponseDto<Object> enableDisableCity(CityDto cityDto);
+
+    public GenericResponseDto<Object> enableDisableAllCity(String countryCode, Enable enable);
+
+    public GenericResponseDto<Object> updateCity(CityDto cityDto);
+
+    public GenericResponseDto<Object> deleteCity(Long cityId);
+
 }
