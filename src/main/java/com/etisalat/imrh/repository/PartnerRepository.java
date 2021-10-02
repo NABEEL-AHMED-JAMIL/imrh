@@ -1,11 +1,14 @@
 package com.etisalat.imrh.repository;
 
 import com.etisalat.imrh.entity.Partner;
+import com.etisalat.imrh.repository.projection.PartnerProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Nabeel Ahmed
@@ -13,6 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface PartnerRepository extends JpaRepository<Partner, Long> {
+
+    @Query(value = "select partner_id as partnerId, partner_name as partnerName, enabled from partner", nativeQuery = true)
+    @Transactional(readOnly = true)
+    public List<PartnerProjection> findAllPartner();
 
     /**
      * Note :- this query help to delete all link city from the partner city table

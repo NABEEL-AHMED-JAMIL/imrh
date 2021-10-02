@@ -6,6 +6,8 @@ import com.etisalat.imrh.dto.ProductDto;
 
 public interface ProductService {
 
+    public GenericResponseDto<Object> findByProductId(Long productId);
+
     public GenericResponseDto<Object> updateProduct(ProductDto productDto);
 
     public GenericResponseDto<Object> enableDisableProduct(ProductDto productDto);

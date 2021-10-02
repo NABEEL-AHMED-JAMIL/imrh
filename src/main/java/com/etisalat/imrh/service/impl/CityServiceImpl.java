@@ -3,8 +3,10 @@ package com.etisalat.imrh.service.impl;
 import com.etisalat.imrh.dto.CityDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
+import com.etisalat.imrh.dto.ProductDto;
 import com.etisalat.imrh.entity.City;
 import com.etisalat.imrh.entity.Country;
+import com.etisalat.imrh.entity.Product;
 import com.etisalat.imrh.repository.CityRepository;
 import com.etisalat.imrh.repository.CountryRepository;
 import com.etisalat.imrh.repository.PartnerRepository;
@@ -85,6 +87,21 @@ public class CityServiceImpl implements CityService {
         return CommonUtils.getResponseWithData(this.cityRepository
                 .setAllCityStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
         null, "All City update successfully.");
+    }
+
+    @Override
+    public GenericResponseDto<Object> findByCityId(Long ctyId) {
+        Optional<City> city = this.cityRepository.findById(ctyId);
+        if (city.isPresent()) {
+            CityDto cityDto = new CityDto();
+            cityDto.setCityId(city.get().getCityId());
+            cityDto.setCityName(city.get().getCityName());
+            cityDto.setEnable(Enable.valueOf(city.get().getEnabled()));
+            return CommonUtils.getResponseWithData(cityDto, HttpStatus.OK.series().name(), null,
+                    String.format("City find successfully with %d.", ctyId));
+        }
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("City not found with %d.", ctyId));
     }
 
     @Override

@@ -63,6 +63,18 @@ public class CityController {
         }
     }
 
+    @RequestMapping(path = "/findByCityId", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findByCityId(@RequestParam(name = "ctyId") Long ctyId) {
+        try {
+            return this.cityService.findByCityId(ctyId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findByCityId", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(path = "/updateCity", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateCity(@RequestBody CityDto cityDto) {
         try {

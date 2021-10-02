@@ -15,6 +15,8 @@ public interface CityService {
 
     public GenericResponseDto<Object> enableDisableAllCity(String countryCode, Enable enable);
 
+    public GenericResponseDto<Object> findByCityId(Long ctyId);
+
     public GenericResponseDto<Object> updateCity(CityDto cityDto);
 
     public GenericResponseDto<Object> deleteCity(Long cityId);

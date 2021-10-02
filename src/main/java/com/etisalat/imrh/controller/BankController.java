@@ -63,6 +63,18 @@ public class BankController {
         }
     }
 
+    @RequestMapping(path = "/findByBankId", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findByBankId(@RequestParam(name = "bankId") Long bankId) {
+        try {
+            return this.bankService.findByBankId(bankId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findByBankId", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(path = "/updateBank", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateBank(@RequestBody BankDto bankDto) {
         try {

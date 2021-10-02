@@ -1,9 +1,11 @@
 package com.etisalat.imrh.service.impl;
 
 import com.etisalat.imrh.dto.BankDto;
+import com.etisalat.imrh.dto.CityDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.entity.Bank;
+import com.etisalat.imrh.entity.City;
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.BankRepository;
 import com.etisalat.imrh.repository.CountryRepository;
@@ -85,6 +87,21 @@ public class BankServiceImpl implements BankService {
         return CommonUtils.getResponseWithData(this.bankRepository
                 .setAllBankStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
                 null, "All Bank update successfully.");
+    }
+
+    @Override
+    public GenericResponseDto<Object> findByBankId(Long bankId) {
+        Optional<Bank> bank = this.bankRepository.findById(bankId);
+        if (bank.isPresent()) {
+            BankDto bankDto = new BankDto();
+            bankDto.setBankId(bank.get().getBankId());
+            bankDto.setBankName(bank.get().getBankName());
+            bankDto.setEnable(Enable.valueOf(bank.get().getEnabled()));
+            return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(), null,
+                    String.format("Bank find successfully with %d.", bankId));
+        }
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("Bank not found with %d.", bankId));
     }
 
     @Override

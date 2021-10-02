@@ -25,61 +25,73 @@ public class PartnerController {
     @Autowired
     private PartnerService partnerService;
 
-    @RequestMapping(path = "/enableDisablePartner", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisablePartner(@RequestBody PartnerDto partnerDto) {
+    @RequestMapping(path = "/enableDisableMtoPartner", method = RequestMethod.POST)
+    public GenericResponseDto<Object> enableDisableMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
-            return this.partnerService.enableDisablePartner(partnerDto);
+            return this.partnerService.enableDisableMtoPartner(partnerDto);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while enableDisablePartner", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while enableDisableMtoPartner", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
     }
 
-    @RequestMapping(path = "/enableDisableAllPartner", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllPartner(@RequestParam(name = "enable") Enable enable) {
+    @RequestMapping(path = "/enableDisableAllMtoPartner", method = RequestMethod.POST)
+    public GenericResponseDto<Object> enableDisableAllMtoPartner(@RequestParam(name = "enable") Enable enable) {
         try {
-            return this.partnerService.enableDisableAllPartner(enable);
+            return this.partnerService.enableDisableAllMtoPartner(enable);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while enableDisableAllPartner", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while enableDisableAllMtoPartner", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
     }
 
-    @RequestMapping(path = "/fetchAllPartner", method = RequestMethod.GET)
-    public GenericResponseDto<Object> fetchAllPartner() {
+    @RequestMapping(path = "/fetchAllMtoPartner", method = RequestMethod.GET)
+    public GenericResponseDto<Object> fetchAllMtoPartner() {
         try {
-            return this.partnerService.fetchAllPartner();
+            return this.partnerService.fetchAllMtoPartner();
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while fetchAllPartner", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while fetchAllMtoPartner", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
     }
 
-    @RequestMapping(path = "/updatePartner", method = RequestMethod.POST)
-    public GenericResponseDto<Object> updatePartner(@RequestBody PartnerDto partnerDto) {
+    @RequestMapping(path = "/findByMtoPartnerId", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findByMtoPartnerId(@RequestParam(name = "partnerId") Long partnerId) {
         try {
-            return this.partnerService.updatePartner(partnerDto);
+            return this.partnerService.findByMtoPartnerId(partnerId);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while updatePartner", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while findByMtoPartnerId", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }
     }
 
-    @RequestMapping(path = "/deletePartner", method = RequestMethod.POST)
-    public GenericResponseDto<Object> deletePartner(@RequestParam(name = "partnerId") Long partnerId) {
+    @RequestMapping(path = "/updateMtoPartner", method = RequestMethod.POST)
+    public GenericResponseDto<Object> updateMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
-            return this.partnerService.deletePartner(partnerId);
+            return this.partnerService.updateMtoPartner(partnerDto);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while deletePartner", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while updateMtoPartner", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(path = "/deleteMtoPartner", method = RequestMethod.POST)
+    public GenericResponseDto<Object> deleteMtoPartner(@RequestParam(name = "partnerId") Long partnerId) {
+        try {
+            return this.partnerService.deleteMtoPartner(partnerId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while deleteMtoPartner", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }

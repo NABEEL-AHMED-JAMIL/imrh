@@ -24,6 +24,11 @@ public class PartnerDto {
 
     public PartnerDto() {}
 
+    public PartnerDto(Long partnerId, Integer preferenceOrder) {
+        this.partnerId = partnerId;
+        this.preferenceOrder = preferenceOrder;
+    }
+
     public Long getPartnerId() {
         return partnerId;
     }

@@ -25,6 +25,21 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
+    public GenericResponseDto<Object> findByProductId(Long productId) {
+        Optional<Product> product = this.productRepository.findById(productId);
+        if (product.isPresent()) {
+            ProductDto productDto = new ProductDto();
+            productDto.setProductId(product.get().getProductId());
+            productDto.setProductName(product.get().getProductName());
+            productDto.setEnable(Enable.valueOf(product.get().getEnabled()));
+            return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(), null,
+                    String.format("Product find successfully with %d.", productDto.getProductId()));
+        }
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("Product not found with %d.", productId));
+    }
+
+    @Override
     public GenericResponseDto<Object> updateProduct(ProductDto productDto) {
         if (CommonUtils.isNull(productDto.getProductId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),

@@ -25,6 +25,18 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @RequestMapping(path = "/findByProductId", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findByProductId(@RequestParam(name = "productId") Long productId) {
+        try {
+            return this.productService.findByProductId(productId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findByProductId", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(path = "/updateProduct", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateProduct(@RequestBody ProductDto productDto) {
         try {

@@ -63,6 +63,18 @@ public class WalletController {
         }
     }
 
+    @RequestMapping(path = "/findByWalletId", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findByWalletId(@RequestParam(name = "walletId") Long walletId) {
+        try {
+            return this.walletService.findByWalletId(walletId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findByWalletId", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(path = "/updateWallet", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateWallet(@RequestBody WalletDto walletDto) {
         try {

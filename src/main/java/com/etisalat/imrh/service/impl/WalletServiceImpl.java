@@ -1,8 +1,10 @@
 package com.etisalat.imrh.service.impl;
 
+import com.etisalat.imrh.dto.CityDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.WalletDto;
+import com.etisalat.imrh.entity.City;
 import com.etisalat.imrh.entity.Wallet;
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.CountryRepository;
@@ -85,6 +87,21 @@ public class WalletServiceImpl implements WalletService {
         return CommonUtils.getResponseWithData(this.walletRepository
             .setAllWalletStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
             null, "All Wallet update successfully.");
+    }
+
+    @Override
+    public GenericResponseDto<Object> findByWalletId(Long walletId) {
+        Optional<Wallet> wallet = this.walletRepository.findById(walletId);
+        if (wallet.isPresent()) {
+            WalletDto walletDto = new WalletDto();
+            walletDto.setWalletId(wallet.get().getWalletId());
+            walletDto.setWalletName(wallet.get().getWalletName());
+            walletDto.setEnable(Enable.valueOf(wallet.get().getEnabled()));
+            return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(), null,
+                    String.format("Wallet find successfully with %d.", walletId));
+        }
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("Wallet not found with %d.", walletId));
     }
 
     @Override
