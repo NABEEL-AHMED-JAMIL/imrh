@@ -1,10 +1,8 @@
 package com.etisalat.imrh.service.impl;
 
-import com.etisalat.imrh.dto.CityDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.WalletDto;
-import com.etisalat.imrh.entity.City;
 import com.etisalat.imrh.entity.Wallet;
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.CountryRepository;
