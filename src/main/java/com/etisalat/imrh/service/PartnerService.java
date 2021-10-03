@@ -4,6 +4,8 @@ import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.PartnerDto;
 
+import java.util.List;
+
 
 public interface PartnerService {
 
@@ -18,5 +20,7 @@ public interface PartnerService {
     public GenericResponseDto<Object> updateMtoPartner(PartnerDto partnerDto);
 
     public GenericResponseDto<Object> deleteMtoPartner(Long partnerId);
+
+    public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(List<PartnerDto> partnerDtoList);
 
 }

@@ -17,9 +17,26 @@ import java.util.List;
 @Transactional
 public interface PartnerRepository extends JpaRepository<Partner, Long> {
 
-    @Query(value = "select partner_id as partnerId, partner_name as partnerName, enabled from partner", nativeQuery = true)
-    @Transactional(readOnly = true)
+    @Modifying
+    @Query(value = "UPDATE Partner SET ENABLED = ?1", nativeQuery = true)
+    public int setAllPartnerStatus(String enabled);
+
+    @Query(value = "SELECT partner_id as partnerId, partner_name as partnerName, enabled FROM partner", nativeQuery = true)
     public List<PartnerProjection> findAllPartner();
+
+    /**
+     * Note :- this query help to delete all link country from the partner country table
+     * */
+    @Modifying
+    @Query(value = "DELETE FROM partner_country WHERE country_code = ?1", nativeQuery = true)
+    public void deletePartnerCountryByCountryCode(Long countryCode);
+
+    /**
+     * Note :- this query help to delete all link country from the partner country table
+     * */
+    @Modifying
+    @Query(value = "DELETE FROM partner_country WHERE partner_id = ?1", nativeQuery = true)
+    public void deletePartnerCountryByPartnerId(Long partnerId);
 
     /**
      * Note :- this query help to delete all link city from the partner city table
@@ -29,6 +46,13 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     public void deletePartnerCityByCityId(Long cityId);
 
     /**
+     * Note :- this query help to delete all link city from the partner city table
+     * */
+    @Modifying
+    @Query(value = "DELETE FROM partner_city WHERE partner_id = ?1", nativeQuery = true)
+    public void deletePartnerCityByPartnerId(Long partnerId);
+
+    /**
      * Note :- this query help to delete all link wallet from the partner wallet table
      * */
     @Modifying
@@ -36,9 +60,24 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     public void deletePartnerWalletByWalletId(Long walletId);
 
     /**
+     * Note :- this query help to delete all link wallet from the partner wallet table
+     * */
+    @Modifying
+    @Query(value = "DELETE FROM partner_wallet WHERE partner_id = ?1", nativeQuery = true)
+    public void deletePartnerWalletByPartnerId(Long partnerId);
+
+    /**
      * Note :- this query help to delete all link bank from the partner bank table
      * */
     @Modifying
     @Query(value = "DELETE FROM partner_bank WHERE bank_id = ?1", nativeQuery = true)
     public void deletePartnerBankByBankId(Long bankId);
+
+    /**
+     * Note :- this query help to delete all link bank from the partner bank table
+     * */
+    @Modifying
+    @Query(value = "DELETE FROM partner_bank WHERE partner_id = ?1", nativeQuery = true)
+    public void deletePartnerBankByPartnerId(Long partnerId);
 }
+

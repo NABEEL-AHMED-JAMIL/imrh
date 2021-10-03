@@ -57,8 +57,8 @@ public class Partner extends BaseEntity {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="PARTNER_COUNTRY",
-            joinColumns=@JoinColumn(name="PARTNER_ID"),
-            inverseJoinColumns=@JoinColumn(name="COUNTRY_CODE"))
+        joinColumns=@JoinColumn(name="PARTNER_ID"),
+        inverseJoinColumns=@JoinColumn(name="COUNTRY_CODE"))
     private Set<Country> countries  = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -69,14 +69,14 @@ public class Partner extends BaseEntity {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="PARTNER_BANK",
-            joinColumns=@JoinColumn(name="PARTNER_ID"),
-            inverseJoinColumns=@JoinColumn(name="BANK_ID"))
+        joinColumns=@JoinColumn(name="PARTNER_ID"),
+        inverseJoinColumns=@JoinColumn(name="BANK_ID"))
     private Set<Bank> banks = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="PARTNER_WALLET",
-            joinColumns=@JoinColumn(name="PARTNER_ID"),
-            inverseJoinColumns=@JoinColumn(name="WALLET_ID"))
+        joinColumns=@JoinColumn(name="PARTNER_ID"),
+        inverseJoinColumns=@JoinColumn(name="WALLET_ID"))
     private Set<Wallet> wallets  = new HashSet<>();
 
     @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

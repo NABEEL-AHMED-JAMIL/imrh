@@ -15,12 +15,11 @@ public class PartnerDto {
     private String partnerName;
     private Enable enable;
     private Integer preferenceOrder;
-    private Integer forexMarginShare;
-    private Integer partnerShare;
+    private Double forexMarginShare;
+    private Double partnerShare;
     private String transferSpeed;
     private String partnerCategory;
     private String partnerTxtIdLabel;
-
 
     public PartnerDto() {}
 
@@ -57,17 +56,17 @@ public class PartnerDto {
         this.preferenceOrder = preferenceOrder;
     }
 
-    public Integer getForexMarginShare() {
+    public Double getForexMarginShare() {
         return forexMarginShare;
     }
-    public void setForexMarginShare(Integer forexMarginShare) {
+    public void setForexMarginShare(Double forexMarginShare) {
         this.forexMarginShare = forexMarginShare;
     }
 
-    public Integer getPartnerShare() {
+    public Double getPartnerShare() {
         return partnerShare;
     }
-    public void setPartnerShare(Integer partnerShare) {
+    public void setPartnerShare(Double partnerShare) {
         this.partnerShare = partnerShare;
     }
 
