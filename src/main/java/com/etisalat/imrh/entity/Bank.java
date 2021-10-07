@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-
 import javax.persistence.*;
 
 /**
@@ -65,4 +64,5 @@ public class Bank extends BaseEntity {
     public String toString() {
         return new Gson().toJson(this);
     }
+
 }

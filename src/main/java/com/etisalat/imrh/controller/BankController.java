@@ -33,7 +33,7 @@ public class BankController {
             ex.printStackTrace();
             logger.error("An error occurred while createBank", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -45,7 +45,7 @@ public class BankController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableBank", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -59,7 +59,7 @@ public class BankController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableAllBank", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -71,7 +71,7 @@ public class BankController {
             ex.printStackTrace();
             logger.error("An error occurred while findByBankId", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -83,7 +83,7 @@ public class BankController {
             ex.printStackTrace();
             logger.error("An error occurred while updateBank", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -95,7 +95,7 @@ public class BankController {
             ex.printStackTrace();
             logger.error("An error occurred while deleteBank", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 

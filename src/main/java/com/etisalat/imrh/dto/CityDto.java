@@ -50,4 +50,5 @@ public class CityDto {
     public String toString() {
         return new Gson().toJson(this);
     }
+
 }

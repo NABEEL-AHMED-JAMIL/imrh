@@ -5,13 +5,19 @@ import com.etisalat.imrh.util.CommonUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @Service
+@Transactional
 public class EntityQuery {
 
     public Logger logger = LogManager.getLogger(EntityQuery.class);
@@ -44,14 +50,10 @@ public class EntityQuery {
     }
 
     public int executeUpdateQuery(String queryString) {
-        logger.info("Transaction Start for %s ", queryString);
-        this.entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery(queryString);
+        logger.info("Transaction Start for " + queryString);
+        Query query = this.entityManager.createNamedQuery(queryString);
         int rowsUpdated = query.executeUpdate();
-        this.entityManager.getTransaction().commit();
-        this.entityManager.close();
-        logger.info("Transaction End with update rows %d ", rowsUpdated);
+        logger.info("Transaction End with update rows " + rowsUpdated);
         return rowsUpdated;
     }
-
 }

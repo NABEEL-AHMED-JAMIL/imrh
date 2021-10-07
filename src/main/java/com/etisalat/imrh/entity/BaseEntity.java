@@ -31,4 +31,5 @@ public class BaseEntity {
     public String toString() {
         return new Gson().toJson(this);
     }
+
 }

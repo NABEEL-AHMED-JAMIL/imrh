@@ -1,5 +1,6 @@
 package com.etisalat.imrh.service.impl;
 
+import com.etisalat.imrh.dto.CountryDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.PartnerDto;
@@ -13,12 +14,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class PartnerServiceImpl implements PartnerService {
 
     public Logger logger = LogManager.getLogger(PartnerServiceImpl.class);
@@ -31,27 +34,99 @@ public class PartnerServiceImpl implements PartnerService {
     private EntityQuery entityQuery;
 
     @Override
+    public GenericResponseDto<Object> attachMtoCountryWithMtoPartner(PartnerDto partnerDto) {
+        if (CommonUtils.isNull(partnerDto.getPartnerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Partner id missing.");
+        } else if (CommonUtils.isNull(partnerDto.getCountry().getCountryCode())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Country code missing.");
+        } else if (this.partnerRepository.isAttachMtoCountryWithMtoPartner(partnerDto.getPartnerId(),
+                partnerDto.getCountry().getCountryCode())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Country already link with mto partner.");
+        }
+        this.partnerRepository.attachMtoCountryWithMtoPartner(partnerDto.getPartnerId(), partnerDto.getCountry().getCountryCode());
+        return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
+            String.format("Mto Country successfully linked with mto partner %d.", partnerDto.getPartnerId()));
+    }
+
+    @Override
+    public GenericResponseDto<Object> attachMtoCityWithMtoPartner(PartnerDto partnerDto) {
+        if (CommonUtils.isNull(partnerDto.getPartnerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Partner id missing.");
+        } else if (CommonUtils.isNull(partnerDto.getCity().getCityId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto City id missing.");
+        } else if (this.partnerRepository.isAttachMtoCityWithMtoPartner(partnerDto.getPartnerId(),
+                partnerDto.getCity().getCityId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto City already link with mto partner.");
+        }
+        this.partnerRepository.attachMtoCityWithMtoPartner(partnerDto.getPartnerId(), partnerDto.getCity().getCityId());
+        return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
+            String.format("Mto City successfully linked with mto partner %d.", partnerDto.getPartnerId()));
+    }
+
+    @Override
+    public GenericResponseDto<Object> attachMtoWalletWithMtoPartner(PartnerDto partnerDto) {
+        if (CommonUtils.isNull(partnerDto.getPartnerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Partner id missing.");
+        } else if (CommonUtils.isNull(partnerDto.getWallet().getWalletId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Wallet id missing.");
+        } else if (this.partnerRepository.isAttachMtoWalletWithMtoPartner(partnerDto.getPartnerId(),
+                partnerDto.getWallet().getWalletId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Wallet already link with mto partner.");
+        }
+        this.partnerRepository.attachMtoWalletWithMtoPartner(partnerDto.getPartnerId(), partnerDto.getWallet().getWalletId());
+        return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
+            String.format("Mto Wallet successfully linked with mto partner %d.", partnerDto.getPartnerId()));
+    }
+
+    @Override
+    public GenericResponseDto<Object> attachMtoBankWithMtoPartner(PartnerDto partnerDto) {
+        if (CommonUtils.isNull(partnerDto.getPartnerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Partner id missing.");
+        } else if (CommonUtils.isNull(partnerDto.getBank().getBankId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Bank id missing.");
+        } else if (this.partnerRepository.isAttachMtoBankWithMtoPartner(partnerDto.getPartnerId(),
+                partnerDto.getBank().getBankId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Bank id already link with mto partner.");
+        }
+        this.partnerRepository.attachMtoBankWithMtoPartner(partnerDto.getPartnerId(), partnerDto.getBank().getBankId());
+        return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
+            String.format("Mto Bank successfully linked with mto partner %d.", partnerDto.getPartnerId()));
+    }
+
+    @Override
     public GenericResponseDto<Object> enableDisableMtoPartner(PartnerDto partnerDto) {
         if (CommonUtils.isNull(partnerDto.getPartnerId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                    HttpStatus.BAD_REQUEST.series().name(), "Partner id missing.");
+                    HttpStatus.BAD_REQUEST.series().name(), "Mto Partner id missing.");
         }
         Optional<Partner> partner = this.partnerRepository.findById(partnerDto.getPartnerId());
         if (partner.isPresent()) {
             partner.get().setEnabled(partnerDto.getEnable().name());
             this.partnerRepository.save(partner.get());
             return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(),
-                    null, String.format("Partner update successfully with %d.", partnerDto.getPartnerId()));
+                    null, String.format("Mto Partner update successfully with %d.", partnerDto.getPartnerId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Partner not found with %d.", partnerDto.getPartnerId()));
+                String.format("Mto Partner not found with %d.", partnerDto.getPartnerId()));
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableAllMtoPartner(Enable enable) {
         return CommonUtils.getResponseWithData(this.partnerRepository
             .setAllPartnerStatus(enable.name()), HttpStatus.OK.series().name(),
-        null, "All Partner update successfully.");
+        null, "All Mto Partner update successfully.");
     }
 
     @Override
@@ -70,7 +145,7 @@ public class PartnerServiceImpl implements PartnerService {
                 partnerDto.setEnable(Enable.valueOf(partner.getEnabled()));
                 return partnerDto;
             }).collect(Collectors.toList()),
-            HttpStatus.OK.series().name(), null, String.format("Partner fetch successfully."));
+            HttpStatus.OK.series().name(), null, String.format("Mto Partner fetch successfully."));
     }
 
     @Override
@@ -88,38 +163,68 @@ public class PartnerServiceImpl implements PartnerService {
             partnerDto.setPartnerTxtIdLabel(partner.get().getPartnerTxtIdLabel());
             partnerDto.setEnable(Enable.valueOf(partner.get().getEnabled()));
             return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
-                    String.format("Partner find successfully with %d.", partnerId));
+                String.format("Mto Partner find successfully with %d.", partnerId));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Partner not found with %d.", partnerId));
+                String.format("Mto Partner not found with %d.", partnerId));
+    }
+
+    @Override
+    public GenericResponseDto<Object> findMtoCountryByMtoPartnerId(Long partnerId) {
+        Optional<Partner> partner = this.partnerRepository.findById(partnerId);
+        if (partner.isPresent()) {
+            PartnerDto partnerDto = new PartnerDto();
+            partnerDto.setPartnerId(partner.get().getPartnerId());
+            partnerDto.setPartnerName(partner.get().getPartnerName());
+            partnerDto.setPreferenceOrder(partner.get().getPreferenceOrder());
+            partnerDto.setForexMarginShare(partner.get().getForexMarginShare());
+            partnerDto.setPartnerShare(partner.get().getPartnerShare());
+            partnerDto.setTransferSpeed(partner.get().getTransferSpeed());
+            partnerDto.setPartnerCategory(partner.get().getPartnerCategory());
+            partnerDto.setPartnerTxtIdLabel(partner.get().getPartnerTxtIdLabel());
+            partnerDto.setEnable(Enable.valueOf(partner.get().getEnabled()));
+            partnerDto.setCountries(partner.get().getCountries()
+            .stream().map(country -> {
+                CountryDto countryDto = new CountryDto();
+                countryDto.setCountryCode(country.getCountryCode());
+                countryDto.setCountryLegacyCode(country.getCountryLegacyCode());
+                countryDto.setCountryName(country.getCountryName());
+                countryDto.setEnable(Enable.valueOf(country.getEnabled()));
+                return countryDto;
+            }).collect(Collectors.toSet()));
+            return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
+                String.format("Mto Partner find successfully with %d.", partnerId));
+        }
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                String.format("Mto Partner not found with %d.", partnerId));
     }
 
     @Override
     public GenericResponseDto<Object> updateMtoPartner(PartnerDto partnerDto) {
         if (CommonUtils.isNull(partnerDto.getPartnerId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner id missing.");
+                "Mto Partner id missing.");
         } else if (CommonUtils.isNull(partnerDto.getPartnerName())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner name missing.");
+                "Mto Partner name missing.");
         } else if (CommonUtils.isNull(partnerDto.getPreferenceOrder())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner preferenceOrder missing.");
+                "Mto Partner preferenceOrder missing.");
         } else if (CommonUtils.isNull(partnerDto.getForexMarginShare())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner forexMarginShare missing.");
+                "Mto Partner forexMarginShare missing.");
         } else if (CommonUtils.isNull(partnerDto.getPartnerShare())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner partnerShare missing.");
+                "Mto Partner partnerShare missing.");
         } else if (CommonUtils.isNull(partnerDto.getTransferSpeed())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner transferSpeed missing.");
+                "Mto Partner transferSpeed missing.");
         } else if (CommonUtils.isNull(partnerDto.getPartnerCategory())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner partnerCategory missing.");
+                "Mto Partner partnerCategory missing.");
         } else if (CommonUtils.isNull(partnerDto.getPartnerTxtIdLabel())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner partnerTxtIdLabel missing.");
+                "Mto Partner partnerTxtIdLabel missing.");
         }
         Optional<Partner> partner = this.partnerRepository.findById(partnerDto.getPartnerId());
         if (partner.isPresent()) {
@@ -133,10 +238,17 @@ public class PartnerServiceImpl implements PartnerService {
             partner.get().setEnabled(partnerDto.getEnable().name());
             this.partnerRepository.save(partner.get());
             return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(),
-                    null, String.format("Partner update successfully with %d.", partnerDto.getPartnerId()));
+                null, String.format("Mto Partner update successfully with %d.", partnerDto.getPartnerId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Partner not found with %d.", partnerDto.getPartnerId()));
+            String.format("Mto Partner not found with %d.", partnerDto.getPartnerId()));
+    }
+
+    @Override
+    public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(List<PartnerDto> partnerDtoList) {
+        this.entityQuery.executeUpdateQuery(this.entityQuery.changePreferenceOrder(partnerDtoList));
+        return CommonUtils.getResponseWithData(partnerDtoList, HttpStatus.OK.series().name(),
+            null, "Mto Partner's preference order update successfully.");
     }
 
     /**
@@ -152,14 +264,35 @@ public class PartnerServiceImpl implements PartnerService {
         this.partnerRepository.deletePartnerWalletByPartnerId(partnerId);
         this.partnerCountryProductRepository.deleteByProductId(partnerId);
         this.partnerRepository.deleteById(partnerId);
-        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Partner delete successfully with %d.", partnerId));
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+            String.format("Mto Partner delete successfully with %d.", partnerId));
     }
 
     @Override
-    public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(List<PartnerDto> partnerDtoList) {
-        this.entityQuery.executeUpdateQuery(this.entityQuery.changePreferenceOrder(partnerDtoList));
-        return CommonUtils.getResponseWithData(partnerDtoList, HttpStatus.OK.series().name(),
-                null, "Partner's preference order update successfully.");
+    public GenericResponseDto<Object> deleteMtoCountryLinkMtoPartner(Long partnerId, String countryCode) {
+        this.partnerRepository.deletePartnerCountryByPartnerIdAndCountryCode(partnerId, countryCode);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+            String.format("Mto Country delete from mto partner successfully with %d.", partnerId));
+    }
+
+    @Override
+    public GenericResponseDto<Object> deleteMtoCityLinkMtoPartner(Long partnerId, Long cityId) {
+        this.partnerRepository.deletePartnerCityByPartnerIdAndCityId(partnerId, cityId);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+            String.format("Mto City delete from mto partner successfully with %d.", partnerId));
+    }
+
+    @Override
+    public GenericResponseDto<Object> deleteMtoWalletLinkMtoPartner(Long partnerId, Long walletId) {
+        this.partnerRepository.deletePartnerWalletByPartnerIdAndWalletId(partnerId, walletId);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+            String.format("Mto Wallet delete from mto partner successfully with %d.", partnerId));
+    }
+
+    @Override
+    public GenericResponseDto<Object> deleteMtoBankLinkMtoPartner(Long partnerId, Long bankId) {
+        this.partnerRepository.deletePartnerBankByPartnerIdAndBankId(partnerId, bankId);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+            String.format("Mto Bank delete from mto partner successfully with %d.", partnerId));
     }
 }

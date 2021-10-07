@@ -3,6 +3,7 @@ package com.etisalat.imrh.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
+import java.util.Set;
 
 /**
  * @author Nabeel Ahmed
@@ -20,6 +21,14 @@ public class PartnerDto {
     private String transferSpeed;
     private String partnerCategory;
     private String partnerTxtIdLabel;
+    private CountryDto country;
+    private Set<CountryDto> countries;
+    private CityDto city;
+    private Set<CityDto> cities;
+    private BankDto bank;
+    private Set<BankDto> banks;
+    private WalletDto wallet;
+    private Set<WalletDto> wallets;
 
     public PartnerDto() {}
 
@@ -91,8 +100,65 @@ public class PartnerDto {
         this.partnerTxtIdLabel = partnerTxtIdLabel;
     }
 
+    public CountryDto getCountry() {
+        return country;
+    }
+    public void setCountry(CountryDto country) {
+        this.country = country;
+    }
+
+    public Set<CountryDto> getCountries() {
+        return countries;
+    }
+    public void setCountries(Set<CountryDto> countries) {
+        this.countries = countries;
+    }
+
+    public CityDto getCity() {
+        return city;
+    }
+    public void setCity(CityDto city) {
+        this.city = city;
+    }
+
+    public Set<CityDto> getCities() {
+        return cities;
+    }
+    public void setCities(Set<CityDto> cities) {
+        this.cities = cities;
+    }
+
+    public BankDto getBank() {
+        return bank;
+    }
+    public void setBank(BankDto bank) {
+        this.bank = bank;
+    }
+
+    public Set<BankDto> getBanks() {
+        return banks;
+    }
+    public void setBanks(Set<BankDto> banks) {
+        this.banks = banks;
+    }
+
+    public WalletDto getWallet() {
+        return wallet;
+    }
+    public void setWallet(WalletDto wallet) {
+        this.wallet = wallet;
+    }
+
+    public Set<WalletDto> getWallets() {
+        return wallets;
+    }
+    public void setWallets(Set<WalletDto> wallets) {
+        this.wallets = wallets;
+    }
+
     @Override
     public String toString() {
         return new Gson().toJson(this);
     }
+
 }

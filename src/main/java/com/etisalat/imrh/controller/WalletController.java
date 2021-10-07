@@ -33,7 +33,7 @@ public class WalletController {
             ex.printStackTrace();
             logger.error("An error occurred while createWallet", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -45,13 +45,12 @@ public class WalletController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableWallet", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
     @RequestMapping(path = "/enableDisableAllWallet", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllWallet(
-        @RequestParam(name = "countryCode") String countryCode,
+    public GenericResponseDto<Object> enableDisableAllWallet(@RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
             return this.walletService.enableDisableAllWallet(countryCode, enable);
@@ -59,7 +58,7 @@ public class WalletController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableAllWallet", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -71,7 +70,7 @@ public class WalletController {
             ex.printStackTrace();
             logger.error("An error occurred while findByWalletId", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -83,7 +82,7 @@ public class WalletController {
             ex.printStackTrace();
             logger.error("An error occurred while updateWallet", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -95,7 +94,7 @@ public class WalletController {
             ex.printStackTrace();
             logger.error("An error occurred while deleteWallet", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 }

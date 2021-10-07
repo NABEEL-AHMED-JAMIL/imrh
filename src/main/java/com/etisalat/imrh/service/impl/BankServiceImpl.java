@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 
 /**
@@ -74,7 +73,7 @@ public class BankServiceImpl implements BankService {
             bank.get().setEnabled(bankDto.getEnable().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                    null, String.format("Bank update successfully with %d.", bankDto.getBankId()));
+                null, String.format("Bank update successfully with %d.", bankDto.getBankId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Bank not found with %d.", bankDto.getBankId()));
@@ -83,8 +82,8 @@ public class BankServiceImpl implements BankService {
     @Override
     public GenericResponseDto<Object> enableDisableAllBank(String countryCode, Enable enable) {
         return CommonUtils.getResponseWithData(this.bankRepository
-                .setAllBankStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
-                null, "All Bank update successfully.");
+            .setAllBankStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
+            null, "All Bank update successfully.");
     }
 
     @Override
@@ -120,7 +119,7 @@ public class BankServiceImpl implements BankService {
             bank.get().setEnabled(bankDto.getEnable().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                    null, String.format("Bank update successfully with %d.", bankDto.getBankId()));
+                null, String.format("Bank update successfully with %d.", bankDto.getBankId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Bank not found with %d.", bankDto.getBankId()));

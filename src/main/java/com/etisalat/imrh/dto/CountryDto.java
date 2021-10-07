@@ -71,7 +71,6 @@ public class CountryDto {
         this.wallets = wallets;
     }
 
-
     @Override
     public String toString() {
         return new Gson().toJson(this);

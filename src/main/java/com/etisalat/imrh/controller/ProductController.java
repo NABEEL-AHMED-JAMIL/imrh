@@ -33,7 +33,7 @@ public class ProductController {
             ex.printStackTrace();
             logger.error("An error occurred while findByProductId", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -45,7 +45,7 @@ public class ProductController {
             ex.printStackTrace();
             logger.error("An error occurred while updateProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -57,7 +57,7 @@ public class ProductController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -69,7 +69,7 @@ public class ProductController {
             ex.printStackTrace();
             logger.error("An error occurred while updateAllProduct", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 

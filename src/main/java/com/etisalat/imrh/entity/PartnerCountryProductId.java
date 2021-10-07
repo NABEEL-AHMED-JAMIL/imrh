@@ -1,7 +1,6 @@
 package com.etisalat.imrh.entity;
 
 import com.google.gson.Gson;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -53,6 +52,5 @@ public class PartnerCountryProductId implements Serializable {
     public String toString() {
         return new Gson().toJson(this);
     }
-
 
 }

@@ -20,6 +20,5 @@ public interface WalletService {
     public GenericResponseDto<Object> updateWallet(WalletDto walletDto);
 
     public GenericResponseDto<Object> deleteWallet(Long walletId);
-    
-    
+
 }

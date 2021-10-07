@@ -33,7 +33,7 @@ public class CountryController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -45,7 +45,7 @@ public class CountryController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableAllCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -57,7 +57,7 @@ public class CountryController {
             ex.printStackTrace();
             logger.error("An error occurred while fetchAllCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -69,7 +69,7 @@ public class CountryController {
             ex.printStackTrace();
             logger.error("An error occurred while fetchAllCityByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -81,7 +81,7 @@ public class CountryController {
             ex.printStackTrace();
             logger.error("An error occurred while fetchAllBankByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -93,7 +93,7 @@ public class CountryController {
             ex.printStackTrace();
             logger.error("An error occurred while fetchAllWalletsByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 

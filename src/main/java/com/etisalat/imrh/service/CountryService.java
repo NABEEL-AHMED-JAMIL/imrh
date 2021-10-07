@@ -4,6 +4,9 @@ import com.etisalat.imrh.dto.CountryDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 
+/**
+ * @author Nabeel Ahmed
+ */
 public interface CountryService {
 
     public GenericResponseDto<Object> enableDisableCountry(CountryDto countryDto);

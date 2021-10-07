@@ -33,7 +33,7 @@ public class CityController {
             ex.printStackTrace();
             logger.error("An error occurred while createCity", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -45,21 +45,20 @@ public class CityController {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableCity", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
     @RequestMapping(path = "/enableDisableAllCity", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllCity(
-            @RequestParam(name = "countryCode") String countryCode,
-            @RequestParam(name = "enable") Enable enable) {
+    public GenericResponseDto<Object> enableDisableAllCity(@RequestParam(name = "countryCode") String countryCode,
+        @RequestParam(name = "enable") Enable enable) {
         try {
             return this.cityService.enableDisableAllCity(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableAllCity", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -71,7 +70,7 @@ public class CityController {
             ex.printStackTrace();
             logger.error("An error occurred while findByCityId", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -83,7 +82,7 @@ public class CityController {
             ex.printStackTrace();
             logger.error("An error occurred while updateCity", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
@@ -95,7 +94,7 @@ public class CityController {
             ex.printStackTrace();
             logger.error("An error occurred while deleteCity", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+                "Some Internal error accrue contact with support team.");
         }
     }
 
