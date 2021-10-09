@@ -28,6 +28,12 @@ public interface PartnerService {
 
     public GenericResponseDto<Object> findMtoCountryByMtoPartnerId(Long partnerId);
 
+    public GenericResponseDto<Object> findMtoCityByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
+
+    public GenericResponseDto<Object> findMtoWalletByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
+
+    public GenericResponseDto<Object> findMtoBankByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
+
     public GenericResponseDto<Object> updateMtoPartner(PartnerDto partnerDto);
 
     public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(List<PartnerDto> partnerDtoList);

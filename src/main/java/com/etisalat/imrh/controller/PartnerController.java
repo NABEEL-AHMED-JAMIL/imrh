@@ -146,6 +146,45 @@ public class PartnerController {
         }
     }
 
+    @RequestMapping(path = "/findMtoCityByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findMtoCityByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
+        @RequestParam(name = "countryCode") String countryCode) {
+        try {
+            return this.partnerService.findMtoCityByMtoPartnerIdAndMtoCountryCode(partnerId,countryCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findMtoCityByMtoPartnerIdAndMtoCountryCode", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(path = "/findMtoWalletByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findMtoWalletByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
+        @RequestParam(name = "countryCode") String countryCode) {
+        try {
+            return this.partnerService.findMtoWalletByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findMtoWalletByMtoPartnerIdAndMtoCountryCode", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(path = "/findMtoBankByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findMtoBankByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
+        @RequestParam(name = "countryCode") String countryCode) {
+        try {
+            return this.partnerService.findMtoBankByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findMtoBankByMtoPartnerIdAndMtoCountryCode", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(path = "/updateMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {

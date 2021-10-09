@@ -1,6 +1,9 @@
 package com.etisalat.imrh.repository;
 
 import com.etisalat.imrh.entity.Partner;
+import com.etisalat.imrh.repository.projection.MtoBankLinkMtoPartnerProjection;
+import com.etisalat.imrh.repository.projection.MtoCityLinkMtoPartnerProjection;
+import com.etisalat.imrh.repository.projection.MtoWalletLinkMtoPartnerProjection;
 import com.etisalat.imrh.repository.projection.PartnerProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -52,6 +55,42 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Modifying
     @Query(value = "DELETE FROM partner_country WHERE partner_id = ?1", nativeQuery = true)
     public void deletePartnerCountryByPartnerId(Long partnerId);
+
+    /**
+     * Note :- this query help to fetch the data for mto city by base on partner id and  country code
+     * */
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName,\n" +
+        "country.country_code AS countryCode, country.country_name AS countryName, country.enabled AS countryEnabled,\n" +
+        "city.city_id AS cityId, city.city_name AS cityName, city.enabled AS cityEnabled FROM partner\n" +
+        "INNER JOIN partner_city ON partner_city.partner_id = partner.partner_id\n" +
+        "INNER JOIN city ON city.city_id = partner_city.city_id\n" +
+        "INNER JOIN country ON country.country_code = city.country_code\n" +
+        "WHERE partner.partner_id = ?1 AND country.country_code = ?2", nativeQuery = true)
+    public List<MtoCityLinkMtoPartnerProjection> findMtoCityByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
+
+    /**
+     * Note :- this query help to fetch the data for mto wallet by base on partner id and  country code
+     * */
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName,\n" +
+        "country.country_code AS countryCode, country.country_name AS countryName, country.enabled AS countryEnabled,\n" +
+        "wallet.wallet_id AS walletId, wallet.wallet_name AS walletName, wallet.enabled AS walletEnabled FROM partner\n" +
+        "INNER JOIN partner_wallet ON partner_wallet.partner_id = partner.partner_id\n" +
+        "INNER JOIN wallet ON wallet.wallet_id = partner_wallet.wallet_id\n" +
+        "INNER JOIN country ON country.country_code = wallet.country_code\n" +
+        "WHERE partner.partner_id = ?1 AND country.country_code = ?2", nativeQuery = true)
+    public List<MtoWalletLinkMtoPartnerProjection> findMtoWalletByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
+
+    /**
+     * Note :- this query help to fetch the data for mto bank by base on partner id and  country code
+     * */
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName,\n" +
+        "country.country_code AS countryCode, country.country_name AS countryName, country.enabled AS countryEnabled,\n" +
+        "bank.bank_id AS bankId, bank.bank_name AS bankName, bank.enabled AS bankEnabled FROM partner\n" +
+        "INNER JOIN partner_bank ON partner_bank.partner_id = partner.partner_id\n" +
+        "INNER JOIN bank ON bank.bank_id = partner_bank.bank_id\n" +
+        "INNER JOIN country ON country.country_code = bank.country_code\n" +
+        "WHERE partner.partner_id = ?1 AND country.country_code = ?2", nativeQuery = true)
+    public List<MtoBankLinkMtoPartnerProjection> findMtoBankByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
 
     @Modifying
     @Query(value = "INSERT INTO partner_city(partner_id, city_id) VALUES (?1, ?2)", nativeQuery = true)

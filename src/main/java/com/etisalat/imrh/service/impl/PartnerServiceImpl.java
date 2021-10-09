@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -197,6 +196,27 @@ public class PartnerServiceImpl implements PartnerService {
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Mto Partner not found with %d.", partnerId));
+    }
+
+    @Override
+    public GenericResponseDto<Object> findMtoCityByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode) {
+        return CommonUtils.getResponseWithData(this.partnerRepository.findMtoCityByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode),
+            HttpStatus.OK.series().name(), null,
+            String.format("Mto City successfully fetch with mto partner %d and mto country code %s", partnerId, countryCode));
+    }
+
+    @Override
+    public GenericResponseDto<Object> findMtoWalletByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode) {
+        return CommonUtils.getResponseWithData(this.partnerRepository.findMtoWalletByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode),
+            HttpStatus.OK.series().name(), null,
+            String.format("Mto Wallet successfully fetch with mto partner %d and mto country code %s", partnerId, countryCode));
+    }
+
+    @Override
+    public GenericResponseDto<Object> findMtoBankByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode) {
+        return CommonUtils.getResponseWithData(this.partnerRepository.findMtoBankByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode),
+            HttpStatus.OK.series().name(), null,
+            String.format("Mto Bank successfully fetch with mto partner %d and mto country code %s", partnerId, countryCode));
     }
 
     @Override
