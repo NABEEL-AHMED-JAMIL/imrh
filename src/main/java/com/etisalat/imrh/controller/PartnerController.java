@@ -198,7 +198,7 @@ public class PartnerController {
     }
 
     @RequestMapping(path = "/updatePreferenceOrderForMtoPartner", method = RequestMethod.POST)
-    public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(List<PartnerDto> partnerDtoList) {
+    public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(@RequestBody List<PartnerDto> partnerDtoList) {
         try {
             return this.partnerService.updatePreferenceOrderForMtoPartner(partnerDtoList);
         } catch (Exception ex) {

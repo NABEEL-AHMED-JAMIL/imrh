@@ -50,7 +50,8 @@ public class CityController {
     }
 
     @RequestMapping(path = "/enableDisableAllCity", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllCity(@RequestParam(name = "countryCode") String countryCode,
+    public GenericResponseDto<Object> enableDisableAllCity(
+        @RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
             return this.cityService.enableDisableAllCity(countryCode, enable);
