@@ -2,6 +2,7 @@ package com.etisalat.imrh.repository.query;
 
 import com.etisalat.imrh.dto.PartnerDto;
 import com.etisalat.imrh.util.CommonUtils;
+import com.etisalat.imrh.util.MtoPartnerCustomerValidation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class EntityQuery {
 
     //update partner set preference_order = (case when partner_id = 1000 then 2
     // when partner_id = 1001 then 3 when partner_id = 1002 then 1 end) where partner_id in (1000, 1001, 1002);
-    public static String changePreferenceOrder(List<PartnerDto> partnerOrder) {
+    public static String changePreferenceOrderQuery(List<PartnerDto> partnerOrder) {
         StringBuilder changePreferenceOrder = new StringBuilder();
         changePreferenceOrder.append("UPDATE PARTNER SET PERFERENCE_ORDER = (CASE");
         StringBuilder changePreferenceInDetail = new StringBuilder();
@@ -49,6 +52,22 @@ public class EntityQuery {
         return changePreferenceOrder.toString();
     }
 
+    public static String mtoPartnerCountryQuery(List<MtoPartnerCustomerValidation> mtoPartnerCustomerValidations) {
+        StringBuilder mtoPartnerCountry = new StringBuilder("INSERT INTO partner_customer(customer_id,customer_number,partner_id) VALUES ");
+        Iterator<MtoPartnerCustomerValidation> partnerCustomerValidationIterator = mtoPartnerCustomerValidations.iterator();
+        while (partnerCustomerValidationIterator.hasNext()) {
+            MtoPartnerCustomerValidation mtoPartnerCustomerValidation = partnerCustomerValidationIterator.next();
+            if (partnerCustomerValidationIterator.hasNext()) {
+                mtoPartnerCountry.append(String.format("(nextval('partner_customer_seq'), '%s', %d),",
+                    mtoPartnerCustomerValidation.getCustomerNumber(), mtoPartnerCustomerValidation.getPartnerId()));
+            } else {
+                mtoPartnerCountry.append(String.format("(nextval('partner_customer_seq'), '%s', %d)",
+                    mtoPartnerCustomerValidation.getCustomerNumber(), mtoPartnerCustomerValidation.getPartnerId()));
+            }
+        }
+        return mtoPartnerCountry.toString();
+    }
+
     public int executeUpdateQuery(String queryString) {
         logger.info("Transaction Start for " + queryString);
         Query query = this.entityManager.createNamedQuery(queryString);
@@ -56,4 +75,23 @@ public class EntityQuery {
         logger.info("Transaction End with update rows " + rowsUpdated);
         return rowsUpdated;
     }
+
+    public int executeInsertQuery(String queryString) {
+        logger.info("Transaction Start for " + queryString);
+        Query query = this.entityManager.createNativeQuery(queryString);
+        int rowsUpdated = query.executeUpdate();
+        logger.info("Transaction End with update rows " + rowsUpdated);
+        return rowsUpdated;
+    }
+
+    /**
+     * public static void main(String[] args) {
+     *     List<PartnerDto> partnerOrder = Arrays.asList(new PartnerDto(1000L, 1),
+     *       new PartnerDto(1002L, 1), new PartnerDto(1003L, 3));
+     *     System.out.println(changePreferenceOrderQuery(partnerOrder));
+     *     List<MtoPartnerCustomerValidation> mtoPartnerCustomerValidations = Arrays.asList(new MtoPartnerCustomerValidation(1000L, "03153817177"),
+     *       new MtoPartnerCustomerValidation(1002L, "03153817177"), new MtoPartnerCustomerValidation(1003L, "03153817177"));
+     *     System.out.println(mtoPartnerCountryQuery(mtoPartnerCustomerValidations));
+     * }
+     * */
 }

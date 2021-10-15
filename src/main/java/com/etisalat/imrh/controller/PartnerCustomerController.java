@@ -59,6 +59,10 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/uploadMtoPartnerCustomer", method = RequestMethod.POST)
     public GenericResponseDto<Object> uploadMtoPartnerCustomer(@RequestParam(name = "file") MultipartFile file) {
         try {
+            if (!file.getContentType().equalsIgnoreCase("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                    "You can upload only .xlsx extension file.");
+            }
             return this.partnerCustomerService.uploadMtoPartnerCustomer(file);
         } catch (Exception ex) {
             ex.printStackTrace();

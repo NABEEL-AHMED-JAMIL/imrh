@@ -269,7 +269,7 @@ public class PartnerServiceImpl implements PartnerService {
 
     @Override
     public GenericResponseDto<Object> updatePreferenceOrderForMtoPartner(List<PartnerDto> partnerDtoList) {
-        this.entityQuery.executeUpdateQuery(this.entityQuery.changePreferenceOrder(partnerDtoList));
+        this.entityQuery.executeUpdateQuery(this.entityQuery.changePreferenceOrderQuery(partnerDtoList));
         return CommonUtils.getResponseWithData(partnerDtoList, HttpStatus.OK.series().name(),
             null, "Mto Partner's preference order update successfully.");
     }

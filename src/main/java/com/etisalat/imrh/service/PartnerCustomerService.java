@@ -16,6 +16,6 @@ public interface PartnerCustomerService {
 
     public ResponseEntity<?> downloadMtoPartnerCustomer() throws IOException;
 
-    public GenericResponseDto<Object> uploadMtoPartnerCustomer(MultipartFile file);
+    public GenericResponseDto<Object> uploadMtoPartnerCustomer(MultipartFile file) throws IOException;
 
 }
