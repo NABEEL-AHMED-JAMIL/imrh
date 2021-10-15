@@ -3,8 +3,10 @@ package com.etisalat.imrh.util;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import java.util.*;
 
+/**
+ * @author Nabeel Ahmed
+ */
 public class CommonUtils {
-
 
     public static boolean isNull(Object str) {
         if (str == null) {

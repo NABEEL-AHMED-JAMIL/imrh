@@ -26,6 +26,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @Service
 @Transactional
 public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements PartnerCustomerService {

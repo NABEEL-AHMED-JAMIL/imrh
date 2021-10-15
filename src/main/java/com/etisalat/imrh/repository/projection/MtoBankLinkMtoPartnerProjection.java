@@ -24,4 +24,5 @@ public interface MtoBankLinkMtoPartnerProjection {
     public String getBankName();
 
     public String getBankEnabled();
+
 }

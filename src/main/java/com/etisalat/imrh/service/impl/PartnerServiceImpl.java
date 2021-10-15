@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @Service
 @Transactional
 public class PartnerServiceImpl implements PartnerService {

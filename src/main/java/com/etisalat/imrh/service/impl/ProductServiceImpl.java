@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {

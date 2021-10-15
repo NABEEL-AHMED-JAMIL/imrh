@@ -5,6 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+/**
+ * @author Nabeel Ahmed
+ */
 public class PartnerCountryProductId implements Serializable {
 
     @Id
