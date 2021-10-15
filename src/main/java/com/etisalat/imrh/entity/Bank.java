@@ -30,7 +30,7 @@ public class Bank extends BaseEntity {
     @Column(name="BANK_ID", unique=true, nullable=false)
     private Long bankId;
 
-    @Column(name="BANK_NAME", unique=true, nullable=false)
+    @Column(name="BANK_NAME", nullable=false)
     private String bankName;
 
     @ManyToOne(fetch = FetchType.LAZY)

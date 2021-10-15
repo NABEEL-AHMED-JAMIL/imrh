@@ -1,6 +1,7 @@
 package com.etisalat.imrh.controller;
 
 import com.etisalat.imrh.dto.GenericResponseDto;
+import com.etisalat.imrh.dto.PartnerCustomerDto;
 import com.etisalat.imrh.service.PartnerCustomerService;
 import com.etisalat.imrh.util.CommonUtils;
 import com.etisalat.imrh.util.ExceptionUtil;
@@ -31,21 +32,28 @@ public class PartnerCustomerController {
     @Autowired
     private PartnerCustomerService partnerCustomerService;
 
-    @RequestMapping(value = "/downloadMtoPartnerCustomer", method = RequestMethod.POST)
-    public ResponseEntity<?> downloadMtoPartnerCustomer() {
-        ResponseEntity response = null;
+    @RequestMapping(value = "/searchCustomerMsisdn", method = RequestMethod.POST)
+    public GenericResponseDto<Object> searchCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
-            HttpHeaders headers = new HttpHeaders();
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String fileName = "MtoPartnerCustomer-"+dateFormat.format(new Date())+"-"+ UUID.randomUUID() + ".xls";
-            headers.add("Content-Disposition", "attachment; filename=" + fileName);
+            return this.partnerCustomerService.searchCustomerMsisdn(partnerCustomer);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while searchCustomerMsisdn", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(value = "/downloadMtoPartnerCustomer", method = RequestMethod.GET)
+    public ResponseEntity<?> downloadMtoPartnerCustomer() {
+        try {
+            return this.partnerCustomerService.downloadMtoPartnerCustomer();
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while downloadMtoPartnerCustomer", ExceptionUtil.getRootCause(ex));
-            response = new ResponseEntity<>(CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+            return new ResponseEntity<>(CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
             "Some Internal error accrue contact with support team."), HttpStatus.OK);
         }
-        return response;
     }
 
     @RequestMapping(value = "/uploadMtoPartnerCustomer", method = RequestMethod.POST)

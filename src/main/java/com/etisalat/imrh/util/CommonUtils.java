@@ -1,7 +1,7 @@
 package com.etisalat.imrh.util;
 
 import com.etisalat.imrh.dto.GenericResponseDto;
-import java.util.Date;
+import java.util.*;
 
 public class CommonUtils {
 
@@ -73,7 +73,8 @@ public class CommonUtils {
         return  (GenericResponseDto<T>) response;
     }
 
-    public static <T> GenericResponseDto<T> getResponseWithData(Object data, String status, String errorCode, String message) {
+    public static <T> GenericResponseDto<T> getResponseWithData(Object data, String status,
+        String errorCode, String message) {
         GenericResponseDto<Object> response = new GenericResponseDto<>();
         response.setData(data);
         response.setErrorCode(errorCode);
