@@ -11,10 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Nabeel Ahmed
@@ -52,7 +49,7 @@ public class EntityQuery {
         return changePreferenceOrder.toString();
     }
 
-    public static String mtoPartnerCountryQuery(List<MtoPartnerCustomerValidation> mtoPartnerCustomerValidations) {
+    public static String mtoPartnerCountryQuery(Set<MtoPartnerCustomerValidation> mtoPartnerCustomerValidations) {
         StringBuilder mtoPartnerCountry = new StringBuilder("INSERT INTO partner_customer(customer_id,customer_number,partner_id) VALUES ");
         Iterator<MtoPartnerCustomerValidation> partnerCustomerValidationIterator = mtoPartnerCustomerValidations.iterator();
         while (partnerCustomerValidationIterator.hasNext()) {

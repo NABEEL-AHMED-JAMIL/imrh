@@ -17,12 +17,12 @@ import java.util.List;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, String> {
 
-    @Query(value = "SELECT COUNTRY_CODE as countryCode, COUNTRY_NAME as countryName, " +
-        "COUNTRY_LEGACY_CODE as countryLegacyCode, ENABLED as enabled from COUNTRY", nativeQuery = true)
+    @Query(value = "SELECT COUNTRY_CODE AS countryCode, COUNTRY_NAME AS countryName, " +
+        "COUNTRY_LEGACY_CODE AS countryLegacyCode, ENABLED AS enabled FROM COUNTRY", nativeQuery = true)
     @Transactional(readOnly = true)
     public List<CountryProjection> findAllCountry();
 
     @Modifying
-    @Query("update Country country set country.enabled = ?1")
+    @Query("UPDATE Country country SET country.enabled = ?1")
     public int setAllCountryStatus(String enabled);
 }

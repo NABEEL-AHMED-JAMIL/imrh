@@ -15,13 +15,13 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query(value = "SELECT PRODUCT_ID as productId, PRODUCT_NAME as productName, " +
-        "ENABLED as enabled from PRODUCT", nativeQuery = true)
+    @Query(value = "SELECT PRODUCT_ID AS productId, PRODUCT_NAME AS productName, " +
+        "ENABLED AS enabled FROM PRODUCT", nativeQuery = true)
     @Transactional(readOnly = true)
     public List<ProductProjection> findAllProduct();
 
     @Modifying
-    @Query("update Product product set product.enabled = ?1")
+    @Query("UPDATE Product product SET product.enabled = ?1")
     public int setAllProductStatus(String enabled);
 
 }

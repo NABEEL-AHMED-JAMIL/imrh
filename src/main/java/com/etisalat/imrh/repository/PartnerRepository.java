@@ -28,7 +28,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Query(value = "UPDATE Partner SET ENABLED = ?1", nativeQuery = true)
     public int setAllPartnerStatus(String enabled);
 
-    @Query(value = "SELECT partner_id as partnerId, partner_name as partnerName, enabled FROM partner", nativeQuery = true)
+    @Query(value = "SELECT partner_id AS partnerId, partner_name AS partnerName, enabled FROM partner", nativeQuery = true)
     public List<PartnerProjection> findAllPartner();
 
     @Query(value = "SELECT CASE WHEN COUNT(partner_country) > 0 THEN true ELSE false END FROM partner_country WHERE " +

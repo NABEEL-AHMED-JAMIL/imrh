@@ -27,7 +27,7 @@ public class PartnerCustomer {
     )
     @Id
     @GeneratedValue(generator = "partnerCustomerSequenceGenerator")
-    @Column(name="CUSTOMER_ID", unique=true, nullable=false)
+    @Column(name="CUSTOMER_ID", nullable=false)
     private Long customerId;
 
     @Column(name="CUSTOMER_NUMBER", nullable=false)
