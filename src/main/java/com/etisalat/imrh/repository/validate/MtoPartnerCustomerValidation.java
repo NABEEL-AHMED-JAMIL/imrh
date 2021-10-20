@@ -1,4 +1,4 @@
-package com.etisalat.imrh.util;
+package com.etisalat.imrh.repository.validate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,12 +41,12 @@ public class MtoPartnerCustomerValidation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MtoPartnerCustomerValidation that = (MtoPartnerCustomerValidation) o;
-        return Objects.equals(partnerId, that.partnerId) && Objects.equals(customerNumber, that.customerNumber);
+        return Objects.equals(customerNumber, that.customerNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(partnerId, customerNumber);
+        return Objects.hash(customerNumber);
     }
 
     @Override

@@ -54,18 +54,6 @@ public class PoiWorkBookUtil {
         if(value != null) { cell.setCellValue(value); }
     }
 
-    public void fillCellValue(Integer fillCellCount, Row row, CellStyle style, Double value) {
-        Cell cell = row.createCell(fillCellCount);
-        if(style != null) { cell.setCellStyle(style); }
-        if(value != null) { cell.setCellValue(value); }
-    }
-
-    public void fillCellValue(Integer fillCellCount, Row row, CellStyle style, Integer value) {
-        Cell cell = row.createCell(fillCellCount);
-        if(style != null) { cell.setCellStyle(style); }
-        if(value != null) { cell.setCellValue(value); }
-    }
-
     public void fillCellValue(Integer fillCellCount, Row row, CellStyle style, Long value) {
         Cell cell = row.createCell(fillCellCount);
         if(style != null) { cell.setCellStyle(style); }

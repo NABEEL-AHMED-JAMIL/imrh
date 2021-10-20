@@ -5,11 +5,12 @@ import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.CountryRepository;
 import com.etisalat.imrh.service.CountryService;
 import com.etisalat.imrh.util.CommonUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class CountryServiceImpl implements CountryService {
+
+    public Logger logger = LogManager.getLogger(CountryServiceImpl.class);
 
     @Autowired
     private CountryRepository countryRepository;
@@ -119,6 +122,5 @@ public class CountryServiceImpl implements CountryService {
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Country not found with %s.", countryCode));
     }
-
 
 }

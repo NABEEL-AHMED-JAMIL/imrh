@@ -2,13 +2,11 @@ package com.etisalat.imrh.repository;
 
 import com.etisalat.imrh.entity.Country;
 import com.etisalat.imrh.repository.projection.CountryProjection;
-import com.etisalat.imrh.repository.projection.ProductProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -25,4 +23,5 @@ public interface CountryRepository extends JpaRepository<Country, String> {
     @Modifying
     @Query("UPDATE Country country SET country.enabled = ?1")
     public int setAllCountryStatus(String enabled);
+
 }

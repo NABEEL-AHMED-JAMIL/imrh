@@ -8,8 +8,10 @@ import com.etisalat.imrh.repository.projection.PartnerCustomerProjection;
 import com.etisalat.imrh.repository.query.EntityQuery;
 import com.etisalat.imrh.service.PartnerCustomerService;
 import com.etisalat.imrh.util.CommonUtils;
-import com.etisalat.imrh.util.MtoPartnerCustomerValidation;
+import com.etisalat.imrh.repository.validate.MtoPartnerCustomerValidation;
 import com.etisalat.imrh.util.PoiWorkBookUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -36,6 +38,8 @@ import java.util.*;
 @Transactional
 public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements PartnerCustomerService {
 
+    public Logger logger = LogManager.getLogger(PartnerCustomerServiceImpl.class);
+
     private XSSFWorkbook workbook;
     @Autowired
     private EntityQuery queryUtils;
@@ -46,11 +50,37 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
 
     @Override
     public GenericResponseDto<Object> searchCustomerMsisdn(PartnerCustomerDto partnerCustomer) {
-        if (CommonUtils.isNull(partnerCustomer.getCustomerId())) {
+        if (CommonUtils.isNull(partnerCustomer.getCustomerNumber())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "Mto Customer id missing.");
+                HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn missing.");
         }
-        return null;
+        return CommonUtils.getResponseWithData(this.partnerCustomerRepository.fetchAllCustomerDetail(partnerCustomer.getCustomerNumber()),
+            HttpStatus.OK.series().name(), null, "Partner customer fetch successfully.");
+    }
+
+    @Override
+    public GenericResponseDto<Object> updatePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer) {
+        if (CommonUtils.isNull(partnerCustomer.getCustomerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                    "Partner customer id missing.");
+        } else if (CommonUtils.isNull(partnerCustomer.getPartnerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                "Partner id missing.");
+        }
+        return CommonUtils.getResponseWithData(this.partnerCustomerRepository
+            .updatePartnerCustomerMsisdn(partnerCustomer.getPartnerId(), partnerCustomer.getCustomerId()),
+            HttpStatus.OK.series().name(), null, "Partner customer update successfully.");
+    }
+
+    @Override
+    public GenericResponseDto<Object> deletePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer) {
+        if (CommonUtils.isNull(partnerCustomer.getCustomerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                    "Partner customer id missing.");
+        }
+        this.partnerCustomerRepository.deletePartnerCountryByCountryCode(partnerCustomer.getCustomerId());
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+                String.format("Partner customer delete successfully with %d.", partnerCustomer.getCustomerId()));
     }
 
     @Override

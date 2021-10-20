@@ -4,7 +4,6 @@ import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.PartnerCustomerDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 
 /**
@@ -13,6 +12,10 @@ import java.io.IOException;
 public interface PartnerCustomerService {
 
     public GenericResponseDto<Object> searchCustomerMsisdn(PartnerCustomerDto partnerCustomer);
+
+    public GenericResponseDto<Object> updatePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer);
+
+    public GenericResponseDto<Object> deletePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer);
 
     public ResponseEntity<?> downloadMtoPartnerCustomer() throws IOException;
 

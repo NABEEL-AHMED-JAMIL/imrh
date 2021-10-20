@@ -132,4 +132,5 @@ public class BankServiceImpl implements BankService {
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Bank delete successfully with %d.", bankId));
     }
+
 }

@@ -26,6 +26,9 @@ public class Country extends BaseEntity {
     @Column(name="COUNTRY_LEGACY_CODE", unique=true, nullable=false)
     private String countryLegacyCode;
 
+    @Column(name="COUNTRY_IMAGE_URl")
+    private String countryImageUrl;
+
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<City> cities = new ArrayList<>();
 
@@ -56,6 +59,13 @@ public class Country extends BaseEntity {
     }
     public void setCountryLegacyCode(String countryLegacyCode) {
         this.countryLegacyCode = countryLegacyCode;
+    }
+
+    public String getCountryImageUrl() {
+        return countryImageUrl;
+    }
+    public void setCountryImageUrl(String countryImageUrl) {
+        this.countryImageUrl = countryImageUrl;
     }
 
     public List<City> getCities() {
