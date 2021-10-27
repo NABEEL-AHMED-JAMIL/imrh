@@ -16,6 +16,20 @@ import java.util.List;
 @Transactional
 public interface PartnerCustomerRepository extends JpaRepository<PartnerCustomer, Long> {
 
+    @Modifying
+    @Query(value = "UPDATE partner_customer SET PARTNER_ID = ?1 where CUSTOMER_ID = ?2", nativeQuery = true)
+    public int updatePartnerCustomerMsisdn(Long partnerId, Long customerId);
+
+    @Modifying
+    @Query(value = "DELETE FROM partner_customer WHERE CUSTOMER_ID = ?1", nativeQuery = true)
+    public void deletePartnerCountryByCountryCode(Long customerId);
+
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner_customer.customer_number AS partnerCustomer\n" +
+        "FROM partner_customer\n" +
+        "INNER JOIN partner ON partner.partner_id = partner_customer.partner_id\n" +
+        "WHERE partner_customer.customer_number = ?1", nativeQuery = true)
+    public List<PartnerCustomerProjection> fetchAllCustomerDetail(String customerNumber);
+
     @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner_customer.customer_number AS partnerCustomer\n" +
         "FROM partner_customer\n" +
         "INNER JOIN partner ON partner.partner_id = partner_customer.partner_id", nativeQuery = true)

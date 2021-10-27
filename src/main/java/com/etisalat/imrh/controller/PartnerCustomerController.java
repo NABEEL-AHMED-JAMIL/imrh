@@ -38,6 +38,30 @@ public class PartnerCustomerController {
         }
     }
 
+    @RequestMapping(value = "/updatePartnerCustomerMsisdn", method = RequestMethod.POST)
+    public GenericResponseDto<Object> updatePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
+        try {
+            return this.partnerCustomerService.updatePartnerCustomerMsisdn(partnerCustomer);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while updatePartnerCustomerMsisdn", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(value = "/deletePartnerCustomerMsisdn", method = RequestMethod.POST)
+    public GenericResponseDto<Object> deletePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
+        try {
+            return this.partnerCustomerService.deletePartnerCustomerMsisdn(partnerCustomer);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while deletePartnerCustomerMsisdn", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(value = "/downloadMtoPartnerCustomer", method = RequestMethod.GET)
     public ResponseEntity<?> downloadMtoPartnerCustomer() {
         try {

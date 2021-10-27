@@ -2,12 +2,11 @@ package com.etisalat.imrh.repository.query;
 
 import com.etisalat.imrh.dto.PartnerDto;
 import com.etisalat.imrh.util.CommonUtils;
-import com.etisalat.imrh.util.MtoPartnerCustomerValidation;
+import com.etisalat.imrh.repository.validate.MtoPartnerCustomerValidation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;

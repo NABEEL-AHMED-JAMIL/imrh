@@ -14,6 +14,7 @@ public class PartnerCustomerDto {
 
     private Long customerId;
     private String customerNumber;
+    private Long partnerId;
     private List<PartnerDto> partner;
 
     public PartnerCustomerDto() {}
@@ -30,6 +31,13 @@ public class PartnerCustomerDto {
     }
     public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
+    }
+
+    public Long getPartnerId() {
+        return partnerId;
+    }
+    public void setPartnerId(Long partnerId) {
+        this.partnerId = partnerId;
     }
 
     public List<PartnerDto> getPartner() {

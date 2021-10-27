@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -45,7 +44,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
 
     @Modifying
     @Query(value = "INSERT INTO partner_country(partner_id, country_code) VALUES (?1, ?2)", nativeQuery = true)
-    void attachMtoCountryWithMtoPartner(Long partnerId, String countryCode);
+    public void attachMtoCountryWithMtoPartner(Long partnerId, String countryCode);
 
     @Modifying
     @Query(value = "UPDATE Partner SET ENABLED = ?1", nativeQuery = true)

@@ -30,7 +30,7 @@ public class PartnerCustomer {
     @Column(name="CUSTOMER_ID", nullable=false)
     private Long customerId;
 
-    @Column(name="CUSTOMER_NUMBER", nullable=false)
+    @Column(name="CUSTOMER_NUMBER", nullable=false, unique = true)
     private String customerNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
