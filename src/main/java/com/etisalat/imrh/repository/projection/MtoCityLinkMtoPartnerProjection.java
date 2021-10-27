@@ -14,9 +14,13 @@ public interface MtoCityLinkMtoPartnerProjection {
 
     public String getPartnerName();
 
+    public String getPartnerImageUrl();
+
     public String getCountryCode();
 
     public String getCountryName();
+
+    public String getCountryImageUrl();
 
     public String getCountryEnabled();
 

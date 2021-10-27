@@ -14,6 +14,8 @@ public interface ProductProjection {
 
     public String getProductName();
 
+    public String getProductImageUrl();
+
     public String getEnabled();
 
 }

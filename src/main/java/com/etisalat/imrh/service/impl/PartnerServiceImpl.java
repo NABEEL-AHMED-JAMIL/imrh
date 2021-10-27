@@ -1,10 +1,8 @@
 package com.etisalat.imrh.service.impl;
 
-import com.etisalat.imrh.dto.CountryDto;
-import com.etisalat.imrh.dto.Enable;
-import com.etisalat.imrh.dto.GenericResponseDto;
-import com.etisalat.imrh.dto.PartnerDto;
+import com.etisalat.imrh.dto.*;
 import com.etisalat.imrh.entity.Partner;
+import com.etisalat.imrh.entity.PartnerCountryProduct;
 import com.etisalat.imrh.repository.*;
 import com.etisalat.imrh.repository.query.EntityQuery;
 import com.etisalat.imrh.service.PartnerService;
@@ -66,6 +64,7 @@ public class PartnerServiceImpl implements PartnerService {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
                 HttpStatus.BAD_REQUEST.series().name(), "Mto City already link with mto partner.");
         }
+
         this.partnerRepository.attachMtoCityWithMtoPartner(partnerDto.getPartnerId(), partnerDto.getCity().getCityId());
         return CommonUtils.getResponseWithData(partnerDto, HttpStatus.OK.series().name(), null,
             String.format("Mto City successfully linked with mto partner %d.", partnerDto.getPartnerId()));
@@ -108,6 +107,33 @@ public class PartnerServiceImpl implements PartnerService {
     }
 
     @Override
+    public GenericResponseDto<Object> attachMtoPartnerCountryProduct(PartnerCountryProductDto partnerCountryProductDto) {
+        if (CommonUtils.isNull(partnerCountryProductDto.getPartnerId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Partner id missing.");
+        } else if (CommonUtils.isNull(partnerCountryProductDto.getProductId())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Product id missing.");
+        } else if (CommonUtils.isNull(partnerCountryProductDto.getCountryCode())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Country code missing.");
+        } else if (this.partnerCountryProductRepository.isAttachMtoPartnerCountryProduct(partnerCountryProductDto.getPartnerId(),
+                partnerCountryProductDto.getProductId(), partnerCountryProductDto.getCountryCode())) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Mto Partner product like with country.");
+        }
+        PartnerCountryProduct partnerCountryProduct = new PartnerCountryProduct();
+        partnerCountryProduct.setPartnerId(partnerCountryProductDto.getPartnerId());
+        partnerCountryProduct.setCountryCode(partnerCountryProductDto.getCountryCode());
+        partnerCountryProduct.setProductId(partnerCountryProductDto.getProductId());
+        partnerCountryProduct.setEnabled(Enable.Y.name());
+        partnerCountryProduct.setPartnerAvailability(Enable.Y.name());
+        this.partnerCountryProductRepository.save(partnerCountryProduct);
+        return CommonUtils.getResponseWithData(partnerCountryProduct, HttpStatus.OK.series().name(), null,
+                String.format("Mto partner successfully linked with mto country product %d.", partnerCountryProduct.getPartnerId()));
+    }
+
+    @Override
     public GenericResponseDto<Object> enableDisableMtoPartner(PartnerDto partnerDto) {
         if (CommonUtils.isNull(partnerDto.getPartnerId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
@@ -138,6 +164,7 @@ public class PartnerServiceImpl implements PartnerService {
                 PartnerDto partnerDto = new PartnerDto();
                 partnerDto.setPartnerId(partner.getPartnerId());
                 partnerDto.setPartnerName(partner.getPartnerName());
+                partnerDto.setPartnerImageUrl(partner.getPartnerImageUrl());
                 partnerDto.setPreferenceOrder(partner.getPreferenceOrder());
                 partnerDto.setForexMarginShare(partner.getForexMarginShare());
                 partnerDto.setPartnerShare(partner.getPartnerShare());
@@ -157,6 +184,7 @@ public class PartnerServiceImpl implements PartnerService {
             PartnerDto partnerDto = new PartnerDto();
             partnerDto.setPartnerId(partner.get().getPartnerId());
             partnerDto.setPartnerName(partner.get().getPartnerName());
+            partnerDto.setPartnerImageUrl(partner.get().getPartnerImageUrl());
             partnerDto.setPreferenceOrder(partner.get().getPreferenceOrder());
             partnerDto.setForexMarginShare(partner.get().getForexMarginShare());
             partnerDto.setPartnerShare(partner.get().getPartnerShare());
@@ -178,6 +206,7 @@ public class PartnerServiceImpl implements PartnerService {
             PartnerDto partnerDto = new PartnerDto();
             partnerDto.setPartnerId(partner.get().getPartnerId());
             partnerDto.setPartnerName(partner.get().getPartnerName());
+            partnerDto.setPartnerImageUrl(partner.get().getPartnerImageUrl());
             partnerDto.setPreferenceOrder(partner.get().getPreferenceOrder());
             partnerDto.setForexMarginShare(partner.get().getForexMarginShare());
             partnerDto.setPartnerShare(partner.get().getPartnerShare());
@@ -191,6 +220,7 @@ public class PartnerServiceImpl implements PartnerService {
                 countryDto.setCountryCode(country.getCountryCode());
                 countryDto.setCountryLegacyCode(country.getCountryLegacyCode());
                 countryDto.setCountryName(country.getCountryName());
+                countryDto.setCountryImageUrl(country.getCountryImageUrl());
                 countryDto.setEnable(Enable.valueOf(country.getEnabled()));
                 return countryDto;
             }).collect(Collectors.toSet()));
@@ -206,6 +236,13 @@ public class PartnerServiceImpl implements PartnerService {
         return CommonUtils.getResponseWithData(this.partnerRepository.findMtoCityByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode),
             HttpStatus.OK.series().name(), null,
             String.format("Mto City successfully fetch with mto partner %d and mto country code %s", partnerId, countryCode));
+    }
+
+    @Override
+    public GenericResponseDto<Object> findProductByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode) {
+        return CommonUtils.getResponseWithData(this.partnerCountryProductRepository.findProductByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode),
+            HttpStatus.OK.series().name(), null,
+            String.format("Mto Product successfully fetch with mto partner %d and mto country code %s", partnerId, countryCode));
     }
 
     @Override
@@ -252,6 +289,7 @@ public class PartnerServiceImpl implements PartnerService {
         Optional<Partner> partner = this.partnerRepository.findById(partnerDto.getPartnerId());
         if (partner.isPresent()) {
             partner.get().setPartnerName(partnerDto.getPartnerName());
+            partner.get().setPartnerImageUrl(partnerDto.getPartnerImageUrl());
             partner.get().setPreferenceOrder(partnerDto.getPreferenceOrder());
             partner.get().setForexMarginShare(partnerDto.getForexMarginShare());
             partner.get().setPartnerShare(partnerDto.getPartnerShare());
@@ -317,5 +355,12 @@ public class PartnerServiceImpl implements PartnerService {
         this.partnerRepository.deletePartnerBankByPartnerIdAndBankId(partnerId, bankId);
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
             String.format("Mto Bank delete from mto partner successfully with %d.", partnerId));
+    }
+
+    @Override
+    public GenericResponseDto<Object> deleteMtoPartnerCountryProduct(Long partnerId, Long productId, String countryCode) {
+        this.partnerCountryProductRepository.deleteMtoPartnerCountryProduct(partnerId, productId, countryCode);
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
+                String.format("Mto partner link delete successfully with %d.", partnerId));
     }
 }

@@ -15,6 +15,7 @@ public class CountryDto {
     private String countryCode;
     private String countryName;
     private String countryLegacyCode;
+    private String countryImageUrl;
     private Enable enable;
     private List<CityDto> cities;
     private List<BankDto> banks;
@@ -41,6 +42,13 @@ public class CountryDto {
     }
     public void setCountryLegacyCode(String countryLegacyCode) {
         this.countryLegacyCode = countryLegacyCode;
+    }
+
+    public String getCountryImageUrl() {
+        return countryImageUrl;
+    }
+    public void setCountryImageUrl(String countryImageUrl) {
+        this.countryImageUrl = countryImageUrl;
     }
 
     public Enable getEnable() {

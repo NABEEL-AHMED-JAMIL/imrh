@@ -33,6 +33,9 @@ public class Bank extends BaseEntity {
     @Column(name="BANK_NAME", nullable=false)
     private String bankName;
 
+    @Column(name="BANK_IMAGE_URl")
+    private String bankImageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="COUNTRY_CODE", nullable=false)
     private Country country;
@@ -51,6 +54,13 @@ public class Bank extends BaseEntity {
     }
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    public String getBankImageUrl() {
+        return bankImageUrl;
+    }
+    public void setBankImageUrl(String bankImageUrl) {
+        this.bankImageUrl = bankImageUrl;
     }
 
     public Country getCountry() {

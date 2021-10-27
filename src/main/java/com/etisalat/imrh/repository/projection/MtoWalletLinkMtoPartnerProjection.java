@@ -14,15 +14,21 @@ public interface MtoWalletLinkMtoPartnerProjection {
 
     public String getPartnerName();
 
+    public String getPartnerImageUrl();
+
     public String getCountryCode();
 
     public String getCountryName();
+
+    public String getCountryImageUrl();
 
     public String getCountryEnabled();
 
     public Long getWalletId();
 
     public String getWalletName();
+
+    public String getWalletImageUrl();
 
     public String getWalletEnabled();
 

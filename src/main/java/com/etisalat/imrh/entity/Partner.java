@@ -37,6 +37,9 @@ public class Partner extends BaseEntity {
     @Column(name="PARTNER_NAME", nullable=false)
     private String partnerName;
 
+    @Column(name="PARTNER_IMAGE_URl")
+    private String partnerImageUrl;
+
     @Column(name="PREFERENCE_ORDER")
     private Integer preferenceOrder;
 
@@ -96,6 +99,13 @@ public class Partner extends BaseEntity {
     }
     public void setPartnerName(String partnerName) {
         this.partnerName = partnerName;
+    }
+
+    public String getPartnerImageUrl() {
+        return partnerImageUrl;
+    }
+    public void setPartnerImageUrl(String partnerImageUrl) {
+        this.partnerImageUrl = partnerImageUrl;
     }
 
     public Integer getPreferenceOrder() {

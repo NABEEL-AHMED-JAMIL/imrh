@@ -13,6 +13,7 @@ public class WalletDto {
 
     private Long walletId;
     private String walletName;
+    private String walletImageUrl;
     private Enable enable;
     private CountryDto country;
 
@@ -30,6 +31,13 @@ public class WalletDto {
     }
     public void setWalletName(String walletName) {
         this.walletName = walletName;
+    }
+
+    public String getWalletImageUrl() {
+        return walletImageUrl;
+    }
+    public void setWalletImageUrl(String walletImageUrl) {
+        this.walletImageUrl = walletImageUrl;
     }
 
     public Enable getEnable() {

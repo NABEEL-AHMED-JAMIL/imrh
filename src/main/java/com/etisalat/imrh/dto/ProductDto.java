@@ -13,6 +13,7 @@ public class ProductDto {
 
     private Long productId;
     private String productName;
+    private String productImageUrl;
     private Enable enable;
 
     public ProductDto() {}
@@ -29,6 +30,13 @@ public class ProductDto {
     }
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getProductImageUrl() {
+        return productImageUrl;
+    }
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
     }
 
     public Enable getEnable() {

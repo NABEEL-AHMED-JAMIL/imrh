@@ -61,6 +61,7 @@ public class CountryServiceImpl implements CountryService {
             CountryDto countryDto = new CountryDto();
             countryDto.setCountryCode(country.get().getCountryCode());
             countryDto.setCountryName(country.get().getCountryName());
+            countryDto.setCountryImageUrl(country.get().getCountryImageUrl());
             countryDto.setCountryLegacyCode(country.get().getCountryLegacyCode());
             countryDto.setEnable(Enable.valueOf(country.get().getEnabled()));
             countryDto.setCities(country.get().getCities().stream().map(city -> {
@@ -84,12 +85,14 @@ public class CountryServiceImpl implements CountryService {
             CountryDto countryDto = new CountryDto();
             countryDto.setCountryCode(country.get().getCountryCode());
             countryDto.setCountryName(country.get().getCountryName());
+            countryDto.setCountryImageUrl(country.get().getCountryImageUrl());
             countryDto.setCountryLegacyCode(country.get().getCountryLegacyCode());
             countryDto.setEnable(Enable.valueOf(country.get().getEnabled()));
             countryDto.setBanks(country.get().getBanks().stream().map(bank -> {
                 BankDto bankDto = new BankDto();
                 bankDto.setBankId(bank.getBankId());
                 bankDto.setBankName(bank.getBankName());
+                bankDto.setBankImageUrl(bank.getBankImageUrl());
                 bankDto.setEnable(Enable.valueOf(bank.getEnabled()));
                 return bankDto;
             }).collect(Collectors.toList()));
@@ -107,15 +110,18 @@ public class CountryServiceImpl implements CountryService {
             CountryDto countryDto = new CountryDto();
             countryDto.setCountryCode(country.get().getCountryCode());
             countryDto.setCountryName(country.get().getCountryName());
+            countryDto.setCountryImageUrl(country.get().getCountryImageUrl());
             countryDto.setCountryLegacyCode(country.get().getCountryLegacyCode());
             countryDto.setEnable(Enable.valueOf(country.get().getEnabled()));
-            countryDto.setWallets(country.get().getWallets().stream().map(wallet -> {
-                WalletDto walletDto = new WalletDto();
-                walletDto.setWalletId(wallet.getWalletId());
-                walletDto.setWalletName(wallet.getWalletName());
-                walletDto.setEnable(Enable.valueOf(wallet.getEnabled()));
-                return walletDto;
-            }).collect(Collectors.toList()));
+            countryDto.setWallets(country.get().getWallets()
+                .stream().map(wallet -> {
+                    WalletDto walletDto = new WalletDto();
+                    walletDto.setWalletId(wallet.getWalletId());
+                    walletDto.setWalletName(wallet.getWalletName());
+                    walletDto.setWalletImageUrl(wallet.getWalletImageUrl());
+                    walletDto.setEnable(Enable.valueOf(wallet.getEnabled()));
+                    return walletDto;
+               }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
                     null, String.format("Country fetch successfully with %s.", countryDto.getCountryCode()));
         }

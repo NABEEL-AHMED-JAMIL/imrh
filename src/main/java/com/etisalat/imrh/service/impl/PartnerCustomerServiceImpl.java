@@ -53,9 +53,13 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
         if (CommonUtils.isNull(partnerCustomer.getCustomerNumber())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
                 HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn missing.");
+        } else if (partnerCustomer.getCustomerNumber().length() == 11) {
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn length should be 11 digit.");
         }
-        return CommonUtils.getResponseWithData(this.partnerCustomerRepository.fetchAllCustomerDetail(partnerCustomer.getCustomerNumber()),
-            HttpStatus.OK.series().name(), null, "Partner customer fetch successfully.");
+        return CommonUtils.getResponseWithData(this.partnerCustomerRepository.fetchAllCustomerDetail(
+            partnerCustomer.getCustomerNumber()), HttpStatus.OK.series().name(),
+            null, "Partner customer fetch successfully.");
     }
 
     @Override

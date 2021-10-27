@@ -14,6 +14,8 @@ public interface PartnerCustomerProjection {
 
     public String getPartnerName();
 
+    public String getPartnerImageUrl();
+
     public String getPartnerCustomer();
 
 }

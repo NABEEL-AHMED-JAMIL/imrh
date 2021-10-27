@@ -13,6 +13,7 @@ public class BankDto {
 
     private Long bankId;
     private String bankName;
+    private String bankImageUrl;
     private Enable enable;
     private CountryDto country;
 
@@ -30,6 +31,13 @@ public class BankDto {
     }
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    public String getBankImageUrl() {
+        return bankImageUrl;
+    }
+    public void setBankImageUrl(String bankImageUrl) {
+        this.bankImageUrl = bankImageUrl;
     }
 
     public Enable getEnable() {

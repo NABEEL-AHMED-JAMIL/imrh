@@ -1,5 +1,6 @@
 package com.etisalat.imrh.controller;
 
+import com.etisalat.imrh.dto.PartnerCountryProductDto;
 import com.etisalat.imrh.dto.PartnerDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
@@ -86,6 +87,18 @@ public class PartnerController {
         }
     }
 
+    @RequestMapping(path = "/attachMtoPartnerCountryProduct", method = RequestMethod.POST)
+    public GenericResponseDto<Object> attachMtoPartnerCountryProduct(@RequestBody PartnerCountryProductDto partnerCountryProductDto) {
+        try {
+            return this.partnerService.attachMtoPartnerCountryProduct(partnerCountryProductDto);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while attachMtoPartnerCountryProduct", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
     @RequestMapping(path = "/enableDisableMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
@@ -150,7 +163,20 @@ public class PartnerController {
     public GenericResponseDto<Object> findMtoCityByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "countryCode") String countryCode) {
         try {
-            return this.partnerService.findMtoCityByMtoPartnerIdAndMtoCountryCode(partnerId,countryCode);
+            return this.partnerService.findMtoCityByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findMtoCityByMtoPartnerIdAndMtoCountryCode", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(path = "/findProductByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findProductByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
+        @RequestParam(name = "countryCode") String countryCode) {
+        try {
+            return this.partnerService.findProductByMtoPartnerIdAndMtoCountryCode(partnerId, countryCode);
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while findMtoCityByMtoPartnerIdAndMtoCountryCode", ExceptionUtil.getRootCause(ex));
@@ -270,6 +296,19 @@ public class PartnerController {
             logger.error("An error occurred while deleteMtoBankLinkMtoPartner", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                 "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(path = "/deleteMtoPartnerCountryProduct", method = RequestMethod.POST)
+    public GenericResponseDto<Object> deleteMtoPartnerCountryProduct(@RequestParam(name = "partnerId") Long partnerId,
+        @RequestParam(name = "productId") Long productId, @RequestParam(name = "countryCode") String countryCode) {
+        try {
+            return this.partnerService.deleteMtoPartnerCountryProduct(partnerId, productId, countryCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while deleteMtoPartnerCountryProduct", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
         }
     }
 

@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
             ProductDto productDto = new ProductDto();
             productDto.setProductId(product.get().getProductId());
             productDto.setProductName(product.get().getProductName());
+            productDto.setProductImageUrl(product.get().getProductImageUrl());
             productDto.setEnable(Enable.valueOf(product.get().getEnabled()));
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(), null,
                 String.format("Product find successfully with %d.", productDto.getProductId()));
@@ -55,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
         if (product.isPresent()) {
             product.get().setProductName(productDto.getProductName());
             product.get().setEnabled(productDto.getEnable().name());
+            productDto.setProductImageUrl(product.get().getProductImageUrl());
             this.productRepository.save(product.get());
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
             null, String.format("Product update successfully with %d.", productDto.getProductId()));

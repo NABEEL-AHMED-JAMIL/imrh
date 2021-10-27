@@ -33,6 +33,9 @@ public class Wallet extends BaseEntity {
     @Column(name="WALLET_NAME", nullable=false)
     private String walletName;
 
+    @Column(name="WALLET_IMAGE_URl")
+    private String walletImageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="COUNTRY_CODE", nullable=false)
     private Country country;
@@ -51,6 +54,13 @@ public class Wallet extends BaseEntity {
     }
     public void setWalletName(String walletName) {
         this.walletName = walletName;
+    }
+
+    public String getWalletImageUrl() {
+        return walletImageUrl;
+    }
+    public void setWalletImageUrl(String walletImageUrl) {
+        this.walletImageUrl = walletImageUrl;
     }
 
     public Country getCountry() {

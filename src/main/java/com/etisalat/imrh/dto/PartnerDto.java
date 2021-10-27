@@ -14,6 +14,7 @@ public class PartnerDto {
 
     private Long partnerId;
     private String partnerName;
+    private String partnerImageUrl;
     private Enable enable;
     private Integer preferenceOrder;
     private Double forexMarginShare;
@@ -49,6 +50,13 @@ public class PartnerDto {
     }
     public void setPartnerName(String partnerName) {
         this.partnerName = partnerName;
+    }
+
+    public String getPartnerImageUrl() {
+        return partnerImageUrl;
+    }
+    public void setPartnerImageUrl(String partnerImageUrl) {
+        this.partnerImageUrl = partnerImageUrl;
     }
 
     public Enable getEnable() {

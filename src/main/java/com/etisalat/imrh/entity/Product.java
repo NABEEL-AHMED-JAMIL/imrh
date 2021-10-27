@@ -33,6 +33,9 @@ public class Product extends BaseEntity {
     @Column(name="PRODUCT_NAME", nullable=false)
     private String productName;
 
+    @Column(name="PRODUCT_IMAGE_URl")
+    private String productImageUrl;
+
     public Product() {}
 
     public Long getProductId() {
@@ -47,6 +50,13 @@ public class Product extends BaseEntity {
     }
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getProductImageUrl() {
+        return productImageUrl;
+    }
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
     }
 
     @Override

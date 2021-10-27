@@ -2,6 +2,7 @@ package com.etisalat.imrh.service;
 
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
+import com.etisalat.imrh.dto.PartnerCountryProductDto;
 import com.etisalat.imrh.dto.PartnerDto;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface PartnerService {
 
     public GenericResponseDto<Object> attachMtoBankWithMtoPartner(PartnerDto partnerDto);
 
+    public GenericResponseDto<Object> attachMtoPartnerCountryProduct(PartnerCountryProductDto partnerCountryProductDto);
+
     public GenericResponseDto<Object> enableDisableMtoPartner(PartnerDto partnerDto);
 
     public GenericResponseDto<Object> enableDisableAllMtoPartner(Enable enable);
@@ -29,6 +32,8 @@ public interface PartnerService {
     public GenericResponseDto<Object> findMtoCountryByMtoPartnerId(Long partnerId);
 
     public GenericResponseDto<Object> findMtoCityByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
+
+    public GenericResponseDto<Object> findProductByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
 
     public GenericResponseDto<Object> findMtoWalletByMtoPartnerIdAndMtoCountryCode(Long partnerId, String countryCode);
 
@@ -47,5 +52,7 @@ public interface PartnerService {
     public GenericResponseDto<Object> deleteMtoWalletLinkMtoPartner(Long partnerId, Long walletId);
 
     public GenericResponseDto<Object> deleteMtoBankLinkMtoPartner(Long partnerId, Long bankId);
+
+    public GenericResponseDto<Object> deleteMtoPartnerCountryProduct(Long partnerId, Long productId, String countryCode);
 
 }

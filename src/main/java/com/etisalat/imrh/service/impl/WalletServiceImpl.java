@@ -52,6 +52,7 @@ public class WalletServiceImpl implements WalletService {
             }
             Wallet wallet = new Wallet();
             wallet.setWalletName(walletDto.getWalletName());
+            wallet.setWalletImageUrl(walletDto.getWalletImageUrl());
             wallet.setEnabled(walletDto.getEnable().name());
             wallet.setCountry(country.get());
             this.walletRepository.save(wallet);
@@ -93,6 +94,7 @@ public class WalletServiceImpl implements WalletService {
             WalletDto walletDto = new WalletDto();
             walletDto.setWalletId(wallet.get().getWalletId());
             walletDto.setWalletName(wallet.get().getWalletName());
+            walletDto.setWalletImageUrl(wallet.get().getWalletImageUrl());
             walletDto.setEnable(Enable.valueOf(wallet.get().getEnabled()));
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(), null,
                     String.format("Wallet find successfully with %d.", walletId));
@@ -117,6 +119,7 @@ public class WalletServiceImpl implements WalletService {
         if (wallet.isPresent()) {
             wallet.get().setWalletName(walletDto.getWalletName());
             wallet.get().setEnabled(walletDto.getEnable().name());
+            walletDto.setWalletImageUrl(wallet.get().getWalletImageUrl());
             this.walletRepository.save(wallet.get());
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(),
                     null, String.format("Wallet update successfully with %d.", walletDto.getWalletId()));

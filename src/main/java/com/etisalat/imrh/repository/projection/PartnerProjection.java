@@ -14,6 +14,8 @@ public interface PartnerProjection {
 
     public String getPartnerName();
 
+    public String getPartnerImageUrl();
+
     public String getEnabled();
 
     public Integer getPreferenceOrder();

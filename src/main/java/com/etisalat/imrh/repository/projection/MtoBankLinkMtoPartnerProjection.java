@@ -14,15 +14,21 @@ public interface MtoBankLinkMtoPartnerProjection {
 
     public String getPartnerName();
 
+    public String getPartnerImageUrl();
+
     public String getCountryCode();
 
     public String getCountryName();
+
+    public String getCountryImageUrl();
 
     public String getCountryEnabled();
 
     public Long getBankId();
 
     public String getBankName();
+
+    public String getBankImageUrl();
 
     public String getBankEnabled();
 

@@ -52,6 +52,7 @@ public class BankServiceImpl implements BankService {
             }
             Bank bank = new Bank();
             bank.setBankName(bankDto.getBankName());
+            bank.setBankImageUrl(bankDto.getBankImageUrl());
             bank.setEnabled(bankDto.getEnable().name());
             bank.setCountry(country.get());
             this.bankRepository.save(bank);
@@ -93,6 +94,7 @@ public class BankServiceImpl implements BankService {
             BankDto bankDto = new BankDto();
             bankDto.setBankId(bank.get().getBankId());
             bankDto.setBankName(bank.get().getBankName());
+            bankDto.setBankImageUrl(bank.get().getBankImageUrl());
             bankDto.setEnable(Enable.valueOf(bank.get().getEnabled()));
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(), null,
                     String.format("Bank find successfully with %d.", bankId));
@@ -116,6 +118,7 @@ public class BankServiceImpl implements BankService {
         Optional<Bank> bank = this.bankRepository.findById(bankDto.getBankId());
         if (bank.isPresent()) {
             bank.get().setBankName(bankDto.getBankName());
+            bank.get().setBankImageUrl(bankDto.getBankImageUrl());
             bank.get().setEnabled(bankDto.getEnable().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),

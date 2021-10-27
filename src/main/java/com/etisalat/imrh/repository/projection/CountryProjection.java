@@ -14,6 +14,8 @@ public interface CountryProjection {
 
     public String getCountryName();
 
+    public String getCountryImageUrl();
+
     public String getCountryLegacyCode();
 
     public String getEnabled();
