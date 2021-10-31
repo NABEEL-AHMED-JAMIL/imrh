@@ -2,6 +2,7 @@ package com.etisalat.imrh.service.impl;
 
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.PartnerCustomerDto;
+import com.etisalat.imrh.entity.PartnerCustomer;
 import com.etisalat.imrh.repository.PartnerCustomerRepository;
 import com.etisalat.imrh.repository.PartnerRepository;
 import com.etisalat.imrh.repository.projection.PartnerCustomerProjection;
@@ -30,6 +31,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Nabeel Ahmed
@@ -58,8 +60,36 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                 HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn length should be 11 digit.");
         }
         return CommonUtils.getResponseWithData(this.partnerCustomerRepository.fetchAllCustomerDetail(
-            partnerCustomer.getCustomerNumber()), HttpStatus.OK.series().name(),
-            null, "Partner customer fetch successfully.");
+            partnerCustomer.getCustomerNumber()), HttpStatus.OK.series().name(), "Partner customer fetch successfully.");
+    }
+
+    @Override
+    public GenericResponseDto<Object> createCustomerMsisdn(Set<PartnerCustomerDto> partnerCustomerSet) {
+        for (PartnerCustomerDto partnerCustomer: partnerCustomerSet) {
+            if (CommonUtils.isNull(partnerCustomer.getCustomerNumber())) {
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                    "Customer msisdn missing.");
+            } else if (partnerCustomer.getCustomerNumber().length() == 11) {
+                return CommonUtils.getResponseWithStatusAndMessageOnly(
+                        HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn length should be 11 digit.");
+            } else if (CommonUtils.isNull(partnerCustomer.getPartnerId())) {
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(), "Partner id missing.");
+            } else if (!this.partnerRepository.existsById(partnerCustomer.getPartnerId())) {
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(), "Partner not exist.");
+            } else if (!this.partnerCustomerRepository.fetchAllCustomerDetail(partnerCustomer.getCustomerNumber()).isEmpty()) {
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                    String.format("Customer %s msisdn linked with other partner.", partnerCustomer.getCustomerNumber()));
+            }
+        }
+        this.partnerCustomerRepository.saveAll(
+            partnerCustomerSet.stream()
+                .map(partnerCustomerDto -> {
+                    PartnerCustomer partnerCustomer = new PartnerCustomer();
+                    partnerCustomer.setCustomerNumber(partnerCustomer.getCustomerNumber());
+                    partnerCustomer.setPartner(this.partnerRepository.getById(partnerCustomerDto.getPartnerId()));
+                    return partnerCustomer;
+            }).collect(Collectors.toList()));
+        return CommonUtils.getResponseWithData(partnerCustomerSet, HttpStatus.OK.series().name(), "Customer msisdn save successfully.");
     }
 
     @Override
@@ -73,7 +103,7 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
         }
         return CommonUtils.getResponseWithData(this.partnerCustomerRepository
             .updatePartnerCustomerMsisdn(partnerCustomer.getPartnerId(), partnerCustomer.getCustomerId()),
-            HttpStatus.OK.series().name(), null, "Partner customer update successfully.");
+            HttpStatus.OK.series().name(), "Partner customer update successfully.");
     }
 
     @Override
@@ -192,7 +222,7 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
             if (errors.size() > 0) {
                 // return work if error have
                 return CommonUtils.getResponseWithData(errors, HttpStatus.BAD_REQUEST.series().name(),
-                    null, "Source validation fail.");
+                    "Source validation fail.");
             }
             // return if no error then process detail in thread
             this.processMtoPartnerCustomerFileDetail(mtoPartnerCustomerValidations);
@@ -208,8 +238,10 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
      * */
     public void processMtoPartnerCustomerFileDetail(Set<MtoPartnerCustomerValidation> mtoPartnerCustomerValidations) {
         Thread thread1 = new Thread(() -> {
+            List<PartnerCustomer> partnerCustomerList = null;
             try {
                 if (mtoPartnerCustomerValidations.size() > 0) {
+                    partnerCustomerList = this.partnerCustomerRepository.findAll();
                     // truncate the partner customer
                     this.partnerCustomerRepository.truncatePartnerCustomer();
                     // add new data into mto partner customer
@@ -217,6 +249,11 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
+                if (CommonUtils.isNull(partnerCustomerList)) {
+                    logger.info("Old data role back....... start");
+                    this.partnerCustomerRepository.saveAll(partnerCustomerList);
+                    logger.info("Old data role back....... end");
+                }
             }
         });
         thread1.start();

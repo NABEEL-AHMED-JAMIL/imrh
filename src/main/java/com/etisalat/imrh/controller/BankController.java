@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/bank")
-@CrossOrigin(origins = "http://localhost:4200")
 public class BankController {
 
     public Logger logger = LogManager.getLogger(BankController.class);
@@ -49,15 +49,15 @@ public class BankController {
         }
     }
 
-    @RequestMapping(path = "/enableDisableAllBank", method = RequestMethod.POST)
+    @RequestMapping(path = "/enableDisableAllBankByCountryCode", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllBank(
             @RequestParam(name = "countryCode") String countryCode,
             @RequestParam(name = "enable") Enable enable) {
         try {
-            return this.bankService.enableDisableAllBank(countryCode, enable);
+            return this.bankService.enableDisableAllBankByCountryCode(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while enableDisableAllBank", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while enableDisableAllBankByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                 "Some Internal error accrue contact with support team.");
         }

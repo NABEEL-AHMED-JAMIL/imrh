@@ -15,7 +15,7 @@ public class PartnerDto {
     private Long partnerId;
     private String partnerName;
     private String partnerImageUrl;
-    private Enable enable;
+    private Enable enabled;
     private Integer preferenceOrder;
     private Double forexMarginShare;
     private Double partnerShare;
@@ -59,11 +59,11 @@ public class PartnerDto {
         this.partnerImageUrl = partnerImageUrl;
     }
 
-    public Enable getEnable() {
-        return enable;
+    public Enable getEnabled() {
+        return enabled;
     }
-    public void setEnable(Enable enable) {
-        this.enable = enable;
+    public void setEnabled(Enable enabled) {
+        this.enabled = enabled;
     }
 
     public Integer getPreferenceOrder() {

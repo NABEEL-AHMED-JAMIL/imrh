@@ -7,6 +7,7 @@ import com.google.cloud.storage.*;
 import com.google.firebase.cloud.StorageClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +24,20 @@ public class ResourceServiceImpl implements ResourceService {
 
     public Logger logger = LogManager.getLogger(ResourceServiceImpl.class);
 
+    @Value("${firebase.bucket-name}")
+    private String bucketName;
+
+    @Value("${firebase.image-url}")
+    private String resourceAccessUrl;
+
     @Override
     public GenericResponseDto<Object> uploadFile(MultipartFile file,
         String folderName) throws IOException {
         Bucket bucket = StorageClient.getInstance().bucket();
-        String fileNameWithFolderPath = String.format("%s/%s",folderName, file.getOriginalFilename());
-        bucket.create(fileNameWithFolderPath, file.getInputStream(), file.getContentType());
-        return CommonUtils.getResponseWithData(fileNameWithFolderPath, HttpStatus.OK.series().name(),
-            null, "File Store successfully");
+        String fileNameWithFolderPath = String.format("%s%2F%s",folderName, file.getOriginalFilename());
+        return CommonUtils.getResponseWithData(String.format(this.resourceAccessUrl, this.bucketName,
+                fileNameWithFolderPath), HttpStatus.OK.series().name(),
+            "File Store successfully");
     }
 
     @Override
@@ -51,6 +58,6 @@ public class ResourceServiceImpl implements ResourceService {
         }
         blob.delete();
         return CommonUtils.getResponseWithData(fileName, HttpStatus.OK.series().name(),
-            null, "File delete successfully");
+        "File delete successfully");
     }
 }

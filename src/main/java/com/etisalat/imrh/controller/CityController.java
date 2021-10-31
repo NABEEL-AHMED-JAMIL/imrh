@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/city")
-@CrossOrigin(origins = "http://localhost:4200")
 public class CityController {
 
     public Logger logger = LogManager.getLogger(CityController.class);
@@ -49,15 +49,15 @@ public class CityController {
         }
     }
 
-    @RequestMapping(path = "/enableDisableAllCity", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllCity(
+    @RequestMapping(path = "/enableDisableAllCityByCountryCode", method = RequestMethod.POST)
+    public GenericResponseDto<Object> enableDisableAllCityByCountryCode(
         @RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
-            return this.cityService.enableDisableAllCity(countryCode, enable);
+            return this.cityService.enableDisableAllCityByCountryCode(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while enableDisableAllCity", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while enableDisableAllCityByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                 "Some Internal error accrue contact with support team.");
         }

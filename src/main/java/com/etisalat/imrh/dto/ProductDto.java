@@ -14,7 +14,7 @@ public class ProductDto {
     private Long productId;
     private String productName;
     private String productImageUrl;
-    private Enable enable;
+    private Enable enabled;
 
     public ProductDto() {}
 
@@ -39,11 +39,11 @@ public class ProductDto {
         this.productImageUrl = productImageUrl;
     }
 
-    public Enable getEnable() {
-        return enable;
+    public Enable getEnabled() {
+        return enabled;
     }
-    public void setEnable(Enable enable) {
-        this.enable = enable;
+    public void setEnabled(Enable enabled) {
+        this.enabled = enabled;
     }
 
     @Override

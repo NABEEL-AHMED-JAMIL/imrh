@@ -67,19 +67,9 @@ public class CommonUtils {
         return (GenericResponseDto<T>) response;
     }
 
-    public static <T> GenericResponseDto<T> getResponseWithData(Object data, String status, String errorCode) {
+    public static <T> GenericResponseDto<T> getResponseWithData(Object data, String status, String message) {
         GenericResponseDto<Object> response = new GenericResponseDto<>();
         response.setData(data);
-        response.setErrorCode(errorCode);
-        response.setStatus(status);
-        return  (GenericResponseDto<T>) response;
-    }
-
-    public static <T> GenericResponseDto<T> getResponseWithData(Object data, String status,
-        String errorCode, String message) {
-        GenericResponseDto<Object> response = new GenericResponseDto<>();
-        response.setData(data);
-        response.setErrorCode(errorCode);
         response.setStatus(status);
         response.setMessage(message);
         return (GenericResponseDto<T>) response;

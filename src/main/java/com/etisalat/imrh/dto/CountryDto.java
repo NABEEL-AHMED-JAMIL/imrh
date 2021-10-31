@@ -16,7 +16,7 @@ public class CountryDto {
     private String countryName;
     private String countryLegacyCode;
     private String countryImageUrl;
-    private Enable enable;
+    private Enable enabled;
     private List<CityDto> cities;
     private List<BankDto> banks;
     private List<WalletDto> wallets;
@@ -51,11 +51,11 @@ public class CountryDto {
         this.countryImageUrl = countryImageUrl;
     }
 
-    public Enable getEnable() {
-        return enable;
+    public Enable getEnabled() {
+        return enabled;
     }
-    public void setEnable(Enable enable) {
-        this.enable = enable;
+    public void setEnabled(Enable enabled) {
+        this.enabled = enabled;
     }
 
     public List<CityDto> getCities() {

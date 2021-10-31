@@ -18,8 +18,8 @@ import java.util.List;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/partner")
-@CrossOrigin(origins = "http://localhost:4200")
 public class PartnerController {
 
     public Logger logger = LogManager.getLogger(PartnerController.class);

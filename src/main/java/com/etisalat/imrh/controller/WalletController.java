@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/wallet")
-@CrossOrigin(origins = "http://localhost:4200")
 public class WalletController {
 
     public Logger logger = LogManager.getLogger(WalletController.class);
@@ -49,14 +49,14 @@ public class WalletController {
         }
     }
 
-    @RequestMapping(path = "/enableDisableAllWallet", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllWallet(@RequestParam(name = "countryCode") String countryCode,
+    @RequestMapping(path = "/enableDisableAllWalletByCountryCode", method = RequestMethod.POST)
+    public GenericResponseDto<Object> enableDisableAllWalletByCountryCode(@RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
-            return this.walletService.enableDisableAllWallet(countryCode, enable);
+            return this.walletService.enableDisableAllWalletByCountryCode(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while enableDisableAllWallet", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while enableDisableAllWalletByCountryCode", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                 "Some Internal error accrue contact with support team.");
         }

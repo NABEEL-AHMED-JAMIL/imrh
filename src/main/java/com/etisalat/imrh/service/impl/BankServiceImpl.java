@@ -53,11 +53,11 @@ public class BankServiceImpl implements BankService {
             Bank bank = new Bank();
             bank.setBankName(bankDto.getBankName());
             bank.setBankImageUrl(bankDto.getBankImageUrl());
-            bank.setEnabled(bankDto.getEnable().name());
+            bank.setEnabled(bankDto.getEnabled().name());
             bank.setCountry(country.get());
             this.bankRepository.save(bank);
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                    null, "Bank create successfully");
+                     "Bank create successfully");
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(
                 HttpStatus.BAD_REQUEST.series().name(), "Country code missing.");
@@ -71,20 +71,20 @@ public class BankServiceImpl implements BankService {
         }
         Optional<Bank> bank = this.bankRepository.findById(bankDto.getBankId());
         if (bank.isPresent()) {
-            bank.get().setEnabled(bankDto.getEnable().name());
+            bank.get().setEnabled(bankDto.getEnabled().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                null, String.format("Bank update successfully with %d.", bankDto.getBankId()));
+                 String.format("Bank update successfully with %d.", bankDto.getBankId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Bank not found with %d.", bankDto.getBankId()));
     }
 
     @Override
-    public GenericResponseDto<Object> enableDisableAllBank(String countryCode, Enable enable) {
+    public GenericResponseDto<Object> enableDisableAllBankByCountryCode(String countryCode, Enable enable) {
         return CommonUtils.getResponseWithData(this.bankRepository
             .setAllBankStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
-            null, "All Bank update successfully.");
+             "All Bank update successfully.");
     }
 
     @Override
@@ -95,8 +95,8 @@ public class BankServiceImpl implements BankService {
             bankDto.setBankId(bank.get().getBankId());
             bankDto.setBankName(bank.get().getBankName());
             bankDto.setBankImageUrl(bank.get().getBankImageUrl());
-            bankDto.setEnable(Enable.valueOf(bank.get().getEnabled()));
-            return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(), null,
+            bankDto.setEnabled(Enable.valueOf(bank.get().getEnabled()));
+            return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(), 
                     String.format("Bank find successfully with %d.", bankId));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
@@ -119,10 +119,10 @@ public class BankServiceImpl implements BankService {
         if (bank.isPresent()) {
             bank.get().setBankName(bankDto.getBankName());
             bank.get().setBankImageUrl(bankDto.getBankImageUrl());
-            bank.get().setEnabled(bankDto.getEnable().name());
+            bank.get().setEnabled(bankDto.getEnabled().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                null, String.format("Bank update successfully with %d.", bankDto.getBankId()));
+                 String.format("Bank update successfully with %d.", bankDto.getBankId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Bank not found with %d.", bankDto.getBankId()));

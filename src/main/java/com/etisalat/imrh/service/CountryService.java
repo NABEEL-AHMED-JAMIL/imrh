@@ -13,6 +13,8 @@ public interface CountryService {
 
     public GenericResponseDto<Object> enableDisableAllCountry(Enable enable);
 
+    public GenericResponseDto<Object> findByCountryCode(String countryCode);
+
     public GenericResponseDto<Object> fetchAllCountry();
 
     public GenericResponseDto<Object> fetchAllCityByCountryCode(String countryCode);

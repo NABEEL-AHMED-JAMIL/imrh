@@ -13,7 +13,7 @@ public interface CityService {
 
     public GenericResponseDto<Object> enableDisableCity(CityDto cityDto);
 
-    public GenericResponseDto<Object> enableDisableAllCity(String countryCode, Enable enable);
+    public GenericResponseDto<Object> enableDisableAllCityByCountryCode(String countryCode, Enable enable);
 
     public GenericResponseDto<Object> findByCityId(Long ctyId);
 

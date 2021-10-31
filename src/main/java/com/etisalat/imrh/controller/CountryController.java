@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/country")
-@CrossOrigin(origins = "http://localhost:4200")
 public class CountryController {
 
     public Logger logger = LogManager.getLogger(CountryController.class);
@@ -46,6 +46,18 @@ public class CountryController {
             logger.error("An error occurred while enableDisableAllCountry", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                 "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(path = "/findByCountryCode", method = RequestMethod.GET)
+    public GenericResponseDto<Object> findByCountryCode(@RequestParam(name = "countryCode") String countryCode) {
+        try {
+            return this.countryService.findByCountryCode(countryCode);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while findByCountryCode", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
         }
     }
 

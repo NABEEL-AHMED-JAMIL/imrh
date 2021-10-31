@@ -13,12 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Set;
+
 /**
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/partnerCustomer")
-@CrossOrigin(origins = "http://localhost:4200")
 public class PartnerCustomerController {
 
     public Logger logger = LogManager.getLogger(PartnerCustomerController.class);
@@ -33,6 +35,18 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while searchCustomerMsisdn", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    @RequestMapping(value = "/createCustomerMsisdn", method = RequestMethod.POST)
+    public GenericResponseDto<Object> createCustomerMsisdn(@RequestBody Set<PartnerCustomerDto> partnerCustomer) {
+        try {
+            return this.partnerCustomerService.createCustomerMsisdn(partnerCustomer);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while createCustomerMsisdn", ExceptionUtil.getRootCause(ex));
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
                     "Some Internal error accrue contact with support team.");
         }

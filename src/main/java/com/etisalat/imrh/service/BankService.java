@@ -13,7 +13,7 @@ public interface BankService {
 
     public GenericResponseDto<Object> enableDisableBank(BankDto bankDto);
 
-    public GenericResponseDto<Object> enableDisableAllBank(String countryCode, Enable enable);
+    public GenericResponseDto<Object> enableDisableAllBankByCountryCode(String countryCode, Enable enable);
 
     public GenericResponseDto<Object> findByBankId(Long bankId);
 

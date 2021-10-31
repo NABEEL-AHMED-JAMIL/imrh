@@ -13,7 +13,7 @@ public interface WalletService {
 
     public GenericResponseDto<Object> enableDisableWallet(WalletDto walletDto);
 
-    public GenericResponseDto<Object> enableDisableAllWallet(String countryCode, Enable enable);
+    public GenericResponseDto<Object> enableDisableAllWalletByCountryCode(String countryCode, Enable enable);
 
     public GenericResponseDto<Object> findByWalletId(Long walletId);
 

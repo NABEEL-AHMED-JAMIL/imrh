@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/appNotification")
-@CrossOrigin(origins = "http://localhost:4200")
 public class AppNotificationController {
 
     public Logger logger = LogManager.getLogger(AppNotificationController.class);

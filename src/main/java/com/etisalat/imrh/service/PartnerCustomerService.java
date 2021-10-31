@@ -5,6 +5,7 @@ import com.etisalat.imrh.dto.PartnerCustomerDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * @author Nabeel Ahmed
@@ -12,6 +13,8 @@ import java.io.IOException;
 public interface PartnerCustomerService {
 
     public GenericResponseDto<Object> searchCustomerMsisdn(PartnerCustomerDto partnerCustomer);
+
+    public GenericResponseDto<Object> createCustomerMsisdn(Set<PartnerCustomerDto> partnerCustomerSet);
 
     public GenericResponseDto<Object> updatePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer);
 

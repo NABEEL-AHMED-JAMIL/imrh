@@ -38,26 +38,26 @@ public class WalletServiceImpl implements WalletService {
     public GenericResponseDto<Object> createWallet(WalletDto walletDto) {
         if (CommonUtils.isNull(walletDto.getWalletName())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                    HttpStatus.BAD_REQUEST.series().name(), "Wallet name missing.");
+                HttpStatus.BAD_REQUEST.series().name(), "Wallet name missing.");
         } else if (this.walletRepository.findByWalletName(walletDto.getWalletName()).isPresent()) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                    HttpStatus.BAD_REQUEST.series().name(), "Wallet name already exist.");
+                HttpStatus.BAD_REQUEST.series().name(), "Wallet name already exist.");
         }
         if (!CommonUtils.isNull(walletDto.getCountry()) &&
                 !CommonUtils.isNull(walletDto.getCountry().getCountryCode())) {
             Optional<Country> country = this.countryRepository.findById(walletDto.getCountry().getCountryCode());
             if (!country.isPresent()) {
                 return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Country not exist.");
+                    HttpStatus.BAD_REQUEST.series().name(), "Country not exist.");
             }
             Wallet wallet = new Wallet();
             wallet.setWalletName(walletDto.getWalletName());
             wallet.setWalletImageUrl(walletDto.getWalletImageUrl());
-            wallet.setEnabled(walletDto.getEnable().name());
+            wallet.setEnabled(walletDto.getEnabled().name());
             wallet.setCountry(country.get());
             this.walletRepository.save(wallet);
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(),
-                    null, "Wallet create successfully");
+                 "Wallet create successfully");
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(
                 HttpStatus.BAD_REQUEST.series().name(), "Country code missing.");
@@ -71,20 +71,20 @@ public class WalletServiceImpl implements WalletService {
         }
         Optional<Wallet> wallet = this.walletRepository.findById(walletDto.getWalletId());
         if (wallet.isPresent()) {
-            wallet.get().setEnabled(walletDto.getEnable().name());
+            wallet.get().setEnabled(walletDto.getEnabled().name());
             this.walletRepository.save(wallet.get());
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(),
-                    null, String.format("Wallet update successfully with %d.", walletDto.getWalletId()));
+                 String.format("Wallet update successfully with %d.", walletDto.getWalletId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Wallet not found with %d.", walletDto.getWalletId()));
     }
 
     @Override
-    public GenericResponseDto<Object> enableDisableAllWallet(String countryCode, Enable enable) {
+    public GenericResponseDto<Object> enableDisableAllWalletByCountryCode(String countryCode, Enable enable) {
         return CommonUtils.getResponseWithData(this.walletRepository
             .setAllWalletStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
-            null, "All Wallet update successfully.");
+             "All Wallet update successfully.");
     }
 
     @Override
@@ -95,8 +95,8 @@ public class WalletServiceImpl implements WalletService {
             walletDto.setWalletId(wallet.get().getWalletId());
             walletDto.setWalletName(wallet.get().getWalletName());
             walletDto.setWalletImageUrl(wallet.get().getWalletImageUrl());
-            walletDto.setEnable(Enable.valueOf(wallet.get().getEnabled()));
-            return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(), null,
+            walletDto.setEnabled(Enable.valueOf(wallet.get().getEnabled()));
+            return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(), 
                     String.format("Wallet find successfully with %d.", walletId));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
@@ -118,11 +118,11 @@ public class WalletServiceImpl implements WalletService {
         Optional<Wallet> wallet = this.walletRepository.findById(walletDto.getWalletId());
         if (wallet.isPresent()) {
             wallet.get().setWalletName(walletDto.getWalletName());
-            wallet.get().setEnabled(walletDto.getEnable().name());
+            wallet.get().setEnabled(walletDto.getEnabled().name());
             walletDto.setWalletImageUrl(wallet.get().getWalletImageUrl());
             this.walletRepository.save(wallet.get());
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(),
-                    null, String.format("Wallet update successfully with %d.", walletDto.getWalletId()));
+                String.format("Wallet update successfully with %d.", walletDto.getWalletId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Wallet not found with %d.", walletDto.getWalletId()));

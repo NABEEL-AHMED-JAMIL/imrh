@@ -13,7 +13,7 @@ public class CityDto {
 
     private Long cityId;
     private String cityName;
-    private Enable enable;
+    private Enable enabled;
     private CountryDto country;
 
     public CityDto() { }
@@ -32,11 +32,11 @@ public class CityDto {
         this.cityName = cityName;
     }
 
-    public Enable getEnable() {
-        return enable;
+    public Enable getEnabled() {
+        return enabled;
     }
-    public void setEnable(Enable enable) {
-        this.enable = enable;
+    public void setEnabled(Enable enabled) {
+        this.enabled = enabled;
     }
 
     public CountryDto getCountry() {

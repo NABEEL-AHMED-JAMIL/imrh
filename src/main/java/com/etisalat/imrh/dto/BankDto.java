@@ -14,7 +14,7 @@ public class BankDto {
     private Long bankId;
     private String bankName;
     private String bankImageUrl;
-    private Enable enable;
+    private Enable enabled;
     private CountryDto country;
 
     public BankDto() { }
@@ -40,11 +40,11 @@ public class BankDto {
         this.bankImageUrl = bankImageUrl;
     }
 
-    public Enable getEnable() {
-        return enable;
+    public Enable getEnabled() {
+        return enabled;
     }
-    public void setEnable(Enable enable) {
-        this.enable = enable;
+    public void setEnabled(Enable enabled) {
+        this.enabled = enabled;
     }
 
     public CountryDto getCountry() {

@@ -19,8 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Nabeel Ahmed
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/imrh/resource")
-@CrossOrigin(origins = "http://localhost:4200")
 public class ResourceController {
 
     public Logger logger = LogManager.getLogger(ResourceController.class);

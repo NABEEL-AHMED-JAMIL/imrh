@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 public class GenericResponseDto<T> {
 
     private String status;
-    private String errorCode;
     private String message;
     private T data;
 
@@ -23,13 +22,6 @@ public class GenericResponseDto<T> {
     }
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
     }
 
     public String getMessage() {

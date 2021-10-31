@@ -35,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
             productDto.setProductId(product.get().getProductId());
             productDto.setProductName(product.get().getProductName());
             productDto.setProductImageUrl(product.get().getProductImageUrl());
-            productDto.setEnable(Enable.valueOf(product.get().getEnabled()));
-            return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(), null,
+            productDto.setEnabled(Enable.valueOf(product.get().getEnabled()));
+            return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
                 String.format("Product find successfully with %d.", productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
@@ -55,11 +55,11 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = this.productRepository.findById(productDto.getProductId());
         if (product.isPresent()) {
             product.get().setProductName(productDto.getProductName());
-            product.get().setEnabled(productDto.getEnable().name());
+            product.get().setEnabled(productDto.getEnabled().name());
             productDto.setProductImageUrl(product.get().getProductImageUrl());
             this.productRepository.save(product.get());
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
-            null, String.format("Product update successfully with %d.", productDto.getProductId()));
+            String.format("Product update successfully with %d.", productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
             String.format("Product not found with %d.", productDto.getProductId()));
@@ -73,10 +73,10 @@ public class ProductServiceImpl implements ProductService {
         }
         Optional<Product> product = this.productRepository.findById(productDto.getProductId());
         if (product.isPresent()) {
-            product.get().setEnabled(productDto.getEnable().name());
+            product.get().setEnabled(productDto.getEnabled().name());
             this.productRepository.save(product.get());
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
-                null, String.format("Product update successfully with %d.", productDto.getProductId()));
+                String.format("Product update successfully with %d.", productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Product not found with %d.", productDto.getProductId()));
@@ -85,12 +85,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public GenericResponseDto<Object> enableDisableAllProduct(Enable enable) {
         return CommonUtils.getResponseWithData(this.productRepository.setAllProductStatus(enable.name()),
-            HttpStatus.OK.series().name(), null, "All Product update successfully.");
+            HttpStatus.OK.series().name(), "All Product update successfully.");
     }
 
     @Override
     public GenericResponseDto<Object> fetchAllProduct() {
         return CommonUtils.getResponseWithData(this.productRepository.findAllProduct(), HttpStatus.OK.series().name(),
-            null, String.format("Product fetch successfully."));
+            String.format("Product fetch successfully."));
     }
 }

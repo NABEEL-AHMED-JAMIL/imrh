@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
-@RequestMapping("/imrh/country")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
+@RequestMapping("/imrh/product")
 public class ProductController {
 
     public Logger logger = LogManager.getLogger(PartnerController.class);

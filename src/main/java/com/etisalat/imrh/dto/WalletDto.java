@@ -14,7 +14,7 @@ public class WalletDto {
     private Long walletId;
     private String walletName;
     private String walletImageUrl;
-    private Enable enable;
+    private Enable enabled;
     private CountryDto country;
 
     public WalletDto() { }
@@ -40,11 +40,11 @@ public class WalletDto {
         this.walletImageUrl = walletImageUrl;
     }
 
-    public Enable getEnable() {
-        return enable;
+    public Enable getEnabled() {
+        return enabled;
     }
-    public void setEnable(Enable enable) {
-        this.enable = enable;
+    public void setEnabled(Enable enabled) {
+        this.enabled = enabled;
     }
 
     public CountryDto getCountry() {
