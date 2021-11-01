@@ -7,7 +7,7 @@ Purpose of the project is use the simple crud with ionic and different tech such
 
 ## Database design.
 Database design make application faster in development. For a database, we are using postgres database to store the data.
-![alt text](extra deatil/db detail.png)
+![alt text](extra%20deatil/db detail.png)
 
 ## Reporting.
 For reporting imrh using JasperReports. Imrh reports name mention below.
