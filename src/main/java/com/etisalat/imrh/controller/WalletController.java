@@ -9,6 +9,7 @@ import com.etisalat.imrh.util.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,11 @@ public class WalletController {
     @Autowired
     private WalletService walletService;
 
+    // working
     @RequestMapping(path = "/createWallet", method = RequestMethod.POST)
     public GenericResponseDto<Object> createWallet(@RequestBody WalletDto walletDto) {
         try {
+            logger.info("Request createWallet " + walletDto);
             return this.walletService.createWallet(walletDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -37,9 +40,11 @@ public class WalletController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableWallet", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableWallet(@RequestBody WalletDto walletDto) {
         try {
+            logger.info("Request enableDisableWallet " + walletDto);
             return this.walletService.enableDisableWallet(walletDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -49,10 +54,13 @@ public class WalletController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableAllWalletByCountryCode", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllWalletByCountryCode(@RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
+            logger.info("Request enableDisableAllWalletByCountryCode " +
+                String.format("countryCode %s enable %s", countryCode, enable.name()));
             return this.walletService.enableDisableAllWalletByCountryCode(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -62,9 +70,11 @@ public class WalletController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findByWalletId", method = RequestMethod.GET)
     public GenericResponseDto<Object> findByWalletId(@RequestParam(name = "walletId") Long walletId) {
         try {
+            logger.info("Request findByWalletId walletId ==> " + walletId);
             return this.walletService.findByWalletId(walletId);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -77,6 +87,7 @@ public class WalletController {
     @RequestMapping(path = "/updateWallet", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateWallet(@RequestBody WalletDto walletDto) {
         try {
+            logger.info("Request updateWallet " + walletDto);
             return this.walletService.updateWallet(walletDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -86,9 +97,11 @@ public class WalletController {
         }
     }
 
+    // working
     @RequestMapping(path = "/deleteWallet", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteWallet(@RequestParam(name = "walletId") Long walletId) {
         try {
+            logger.info("Request deleteWallet walletId ==> " + walletId);
             return this.walletService.deleteWallet(walletId);
         } catch (Exception ex) {
             ex.printStackTrace();

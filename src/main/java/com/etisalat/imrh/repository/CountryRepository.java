@@ -13,9 +13,10 @@ import java.util.List;
  * @author Nabeel Ahmed
  */
 @Repository
+@Transactional
 public interface CountryRepository extends JpaRepository<Country, String> {
 
-    @Query(value = "SELECT COUNTRY_CODE AS countryCode, COUNTRY_NAME AS countryName, COUNTRY_IMAGE_URl AS countryImageUrl, " +
+    @Query(value = "SELECT COUNTRY_CODE AS countryCode, COUNTRY_NAME AS countryName, COUNTRY_IMAGE_URl AS countryImageUrl,\n" +
         "COUNTRY_LEGACY_CODE AS countryLegacyCode, ENABLED AS enabled FROM COUNTRY ORDER BY COUNTRY_NAME ASC", nativeQuery = true)
     @Transactional(readOnly = true)
     public List<CountryProjection> findAllCountry();

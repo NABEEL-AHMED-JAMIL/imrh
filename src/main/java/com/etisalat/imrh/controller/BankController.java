@@ -25,9 +25,11 @@ public class BankController {
     @Autowired
     private BankService bankService;
 
+    // working
     @RequestMapping(path = "/createBank", method = RequestMethod.POST)
     public GenericResponseDto<Object> createBank(@RequestBody BankDto bankDto) {
         try {
+            logger.info("Request createBank ==> " + bankDto);
             return this.bankService.createBank(bankDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -37,9 +39,11 @@ public class BankController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableBank", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableBank(@RequestBody BankDto bankDto) {
         try {
+            logger.info("Request enableDisableBank ==> " + bankDto);
             return this.bankService.enableDisableBank(bankDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -49,11 +53,14 @@ public class BankController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableAllBankByCountryCode", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllBank(
             @RequestParam(name = "countryCode") String countryCode,
             @RequestParam(name = "enable") Enable enable) {
         try {
+            logger.info("Request enableDisableAllBank ==> " +
+                String.format("countryCode %s enable %s", countryCode, enable.name()));
             return this.bankService.enableDisableAllBankByCountryCode(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -63,9 +70,11 @@ public class BankController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findByBankId", method = RequestMethod.GET)
     public GenericResponseDto<Object> findByBankId(@RequestParam(name = "bankId") Long bankId) {
         try {
+            logger.info("Request findByBankId ==> bankId " + bankId);
             return this.bankService.findByBankId(bankId);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -75,9 +84,11 @@ public class BankController {
         }
     }
 
+    // working
     @RequestMapping(path = "/updateBank", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateBank(@RequestBody BankDto bankDto) {
         try {
+            logger.info("Request updateBank ==> " + bankDto);
             return this.bankService.updateBank(bankDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -87,9 +98,11 @@ public class BankController {
         }
     }
 
+    // working
     @RequestMapping(path = "/deleteBank", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteBank(@RequestParam(name = "bankId") Long bankId) {
         try {
+            logger.info("Request deleteBank bankId ==> " + bankId);
             return this.bankService.deleteBank(bankId);
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -20,7 +20,7 @@ public interface PartnerCountryProductRepository extends JpaRepository<PartnerCo
 
     public void deleteByProductId(Long productId);
 
-    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM partner_country_product WHERE " +
+    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM partner_country_product WHERE\n" +
             "partner_id = ?1 and product_id = ?2 and country_code = ?3", nativeQuery = true)
     public boolean isAttachMtoPartnerCountryProduct(Long partnerId, Long productId, String countryCode);
 

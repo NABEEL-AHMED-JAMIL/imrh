@@ -28,10 +28,12 @@ public class ResourceController {
     @Autowired
     private ResourceService resourceService;
 
+    // working
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public GenericResponseDto<Object> uploadFile(@RequestParam(name = "file") MultipartFile file,
         @RequestParam(name = "folderName") String folderName) {
         try {
+            logger.info("Request uploadFile fileName " + file.getOriginalFilename());
             return this.resourceService.uploadFile(file, folderName);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -44,6 +46,7 @@ public class ResourceController {
     @RequestMapping(value = "/download/image/file-name", method = RequestMethod.GET)
     public ResponseEntity<?> downloadImageFile(@RequestParam(name = "fileName", required = true) String fileName) {
         try {
+            logger.info("Request downloadImageFile fileName " + fileName);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=" + fileName);
             return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_OCTET_STREAM)
@@ -59,6 +62,7 @@ public class ResourceController {
     @RequestMapping(value = "/delete/image/file-name", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteImageFile(@RequestParam(name = "fileName", required = true) String fileName) {
         try {
+            logger.info("Request deleteImageFile fileName " + fileName);
             return this.resourceService.deleteImageFile(fileName);
         } catch (Exception ex) {
             ex.printStackTrace();

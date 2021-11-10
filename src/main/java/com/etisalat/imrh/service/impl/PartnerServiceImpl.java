@@ -159,7 +159,7 @@ public class PartnerServiceImpl implements PartnerService {
 
     @Override
     public GenericResponseDto<Object> fetchAllMtoPartner() {
-        return CommonUtils.getResponseWithData(this.partnerRepository.findAll()
+        return CommonUtils.getResponseWithData(this.partnerRepository.findAllByOrderByPreferenceOrderAsc()
             .stream().map(partner -> {
                 PartnerDto partnerDto = new PartnerDto();
                 partnerDto.setPartnerId(partner.getPartnerId());
@@ -329,6 +329,9 @@ public class PartnerServiceImpl implements PartnerService {
             String.format("Mto Partner delete successfully with %d.", partnerId));
     }
 
+    /**
+     * If country delete it will delete the
+     * **/
     @Override
     public GenericResponseDto<Object> deleteMtoCountryLinkMtoPartner(Long partnerId, String countryCode) {
         this.partnerRepository.deletePartnerCountryByPartnerIdAndCountryCode(partnerId, countryCode);

@@ -1,0 +1,79 @@
+2021-11-03 22:54:34.669  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Starting ImrhApplication using Java 1.8.0_201 on lhrlt-6591 with PID 11380 (E:\IMR-App\imrh\target\classes started by nabeel.jamil in E:\IMR-App\imrh)
+2021-11-03 22:54:34.828 DEBUG lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Running with Spring Boot v2.5.5, Spring v5.3.10
+2021-11-03 22:54:34.829  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : No active profile set, falling back to default profiles: default
+2021-11-03 22:54:37.160  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-03 22:54:37.608  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 390 ms. Found 18 JPA repository interfaces.
+2021-11-03 22:54:40.426  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-11-03 22:54:40.448  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-03 22:54:40.449  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2021-11-03 22:54:40.450  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-03 22:54:40.857  INFO lhrlt-6591 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2021-11-03 22:54:40.857  INFO lhrlt-6591 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5945 ms
+2021-11-03 22:54:41.236  INFO lhrlt-6591 --- [           main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-03 22:54:41.395  INFO lhrlt-6591 --- [           main] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-03 22:54:42.483  INFO lhrlt-6591 --- [           main] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-03 22:54:42.794  INFO lhrlt-6591 --- [           main] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-11-03 22:54:43.529  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000038: Composite-id class does not override equals(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-03 22:54:43.530  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000039: Composite-id class does not override hashCode(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-03 22:54:44.770  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2021-11-03 22:54:45.423  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2021-11-03 22:54:46.630  INFO lhrlt-6591 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-03 22:54:46.649  INFO lhrlt-6591 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-03 22:54:49.360  WARN lhrlt-6591 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-03 22:54:49.928  INFO lhrlt-6591 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-03 22:54:50.875  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-03 22:54:50.931  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-03 22:54:50.933  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-11-03 22:54:50.971  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-11-03 22:54:51.110  INFO lhrlt-6591 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-11-03 22:54:51.700  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Started ImrhApplication in 17.797 seconds (JVM running for 20.212)
+2021-11-03 22:54:51.704 DEBUG lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Debugging log
+2021-11-03 22:54:51.704  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Info log
+2021-11-03 22:54:51.704  WARN lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Hey, This is a warning!
+2021-11-03 22:54:51.704 ERROR lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Oops! We have an Error. OK
+2021-11-03 22:54:51.704 FATAL lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Damn! Fatal error. Please fix me.
+2021-11-03 23:42:35.338  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Starting ImrhApplication using Java 1.8.0_201 on lhrlt-6591 with PID 2080 (E:\IMR-App\imrh\target\classes started by nabeel.jamil in E:\IMR-App\imrh)
+2021-11-03 23:42:35.346 DEBUG lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Running with Spring Boot v2.5.5, Spring v5.3.10
+2021-11-03 23:42:35.456  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : No active profile set, falling back to default profiles: default
+2021-11-03 23:42:36.518  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-03 23:42:36.673  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 143 ms. Found 18 JPA repository interfaces.
+2021-11-03 23:42:38.239  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-11-03 23:42:38.249  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-03 23:42:38.249  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2021-11-03 23:42:38.249  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-03 23:42:38.397  INFO lhrlt-6591 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2021-11-03 23:42:38.397  INFO lhrlt-6591 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2883 ms
+2021-11-03 23:42:38.671  INFO lhrlt-6591 --- [           main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-03 23:42:38.775  INFO lhrlt-6591 --- [           main] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-03 23:42:38.967  INFO lhrlt-6591 --- [           main] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-03 23:42:39.088  INFO lhrlt-6591 --- [           main] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-11-03 23:42:39.542  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000038: Composite-id class does not override equals(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-03 23:42:39.542  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000039: Composite-id class does not override hashCode(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-03 23:42:40.065  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2021-11-03 23:42:40.601  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2021-11-03 23:42:41.590  INFO lhrlt-6591 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-03 23:42:41.600  INFO lhrlt-6591 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-03 23:42:43.560  WARN lhrlt-6591 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-03 23:42:43.956  INFO lhrlt-6591 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-03 23:42:44.546  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-03 23:42:44.588  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-03 23:42:44.590  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-11-03 23:42:44.621  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-11-03 23:42:44.696  INFO lhrlt-6591 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-11-03 23:42:45.113  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Started ImrhApplication in 10.175 seconds (JVM running for 11.774)
+2021-11-03 23:44:00.080  INFO lhrlt-6591 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-03 23:44:00.081  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2021-11-03 23:44:00.086  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 5 ms
+2021-11-03 23:44:00.204  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-03 23:46:17.109  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-03 23:46:23.975  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-03 23:46:27.997  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-03 23:53:46.309  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-03 23:54:06.725  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-03 23:55:51.337  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-03 23:56:00.767  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-03 23:56:08.800  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.PartnerController                : Request enableDisableProduct {"productId":1002,"productName":"Send to wallet","productImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to wallet.svg?alt\u003dmedia","enabled":"Y"}
+2021-11-03 23:56:12.112  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-03 23:56:21.655  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.PartnerController                : Request findByProductId productId ==> 1001
+2021-11-03 23:59:01.085  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.PartnerController                : Request findByProductId productId ==> 1001
+2021-11-03 23:59:07.815  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.PartnerController                : Request findByProductId productId ==> 1001

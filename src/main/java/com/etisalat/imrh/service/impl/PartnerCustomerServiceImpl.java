@@ -13,10 +13,7 @@ import com.etisalat.imrh.repository.validate.MtoPartnerCustomerValidation;
 import com.etisalat.imrh.util.PoiWorkBookUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -190,7 +187,7 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                     MtoPartnerCustomerValidation mtoPartnerCustomerValidation = new MtoPartnerCustomerValidation();
                     // first col get the customer phone number
                     Cell currentCell = currentRow.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                    currentCell.setCellType(Cell.CELL_TYPE_STRING);
+                    currentCell.setCellType(CellType.STRING);
                     if (CommonUtils.isNull(currentCell.getStringCellValue())) {
                         errors.add("Source at row " + (currentRow.getRowNum() + 1) + " MSISDN missing.");
                     } else {
@@ -198,7 +195,7 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                     }
                     // second col get the partner detail
                     currentCell = currentRow.getCell(1, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                    currentCell.setCellType(Cell.CELL_TYPE_STRING);
+                    currentCell.setCellType(CellType.STRING);
                     // validate process
                     if (CommonUtils.isNull(currentCell.getStringCellValue())) {
                         errors.add("Source at row " + (currentRow.getRowNum() + 1) + " Mto Partner Id missing.");

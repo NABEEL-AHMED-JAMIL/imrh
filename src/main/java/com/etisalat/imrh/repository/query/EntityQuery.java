@@ -24,17 +24,15 @@ public class EntityQuery {
     @PersistenceContext
     private EntityManager entityManager;
 
-    //update partner set preference_order = (case when partner_id = 1000 then 2
-    // when partner_id = 1001 then 3 when partner_id = 1002 then 1 end) where partner_id in (1000, 1001, 1002);
     public static String changePreferenceOrderQuery(List<PartnerDto> partnerOrder) {
         StringBuilder changePreferenceOrder = new StringBuilder();
-        changePreferenceOrder.append("UPDATE PARTNER SET PERFERENCE_ORDER = (CASE");
+        changePreferenceOrder.append("UPDATE partner SET preference_order = (CASE");
         StringBuilder changePreferenceInDetail = new StringBuilder();
         Iterator<PartnerDto> partnerPreferenceIterator = partnerOrder.iterator();
         while (partnerPreferenceIterator.hasNext()) {
             PartnerDto partnerDto = partnerPreferenceIterator.next();
             if (!CommonUtils.isNull(partnerDto.getPartnerId()) && !CommonUtils.isNull(partnerDto.getPreferenceOrder()) ) {
-                changePreferenceOrder.append(String.format(" WHEN PARTNER_ID = %d THEN %d",
+                changePreferenceOrder.append(String.format(" WHEN partner_id = %d THEN %d",
                     partnerDto.getPartnerId(), partnerDto.getPreferenceOrder()));
                 if (partnerPreferenceIterator.hasNext()) {
                     changePreferenceInDetail.append(String.format("%d, ", partnerDto.getPartnerId()));
@@ -43,7 +41,7 @@ public class EntityQuery {
                 }
             }
         }
-        changePreferenceOrder.append(" END) WHERE PARTNER_ID IN (");
+        changePreferenceOrder.append(" END) WHERE partner_id IN (");
         changePreferenceOrder.append(changePreferenceInDetail);
         return changePreferenceOrder.toString();
     }
@@ -66,7 +64,7 @@ public class EntityQuery {
 
     public int executeUpdateQuery(String queryString) {
         logger.info("Transaction Start for " + queryString);
-        Query query = this.entityManager.createNamedQuery(queryString);
+        Query query = this.entityManager.createNativeQuery(queryString);
         int rowsUpdated = query.executeUpdate();
         logger.info("Transaction End with update rows " + rowsUpdated);
         return rowsUpdated;

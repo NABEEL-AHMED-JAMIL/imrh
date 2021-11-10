@@ -25,9 +25,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    // working
     @RequestMapping(path = "/findByProductId", method = RequestMethod.GET)
     public GenericResponseDto<Object> findByProductId(@RequestParam(name = "productId") Long productId) {
         try {
+            logger.info("Request findByProductId productId ==> " + productId);
             return this.productService.findByProductId(productId);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -37,9 +39,11 @@ public class ProductController {
         }
     }
 
+    // working
     @RequestMapping(path = "/updateProduct", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateProduct(@RequestBody ProductDto productDto) {
         try {
+            logger.info("Request updateProduct " + productDto);
             return this.productService.updateProduct(productDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -49,9 +53,11 @@ public class ProductController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableProduct", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableProduct(@RequestBody ProductDto productDto) {
         try {
+            logger.info("Request enableDisableProduct " + productDto);
             return this.productService.enableDisableProduct(productDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -64,6 +70,7 @@ public class ProductController {
     @RequestMapping(path = "/enableDisableAllProduct", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllProduct(@RequestParam(name = "enable") Enable enable) {
         try {
+            logger.info("Request enableDisableAllProduct enable ==> " + enable.name());
             return this.productService.enableDisableAllProduct(enable);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -73,9 +80,11 @@ public class ProductController {
         }
     }
 
+    // working
     @RequestMapping(path = "/fetchAllProduct", method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchAllProduct() {
         try {
+            logger.info("Request fetchAllProduct");
             return this.productService.fetchAllProduct();
         } catch (Exception ex) {
             ex.printStackTrace();

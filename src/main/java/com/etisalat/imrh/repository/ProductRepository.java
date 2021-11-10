@@ -13,10 +13,11 @@ import java.util.List;
  * @author Nabeel Ahmed
  */
 @Repository
+@Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query(value = "SELECT PRODUCT_ID AS productId, PRODUCT_NAME AS productName, PRODUCT_IMAGE_URl as productImageUrl, " +
-        "ENABLED AS enabled FROM PRODUCT", nativeQuery = true)
+    @Query(value = "SELECT PRODUCT_ID AS productId, PRODUCT_NAME AS productName,\n" +
+         "PRODUCT_IMAGE_URl AS productImageUrl, ENABLED AS enabled FROM PRODUCT", nativeQuery = true)
     @Transactional(readOnly = true)
     public List<ProductProjection> findAllProduct();
 

@@ -340,7 +340,6 @@ INSERT INTO partner_city (partner_id, city_id) VALUES (1002, 1080);
 INSERT INTO partner_city (partner_id, city_id) VALUES (1002, 1081);
 INSERT INTO partner_city (partner_id, city_id) VALUES (1002, 1082);
 
-
 INSERT INTO partner_wallet (partner_id, wallet_id) VALUES (1000, 1000);
 INSERT INTO partner_wallet (partner_id, wallet_id) VALUES (1001, 1001);
 INSERT INTO partner_wallet (partner_id, wallet_id) VALUES (1002, 1002);
@@ -508,3 +507,114 @@ INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, p
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1009, 'Y', 1009, 1000);
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1010, 'Y', 1010, 1000);
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1011, 'Y', 1011, 1000);
+
+--================1) All Product Report => Show (Name + Status + Image)=========
+SELECT product_id, product_name,
+CASE
+    WHEN enabled = 'Y' THEN 'Enabled'
+    WHEN enabled = 'N' THEN 'Disable'
+END AS status, product_image_url
+FROM product;
+--================2) All Country Report => Show (Name + Status + Image) => Count Report (City, Wallet, Bank)=========
+CREATE VIEW fetch_All_Global_Country_Detail_For_Report_Query AS
+    SELECT country.country_name, country.country_code,
+    CASE
+        WHEN country.enabled = 'Y' THEN 'Enabled'
+        WHEN country.enabled = 'N' THEN 'Disable'
+    END AS status, country.country_image_url,
+    COALESCE(city.total_city, 0) AS total_city,
+    COALESCE(wallet.total_wallet, 0) AS total_wallet,
+    COALESCE(bank.total_bank, 0) AS total_bank
+    FROM country
+    LEFT JOIN (
+         SELECT country_code, COUNT(*) AS total_city FROM city GROUP BY country_code) city
+    ON city.country_code = country.country_code
+    LEFT JOIN (
+         SELECT country_code, COUNT(*) AS total_wallet FROM wallet GROUP BY country_code) wallet
+    ON wallet.country_code = country.country_code
+    LEFT JOIN (
+         SELECT country_code, COUNT(*) AS total_bank FROM bank GROUP BY country_code) bank
+    ON bank.country_code = country.country_code
+    ORDER BY country.country_name ASC;
+
+SELECT * FROM fetch_All_Global_Country_Detail_For_Report_Query;
+--- Query call only when count is more then '0' and display as table on report
+-- fetch city table
+SELECT city_id, city_name,
+CASE
+    WHEN enabled = 'Y' THEN 'Enabled'
+    WHEN enabled = 'N' THEN 'Disable'
+END AS status
+FROM city WHERE country_code = 'PAK';
+-- fetch wallet table
+SELECT wallet_id, wallet_name,
+CASE
+    WHEN enabled = 'Y' THEN 'Enabled'
+    WHEN enabled = 'N' THEN 'Disable'
+END AS status
+FROM wallet WHERE country_code = 'PAK';
+-- fetch bank table
+SELECT bank_id, bank_name,
+CASE
+    WHEN enabled = 'Y' THEN 'Enabled'
+    WHEN enabled = 'N' THEN 'Disable'
+END AS status
+FROM bank WHERE country_code = 'PAK';
+--================3) Single Country Report => Show (Name + Status + Image) => Count Report (City, Wallet, Bank) => Display List (City, Wallet, Bank)=========
+SELECT * FROM fetch_All_Global_Country_Detail_For_Report_Query;
+WHERE country_code = 'IND';
+--- Query call only when count is more then '0' and display as table on report
+-- fetch city table -> use old, fetch wallet table -> use old, fetch bank table -> use old
+
+--================4) All Mto Partner Report => Show (Partner Detail) => Count Report (City, Wallet, Bank) => Display List (City, Wallet, Bank)=========
+SELECT partner.partner_id, partner.partner_name, partner.transfer_speed, partner.partner_image_url FROM partner;
+-- for mto partner fetch the country
+CREATE VIEW fetch_Mto_Partner_Country_View AS
+    SELECT partner.partner_id, partner.partner_name, country.country_name FROM partner
+    INNER JOIN partner_country ON partner_country.partner_id = partner.partner_id
+    INNER JOIN country ON country.country_code = partner_country.country_code;
+-- for mto partner fetch the city
+CREATE VIEW fetch_Mto_Partner_Country_City_View AS
+SELECT partner.partner_id, partner.partner_name, partner.partner_image_url,
+country.country_code, country.country_name, country.country_image_url,
+city.city_id, city.city_name,
+CASE
+    WHEN city.enabled = 'Y' THEN 'Enabled'
+    WHEN city.enabled = 'N' THEN 'Disable'
+END AS status
+FROM partner
+INNER JOIN partner_city ON partner_city.partner_id = partner.partner_id
+INNER JOIN city ON city.city_id = partner_city.city_id
+INNER JOIN country ON country.country_code = city.country_code;
+-- for mto partner fetch the bank
+CREATE VIEW fetch_Mto_Partner_Country_Bank_View AS
+SELECT partner.partner_id, partner.partner_name, partner.partner_image_url,
+country.country_code, country.country_name, country.country_image_url,
+bank.bank_id, bank.bank_name, bank.bank_image_url,
+CASE
+    WHEN bank.enabled = 'Y' THEN 'Enabled'
+    WHEN bank.enabled = 'N' THEN 'Disable'
+END AS status
+FROM partner
+INNER JOIN partner_bank ON partner_bank.partner_id = partner.partner_id
+INNER JOIN bank ON bank.bank_id = partner_bank.bank_id
+INNER JOIN country ON country.country_code = bank.country_code;
+-- for mto partner fetch the wallet
+CREATE VIEW fetch_Mto_Partner_Country_Wallet_View AS
+SELECT partner.partner_id, partner.partner_name, partner.partner_image_url,
+country.country_code, country.country_name, country.country_image_url,
+wallet.wallet_id, wallet.wallet_name, wallet.wallet_image_url,
+CASE
+    WHEN wallet.enabled = 'Y' THEN 'Enabled'
+    WHEN wallet.enabled = 'N' THEN 'Disable'
+END AS bank_enabled
+FROM partner
+INNER JOIN partner_wallet ON partner_wallet.partner_id = partner.partner_id
+INNER JOIN wallet ON wallet.wallet_id = partner_wallet.wallet_id
+INNER JOIN country ON country.country_code = wallet.country_code;
+-- for profile-permission to check the permission
+CREATE VIEW PROFILE_PERMISSIONS_VIEW AS
+SELECT PROFILE_PERMISSION.PROFILE_PERMISSION_ID, PROFILE_PERMISSION.PROFILE_ID, PROFILE.PROFILE_NAME, PROFILE_PERMISSION.PERMISSION_ID, PERMISSION.PERMISSION_NAME
+FROM PROFILE_PERMISSION
+INNER JOIN PROFILE ON PROFILE.PROFILE_ID = PROFILE_PERMISSION.PROFILE_ID
+INNER JOIN PERMISSION ON PERMISSION.PERMISSION_ID = PROFILE_PERMISSION.PERMISSION_ID;

@@ -16,6 +16,8 @@ import java.util.List;
 @Transactional
 public interface PartnerRepository extends JpaRepository<Partner, Long> {
 
+    public List<Partner> findAllByOrderByPreferenceOrderAsc();
+
     @Modifying
     @Query(value = "INSERT INTO partner_country(partner_id, country_code) VALUES (?1, ?2)", nativeQuery = true)
     public void attachMtoCountryWithMtoPartner(Long partnerId, String countryCode);
@@ -27,7 +29,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Query(value = "SELECT partner_id AS partnerId, partner_name AS partnerName, enabled FROM partner", nativeQuery = true)
     public List<PartnerProjection> findAllPartner();
 
-    @Query(value = "SELECT CASE WHEN COUNT(partner_country) > 0 THEN true ELSE false END FROM partner_country WHERE " +
+    @Query(value = "SELECT CASE WHEN COUNT(partner_country) > 0 THEN true ELSE false END FROM partner_country WHERE\n" +
             "partner_id = ?1 and country_code = ?2", nativeQuery = true)
     public boolean isAttachMtoCountryWithMtoPartner(Long partnerId, String countryCode);
 
@@ -55,7 +57,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     /**
      * Note :- this query help to fetch the data for mto city by base on partner id and  country code
      * */
-    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner.partner_image_url as partnerImageUrl\n" +
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner.partner_image_url AS partnerImageUrl\n" +
         "country.country_code AS countryCode, country.country_name AS countryName, country.country_image_url AS countryImageUrl, country.enabled AS countryEnabled,\n" +
         "city.city_id AS cityId, city.city_name AS cityName, city.enabled AS cityEnabled FROM partner\n" +
         "INNER JOIN partner_city ON partner_city.partner_id = partner.partner_id\n" +
@@ -67,9 +69,9 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     /**
      * Note :- this query help to fetch the data for mto wallet by base on partner id and  country code
      * */
-    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner.partner_image_url as partnerImageUrl\n" +
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner.partner_image_url AS partnerImageUrl\n" +
         "country.country_code AS countryCode, country.country_name AS countryName, country.country_image_url AS countryImageUrl, country.enabled AS countryEnabled,\n" +
-        "wallet.wallet_id AS walletId, wallet.wallet_name AS walletName, wallet.wallet_image_url as walletImageUrl, wallet.enabled AS walletEnabled FROM partner\n" +
+        "wallet.wallet_id AS walletId, wallet.wallet_name AS walletName, wallet.wallet_image_url AS walletImageUrl, wallet.enabled AS walletEnabled FROM partner\n" +
         "INNER JOIN partner_wallet ON partner_wallet.partner_id = partner.partner_id\n" +
         "INNER JOIN wallet ON wallet.wallet_id = partner_wallet.wallet_id\n" +
         "INNER JOIN country ON country.country_code = wallet.country_code\n" +
@@ -79,9 +81,9 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     /**
      * Note :- this query help to fetch the data for mto bank by base on partner id and  country code
      * */
-    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner.partner_image_url as partnerImageUrl\n" +
+    @Query(value = "SELECT partner.partner_id AS partnerId, partner.partner_name AS partnerName, partner.partner_image_url AS partnerImageUrl\n" +
         "country.country_code AS countryCode, country.country_name AS countryName, country.country_image_url AS countryImageUrl, country.enabled AS countryEnabled,\n" +
-        "bank.bank_id AS bankId, bank.bank_name AS bankName, bank.bank_image_url as bankImageUrl, bank.enabled AS bankEnabled FROM partner\n" +
+        "bank.bank_id AS bankId, bank.bank_name AS bankName, bank.bank_image_url AS bankImageUrl, bank.enabled AS bankEnabled FROM partner\n" +
         "INNER JOIN partner_bank ON partner_bank.partner_id = partner.partner_id\n" +
         "INNER JOIN bank ON bank.bank_id = partner_bank.bank_id\n" +
         "INNER JOIN country ON country.country_code = bank.country_code\n" +
@@ -92,7 +94,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Query(value = "INSERT INTO partner_city(partner_id, city_id) VALUES (?1, ?2)", nativeQuery = true)
     void attachMtoCityWithMtoPartner(Long partnerId, Long cityId);
 
-    @Query(value = "SELECT CASE WHEN COUNT(partner_city) > 0 THEN true ELSE false END FROM partner_city WHERE " +
+    @Query(value = "SELECT CASE WHEN COUNT(partner_city) > 0 THEN true ELSE false END FROM partner_city WHERE\n" +
             "partner_id = ?1 and city_id = ?2", nativeQuery = true)
     public boolean isAttachMtoCityWithMtoPartner(Long partnerId, Long cityId);
 
@@ -121,7 +123,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Query(value = "INSERT INTO partner_wallet(partner_id, wallet_id) VALUES (?1, ?2)", nativeQuery = true)
     void attachMtoWalletWithMtoPartner(Long partnerId, Long walletId);
 
-    @Query(value = "SELECT CASE WHEN COUNT(partner_wallet) > 0 THEN true ELSE false END FROM partner_wallet WHERE " +
+    @Query(value = "SELECT CASE WHEN COUNT(partner_wallet) > 0 THEN true ELSE false END FROM partner_wallet WHERE\n" +
             "partner_id = ?1 and wallet_id = ?2", nativeQuery = true)
     public boolean isAttachMtoWalletWithMtoPartner(Long partnerId, Long walletId);
 
@@ -150,7 +152,7 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Query(value = "INSERT INTO partner_bank(partner_id, bank_id) VALUES (?1, ?2)", nativeQuery = true)
     void attachMtoBankWithMtoPartner(Long partnerId, Long bankId);
 
-    @Query(value = "SELECT CASE WHEN COUNT(partner_bank) > 0 THEN true ELSE false END FROM partner_bank WHERE " +
+    @Query(value = "SELECT CASE WHEN COUNT(partner_bank) > 0 THEN true ELSE false END FROM partner_bank WHERE\n" +
         "partner_id = ?1 and bank_id = ?2", nativeQuery = true)
     public boolean isAttachMtoBankWithMtoPartner(Long partnerId, Long bankId);
 
@@ -174,7 +176,5 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     @Modifying
     @Query(value = "DELETE FROM partner_bank WHERE partner_id = ?1", nativeQuery = true)
     public void deletePartnerBankByPartnerId(Long partnerId);
-	
-
 
 }

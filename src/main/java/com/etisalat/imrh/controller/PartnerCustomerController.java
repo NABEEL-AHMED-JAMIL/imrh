@@ -31,6 +31,7 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/searchCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> searchCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
+            logger.info("Request searchCustomerMsisdn ==> " + partnerCustomer);
             return this.partnerCustomerService.searchCustomerMsisdn(partnerCustomer);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -43,6 +44,7 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/createCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> createCustomerMsisdn(@RequestBody Set<PartnerCustomerDto> partnerCustomer) {
         try {
+            logger.info("Request createCustomerMsisdn ==> " + partnerCustomer);
             return this.partnerCustomerService.createCustomerMsisdn(partnerCustomer);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -55,6 +57,7 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/updatePartnerCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> updatePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
+            logger.info("Request updatePartnerCustomerMsisdn ==> " + partnerCustomer);
             return this.partnerCustomerService.updatePartnerCustomerMsisdn(partnerCustomer);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -67,6 +70,7 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/deletePartnerCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> deletePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
+            logger.info("Request deletePartnerCustomerMsisdn ==> " + partnerCustomer);
             return this.partnerCustomerService.deletePartnerCustomerMsisdn(partnerCustomer);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -79,6 +83,7 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/downloadMtoPartnerCustomer", method = RequestMethod.GET)
     public ResponseEntity<?> downloadMtoPartnerCustomer() {
         try {
+            logger.info("Request downloadMtoPartnerCustomer");
             return this.partnerCustomerService.downloadMtoPartnerCustomer();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -91,6 +96,7 @@ public class PartnerCustomerController {
     @RequestMapping(value = "/uploadMtoPartnerCustomer", method = RequestMethod.POST)
     public GenericResponseDto<Object> uploadMtoPartnerCustomer(@RequestParam(name = "file") MultipartFile file) {
         try {
+            logger.info("Request uploadMtoPartnerCustomer File " + file.getOriginalFilename());
             if (!file.getContentType().equalsIgnoreCase("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
                 return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                     "You can upload only .xlsx extension file.");

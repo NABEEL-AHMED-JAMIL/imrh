@@ -25,9 +25,11 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
+    // working
     @RequestMapping(path = "/enableDisableCountry", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableCountry(@RequestBody CountryDto countryDto) {
         try {
+            logger.info("Request enableDisableCountry ==> " + countryDto);
             return this.countryService.enableDisableCountry(countryDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -37,9 +39,11 @@ public class CountryController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableAllCountry", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllCountry(@RequestParam(name = "enable") Enable enable) {
         try {
+            logger.info("Request enableDisableAllCountry enable ==> " + enable.name());
             return this.countryService.enableDisableAllCountry(enable);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -49,9 +53,11 @@ public class CountryController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findByCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> findByCountryCode(@RequestParam(name = "countryCode") String countryCode) {
         try {
+            logger.info("Request findByCountryCode countryCode ==> " + countryCode);
             return this.countryService.findByCountryCode(countryCode);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -61,9 +67,11 @@ public class CountryController {
         }
     }
 
+    // working
     @RequestMapping(path = "/fetchAllCountry", method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchAllCountry() {
         try {
+            logger.info("Request fetchAllCountry");
             return this.countryService.fetchAllCountry();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -73,9 +81,11 @@ public class CountryController {
         }
     }
 
+    // working
     @RequestMapping(path = "/fetchAllCityByCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchAllCityByCountryCode(@RequestParam(name = "countryCode") String countryCode) {
         try {
+            logger.info("Request fetchAllCityByCountryCode countryCode ==> " + countryCode);
             return this.countryService.fetchAllCityByCountryCode(countryCode);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -85,9 +95,11 @@ public class CountryController {
         }
     }
 
+    // working
     @RequestMapping(path = "/fetchAllBankByCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchAllBankByCountryCode(@RequestParam(name = "countryCode") String countryCode) {
         try {
+            logger.info("Request fetchAllBankByCountryCode countryCode ==> " + countryCode);
             return this.countryService.fetchAllBankByCountryCode(countryCode);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -97,9 +109,11 @@ public class CountryController {
         }
     }
 
+    // working
     @RequestMapping(path = "/fetchAllWalletsByCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchAllWalletsByCountryCode(@RequestParam(name = "countryCode") String countryCode) {
         try {
+            logger.info("Request fetchAllWalletsByCountryCode countryCode ==> " + countryCode);
             return this.countryService.fetchAllWalletsByCountryCode(countryCode);
         } catch (Exception ex) {
             ex.printStackTrace();

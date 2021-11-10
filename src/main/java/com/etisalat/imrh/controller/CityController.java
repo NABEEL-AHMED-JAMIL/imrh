@@ -25,9 +25,11 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
+    // working
     @RequestMapping(path = "/createCity", method = RequestMethod.POST)
     public GenericResponseDto<Object> createCity(@RequestBody CityDto cityDto) {
         try {
+            logger.info("Request createCity cityDto ==> " + cityDto);
             return this.cityService.createCity(cityDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -37,9 +39,11 @@ public class CityController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableCity", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableCity(@RequestBody CityDto cityDto) {
         try {
+            logger.info("Request enableDisableCity cityDto ==> " + cityDto);
             return this.cityService.enableDisableCity(cityDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -49,11 +53,14 @@ public class CityController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableAllCityByCountryCode", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllCityByCountryCode(
         @RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
+            logger.info("Request enableDisableAllCityByCountryCode ==> "
+                + String.format("countryCode %s enable %s", countryCode, enable.name()));
             return this.cityService.enableDisableAllCityByCountryCode(countryCode, enable);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -63,9 +70,11 @@ public class CityController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findByCityId", method = RequestMethod.GET)
     public GenericResponseDto<Object> findByCityId(@RequestParam(name = "ctyId") Long ctyId) {
         try {
+            logger.info("Request findByCityId ctyId ==> " + ctyId);
             return this.cityService.findByCityId(ctyId);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -75,9 +84,11 @@ public class CityController {
         }
     }
 
+    // working
     @RequestMapping(path = "/updateCity", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateCity(@RequestBody CityDto cityDto) {
         try {
+            logger.info("Request updateCity ==> " + cityDto);
             return this.cityService.updateCity(cityDto);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -87,9 +98,11 @@ public class CityController {
         }
     }
 
+    // working
     @RequestMapping(path = "/deleteCity", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteCity(@RequestParam(name = "cityId") Long cityId) {
         try {
+            logger.info("Request deleteCity cityId ==> " + cityId);
             return this.cityService.deleteCity(cityId);
         } catch (Exception ex) {
             ex.printStackTrace();

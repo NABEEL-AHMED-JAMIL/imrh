@@ -1,6 +1,7 @@
 package com.etisalat.imrh.service.impl;
 
 import com.etisalat.imrh.dto.CityDto;
+import com.etisalat.imrh.dto.CountryDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.entity.City;
@@ -94,6 +95,12 @@ public class CityServiceImpl implements CityService {
             cityDto.setCityId(city.get().getCityId());
             cityDto.setCityName(city.get().getCityName());
             cityDto.setEnabled(Enable.valueOf(city.get().getEnabled()));
+            CountryDto countryDto = new CountryDto();
+            countryDto.setCountryCode(city.get().getCountry().getCountryCode());
+            countryDto.setCountryName(city.get().getCountry().getCountryName());
+            countryDto.setEnabled(Enable.valueOf(city.get().getCountry().getEnabled()));
+            countryDto.setCountryImageUrl(city.get().getCountry().getCountryImageUrl());
+            cityDto.setCountry(countryDto);
             return CommonUtils.getResponseWithData(cityDto, HttpStatus.OK.series().name(),
                     String.format("City find successfully with %d.", ctyId));
         }
@@ -129,7 +136,7 @@ public class CityServiceImpl implements CityService {
     public GenericResponseDto<Object> deleteCity(Long cityId) {
         this.partnerRepository.deletePartnerCityByCityId(cityId);
         this.cityRepository.deleteById(cityId);
-        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
                 String.format("City delete successfully with %d.", cityId));
     }
 

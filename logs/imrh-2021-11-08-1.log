@@ -1,0 +1,470 @@
+2021-11-08 11:14:35.090  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Starting ImrhApplication using Java 1.8.0_201 on lhrlt-6591 with PID 8280 (E:\IMR-App\imrh\target\classes started by nabeel.jamil in E:\IMR-App\imrh)
+2021-11-08 11:14:35.137 DEBUG lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Running with Spring Boot v2.5.5, Spring v5.3.10
+2021-11-08 11:14:35.147  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : No active profile set, falling back to default profiles: default
+2021-11-08 11:14:39.110  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-08 11:14:39.599  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 450 ms. Found 18 JPA repository interfaces.
+2021-11-08 11:14:43.013  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-11-08 11:14:43.039  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-08 11:14:43.041  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2021-11-08 11:14:43.041  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-08 11:14:43.441  INFO lhrlt-6591 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2021-11-08 11:14:43.441  INFO lhrlt-6591 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8100 ms
+2021-11-08 11:14:43.828  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2021-11-08 11:14:44.747  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2021-11-08 11:14:44.914  INFO lhrlt-6591 --- [           main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-08 11:14:45.253  INFO lhrlt-6591 --- [           main] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-08 11:14:46.078  INFO lhrlt-6591 --- [           main] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-08 11:14:46.667  INFO lhrlt-6591 --- [           main] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-11-08 11:14:47.793  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000038: Composite-id class does not override equals(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-08 11:14:47.794  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000039: Composite-id class does not override hashCode(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-08 11:14:49.471  INFO lhrlt-6591 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-08 11:14:49.503  INFO lhrlt-6591 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-08 11:14:56.130  WARN lhrlt-6591 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-08 11:14:57.221  INFO lhrlt-6591 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-08 11:14:58.927  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-08 11:14:59.039  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-08 11:14:59.043  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-11-08 11:14:59.100  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-11-08 11:14:59.331  INFO lhrlt-6591 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-11-08 11:15:00.089  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Started ImrhApplication in 27.102 seconds (JVM running for 32.291)
+2021-11-08 11:15:25.930  INFO lhrlt-6591 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-08 11:15:25.931  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2021-11-08 11:15:25.933  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 2 ms
+2021-11-08 11:15:26.018  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:15:41.624  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:15:46.151  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:15:48.311  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:15:52.977  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CityController                   : Request createCity cityDto ==> {"cityName":"asd","enabled":"N","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 11:15:53.164  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:15:53.507  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:15:59.333  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CityController                   : Request enableDisableCity cityDto ==> {"cityId":1343,"cityName":"asd","enabled":"Y"}
+2021-11-08 11:16:01.350  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:16:01.616  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:16:02.920  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:16:05.802  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CityController                   : Request findByCityId ctyId ==> 1343
+2021-11-08 11:16:10.996  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CityController                   : Request updateCity ==> {"cityId":1343,"cityName":"caweee","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 11:16:11.083  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:16:11.357  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:16:15.911  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CityController                   : Request deleteCity cityId ==> 1343
+2021-11-08 11:16:18.384  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:16:18.397  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:16:18.643  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:25:53.303  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:25:58.297  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:26:00.056  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:26:13.309  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:26:16.823  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:26:18.396  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:29:14.070  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:29:14.205  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:31:15.183  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:31:15.215  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:31:22.744  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:31:29.412  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:31:31.253  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:31:36.176  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:31:40.391  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CityController                   : Request createCity cityDto ==> {"cityName":"159753","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 11:31:40.442  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:31:40.739  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:32:15.695  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:32:15.936  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:32:23.094  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:32:25.330  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:33:20.084  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:34:43.707  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:35:15.471  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:35:19.801  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:35:21.314  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:36:30.488  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:36:34.204  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:36:39.099  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:36:43.278  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:37:03.949  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CityController                   : Request deleteCity cityId ==> 1344
+2021-11-08 11:37:09.804  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:37:10.063  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:37:16.319  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:37:18.181  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 11:42:02.167  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:42:02.430  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:42:04.090  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:42:12.763  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.BankController                   : Request deleteBank bankId ==> 1147
+2021-11-08 11:42:16.858  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:42:19.428  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:42:19.747  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:42:21.959  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:42:36.104  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.ResourceController               : Request uploadFile fileName —Pngtree—bank icon_3700425.png
+2021-11-08 11:42:42.106  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.BankController                   : Request createBank ==> {"bankName":"BADE","bankImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/bank%2F7b0ee201-3e11-49d6-80d5-7874ea119720?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 11:42:42.164  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:42:42.183  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:42:42.700  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:42:50.638  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 11:57:52.293  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 11:57:59.263  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:58:03.237  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:58:05.608  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:58:08.593  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 11:58:55.009  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 11:59:00.599  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 11:59:06.010  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 11:59:07.592  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 11:59:10.641  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 12:01:29.050  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 12:01:39.461  WARN lhrlt-6591 --- [nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.etisalat.imrh.dto.CountryDto` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('Afghanistan'); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.etisalat.imrh.dto.CountryDto` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('Afghanistan')
+ at [Source: (PushbackInputStream); line: 1, column: 60] (through reference chain: com.etisalat.imrh.dto.BankDto["country"])]
+2021-11-08 12:03:17.443  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1148
+2021-11-08 12:07:10.050  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:07:17.273  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:07:24.259  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:07:37.605  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.BankController                   : Request deleteBank bankId ==> 1148
+2021-11-08 12:07:46.012  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:07:50.739  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.BankController                   : Request createBank ==> {"bankName":"1589","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:07:50.890  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:07:51.332  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:07:55.131  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:08:37.240  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:08:43.346  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:08:47.687  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:08:49.161  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:08:57.544  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:09:41.942  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:09:42.361  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:09:45.606  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:10:18.252  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:11:57.251  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.BankController                   : Request updateBank ==> {"bankId":1149,"bankName":"158915","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:11:57.691  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:12:42.944  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:12:52.904  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.ResourceController               : Request uploadFile fileName —Pngtree—bank icon_3700425.png
+2021-11-08 12:12:55.382  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.BankController                   : Request updateBank ==> {"bankId":1149,"bankName":"158915","bankImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/bank%2Ffa7f23af-5393-48d3-8fb6-955d54613e00?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:12:55.461  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:12:55.940  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:13:06.980  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.BankController                   : Request findByBankId ==> bankId 1149
+2021-11-08 12:13:22.224  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.ResourceController               : Request uploadFile fileName —Pngtree—bank icon_3700425.png
+2021-11-08 12:13:23.710  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.BankController                   : Request updateBank ==> {"bankId":1149,"bankName":"158917","bankImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/bank%2Fbaeca3dd-cff4-4f90-9c99-401a3638b421?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:13:23.780  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:13:23.813  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:13:24.310  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 12:13:39.554  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.BankController                   : Request deleteBank bankId ==> 1149
+2021-11-08 12:16:03.136  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:17:46.213  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:17:52.141  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:17:54.316  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:20:40.146  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:21:06.428  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:23:43.503  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:34:35.971  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:34:39.752  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:34:50.721  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.ResourceController               : Request uploadFile fileName —Pngtree—bank icon_3700425.png
+2021-11-08 12:34:52.255  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.WalletController                 : Request createWallet {"walletName":"15738378","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2Fbe09574c-c170-4cf2-8fa4-4d1cd2669595?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:34:52.313  WARN lhrlt-6591 --- [nio-8080-exec-3] o.h.e.j.s.SqlExceptionHelper             : SQL Error: 0, SQLState: 23505
+2021-11-08 12:34:52.314 ERROR lhrlt-6591 --- [nio-8080-exec-3] o.h.e.j.s.SqlExceptionHelper             : ERROR: duplicate key value violates unique constraint "wallet_pkey"
+  Detail: Key (wallet_id)=(1000) already exists.
+2021-11-08 12:34:52.327 ERROR lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.WalletController                 : An error occurred while createWallet
+org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "wallet_pkey"
+  Detail: Key (wallet_id)=(1000) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2552)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2284)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:322)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:481)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:401)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:164)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:130)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3298)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3825)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:99)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1362)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:453)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3212)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2380)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:448)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:692)
+	at com.etisalat.imrh.service.impl.WalletServiceImpl$$EnhancerBySpringCGLIB$$324bc126.createWallet(<generated>)
+	at com.etisalat.imrh.controller.WalletController.createWallet(WalletController.java:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1726)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-11-08 12:34:52.354  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:34:52.630  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:35:04.712  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:35:10.180  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:35:11.452  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:42:03.052  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:42:08.713  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.WalletController                 : Request createWallet {"walletName":"1478378","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:42:08.757  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:42:09.005  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:42:19.934  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:42:23.571  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:42:24.838  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:43:49.973  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:44:00.914  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:44:04.459  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:44:05.960  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:45:41.000  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.WalletController                 : Request enableDisableWallet {"walletId":1045,"walletName":"1478378","enabled":"N"}
+2021-11-08 12:45:43.994  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:44.249  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:45.387  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:45:46.933  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.WalletController                 : Request enableDisableWallet {"walletId":1045,"walletName":"1478378","enabled":"Y"}
+2021-11-08 12:45:48.194  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:48.207  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:48.444  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:49.267  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:45:51.673  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:51.686  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:51.696  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:45:51.948  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:46:01.358  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:46:05.119  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:46:06.447  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:54:34.543  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:55:41.593  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:55:52.999  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:56:12.539  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:56:14.078  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:56:18.077  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:56:27.464  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.ResourceController               : Request uploadFile fileName —Pngtree—bank icon_3700425.png
+2021-11-08 12:56:29.424  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.WalletController                 : Request createWallet {"walletName":"1597536","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2F3fa13b65-9087-4f6a-8d53-278d49adc612?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryLegacyCode":"AF","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 12:56:29.459  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:56:29.714  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:56:36.932  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.WalletController                 : Request enableDisableWallet {"walletId":1045,"walletName":"1478378","enabled":"N"}
+2021-11-08 12:56:38.706  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:56:38.961  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:56:39.914  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:56:42.732  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.WalletController                 : Request enableDisableWallet {"walletId":1045,"walletName":"1478378","enabled":"Y"}
+2021-11-08 12:56:57.200  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.WalletController                 : Request deleteWallet walletId ==> 1045
+2021-11-08 12:56:58.768  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:56:58.784  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:56:59.004  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 12:57:00.072  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 12:57:02.171  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 12:58:00.384  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:12:09.313  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:12:18.522  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:12:20.237  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 13:12:23.193  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:12:23.438  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:12:24.554  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 13:12:36.509  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:12:36.524  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:12:36.768  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:12:37.687  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:12:41.528  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.WalletController                 : Request findByWalletId walletId ==> 1046
+2021-11-08 13:12:45.730  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.WalletController                 : Request updateWallet {"walletId":1046,"walletName":"1597","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 13:12:45.780  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:12:46.034  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:12:49.121  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.WalletController                 : Request findByWalletId walletId ==> 1046
+2021-11-08 13:12:57.009  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.ResourceController               : Request uploadFile fileName worldremit.jpg
+2021-11-08 13:12:59.033  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.WalletController                 : Request updateWallet {"walletId":1046,"walletName":"15971","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2F3ce084d5-2357-4645-8b38-7e0f28d7d23e?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 13:12:59.110  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:12:59.121  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:12:59.332  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:13:03.560  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:13:03.571  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:13:03.582  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:13:03.809  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:13:04.961  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:13:31.210  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.WalletController                 : Request findByWalletId walletId ==> 1046
+2021-11-08 13:13:48.666  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.ResourceController               : Request uploadFile fileName Dominica.png
+2021-11-08 13:13:50.340  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.WalletController                 : Request updateWallet {"walletId":1046,"walletName":"1597","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2Fc97da539-30c0-4961-929f-b9c00bdade5a?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 13:13:50.376  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:13:50.655  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:15:32.864  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Starting ImrhApplication using Java 1.8.0_201 on lhrlt-6591 with PID 20704 (E:\IMR-App\imrh\target\classes started by nabeel.jamil in E:\IMR-App\imrh)
+2021-11-08 13:15:32.880 DEBUG lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Running with Spring Boot v2.5.5, Spring v5.3.10
+2021-11-08 13:15:32.881  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : No active profile set, falling back to default profiles: default
+2021-11-08 13:15:34.074  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-08 13:15:34.291  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 198 ms. Found 18 JPA repository interfaces.
+2021-11-08 13:15:35.795  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-11-08 13:15:35.814  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-08 13:15:35.815  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2021-11-08 13:15:35.815  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-08 13:15:36.081  INFO lhrlt-6591 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2021-11-08 13:15:36.082  INFO lhrlt-6591 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3141 ms
+2021-11-08 13:15:36.340  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2021-11-08 13:15:36.670  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2021-11-08 13:15:36.741  INFO lhrlt-6591 --- [           main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-08 13:15:36.833  INFO lhrlt-6591 --- [           main] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-08 13:15:37.092  INFO lhrlt-6591 --- [           main] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-08 13:15:37.348  INFO lhrlt-6591 --- [           main] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-11-08 13:15:37.894  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000038: Composite-id class does not override equals(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-08 13:15:37.894  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000039: Composite-id class does not override hashCode(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-08 13:15:38.615  INFO lhrlt-6591 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-08 13:15:38.631  INFO lhrlt-6591 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-08 13:15:40.876  WARN lhrlt-6591 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-08 13:15:41.330  INFO lhrlt-6591 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-08 13:15:42.046  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-08 13:15:42.094  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-08 13:15:42.096  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-11-08 13:15:42.130  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-11-08 13:15:42.246  INFO lhrlt-6591 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-11-08 13:15:42.758  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Started ImrhApplication in 10.489 seconds (JVM running for 12.295)
+2021-11-08 13:15:53.559  INFO lhrlt-6591 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-08 13:15:53.559  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2021-11-08 13:15:53.561  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 1 ms
+2021-11-08 13:15:53.648  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:17:09.818  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:11.614  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 13:17:12.829  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:13.078  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:13.874  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 13:17:15.468  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:15.484  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:15.733  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:16.556  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:17:20.129  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.WalletController                 : Request findByWalletId walletId ==> 1046
+2021-11-08 13:17:34.494  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.ResourceController               : Request uploadFile fileName worldremit.jpg
+2021-11-08 13:17:38.607  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.WalletController                 : Request updateWallet {"walletId":1046,"walletName":"15975","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2F6c7a5546-fb62-4f92-a7e1-05a6e5fa183f?alt\u003dmedia","enabled":"Y","country":{"countryCode":"AFG","countryName":"Afghanistan","countryImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/country%2FAfghanistan.png?alt\u003dmedia","enabled":"Y"}}
+2021-11-08 13:17:38.693  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:17:38.942  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:17:48.228  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:17:52.143  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:17:53.303  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:17:58.472  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.WalletController                 : Request enableDisableWallet {"walletId":1046,"walletName":"15975","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2F6c7a5546-fb62-4f92-a7e1-05a6e5fa183f?alt\u003dmedia","enabled":"N"}
+2021-11-08 13:17:59.781  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.WalletController                 : Request enableDisableWallet {"walletId":1046,"walletName":"15975","walletImageUrl":"https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/wallet%2F6c7a5546-fb62-4f92-a7e1-05a6e5fa183f?alt\u003dmedia","enabled":"Y"}
+2021-11-08 13:18:08.701  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.WalletController                 : Request deleteWallet walletId ==> 1046
+2021-11-08 13:18:12.256  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:18:12.505  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:18:27.193  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:30.378  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> PAK
+2021-11-08 13:18:37.613  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:37.869  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:39.123  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> PAK
+2021-11-08 13:18:46.934  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:46.950  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:47.219  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:48.101  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> PAK
+2021-11-08 13:18:57.169  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:57.183  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:57.194  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:18:57.432  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> PAK
+2021-11-08 13:19:42.522  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:19:56.659  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:19:59.475  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:20:03.005  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 13:20:05.753  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 13:20:09.064  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.PartnerController                : Request findByProductId productId ==> 1001
+2021-11-08 13:20:12.073  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 13:20:19.874  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request fetchAllCountry
+2021-11-08 13:20:23.841  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:25.900  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request fetchAllCityByCountryCode countryCode ==> AFG
+2021-11-08 13:20:31.967  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:32.204  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:33.112  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.CountryController                : Request fetchAllBankByCountryCode countryCode ==> AFG
+2021-11-08 13:20:34.939  INFO lhrlt-6591 --- [nio-8080-exec-9] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:34.954  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:35.188  INFO lhrlt-6591 --- [nio-8080-exec-1] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:36.004  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.CountryController                : Request fetchAllWalletsByCountryCode countryCode ==> AFG
+2021-11-08 13:20:37.305  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:37.323  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:37.338  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:37.570  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:41.892  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.CountryController                : Request findByCountryCode countryCode ==> AFG
+2021-11-08 13:20:45.431  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 18:01:25.815  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Starting ImrhApplication using Java 1.8.0_201 on lhrlt-6591 with PID 7228 (E:\IMR-App\imrh\target\classes started by nabeel.jamil in E:\IMR-App\imrh)
+2021-11-08 18:01:25.984 DEBUG lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Running with Spring Boot v2.5.5, Spring v5.3.10
+2021-11-08 18:01:25.985  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : No active profile set, falling back to default profiles: default
+2021-11-08 18:01:27.252  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-08 18:01:27.458  INFO lhrlt-6591 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 189 ms. Found 18 JPA repository interfaces.
+2021-11-08 18:01:29.077  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-11-08 18:01:29.087  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-08 18:01:29.088  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2021-11-08 18:01:29.088  INFO lhrlt-6591 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-08 18:01:29.265  INFO lhrlt-6591 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2021-11-08 18:01:29.265  INFO lhrlt-6591 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3214 ms
+2021-11-08 18:01:29.626  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2021-11-08 18:01:30.050  INFO lhrlt-6591 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2021-11-08 18:01:30.136  INFO lhrlt-6591 --- [           main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-08 18:01:30.232  INFO lhrlt-6591 --- [           main] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-08 18:01:30.487  INFO lhrlt-6591 --- [           main] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-08 18:01:30.690  INFO lhrlt-6591 --- [           main] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-11-08 18:01:31.401  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000038: Composite-id class does not override equals(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-08 18:01:31.401  WARN lhrlt-6591 --- [           main] o.h.m.RootClass                          : HHH000039: Composite-id class does not override hashCode(): com.etisalat.imrh.entity.PartnerCountryProductId
+2021-11-08 18:01:32.250  INFO lhrlt-6591 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-08 18:01:32.268  INFO lhrlt-6591 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-08 18:01:34.608  WARN lhrlt-6591 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-08 18:01:35.070  INFO lhrlt-6591 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-08 18:01:35.971  INFO lhrlt-6591 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-08 18:01:36.013  INFO lhrlt-6591 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-08 18:01:36.015  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-11-08 18:01:36.045  INFO lhrlt-6591 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-11-08 18:01:36.153  INFO lhrlt-6591 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-11-08 18:01:36.690  INFO lhrlt-6591 --- [           main] c.e.i.ImrhApplication                    : Started ImrhApplication in 11.606 seconds (JVM running for 14.471)
+2021-11-08 18:02:28.979  INFO lhrlt-6591 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-08 18:02:28.980  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2021-11-08 18:02:28.983  INFO lhrlt-6591 --- [nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 3 ms
+2021-11-08 18:02:29.088  INFO lhrlt-6591 --- [nio-8080-exec-2] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 18:02:39.839  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.PartnerController                : Request findByProductId productId ==> 1001
+2021-11-08 18:02:41.246  INFO lhrlt-6591 --- [nio-8080-exec-5] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 19:42:20.476  WARN lhrlt-6591 --- [l-1 housekeeper] c.z.h.p.HikariPool                       : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h17m20s319ms732µs600ns).
+2021-11-08 19:45:28.646  INFO lhrlt-6591 --- [nio-8080-exec-8] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 20:14:38.211  INFO lhrlt-6591 --- [io-8080-exec-10] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 20:19:21.690  INFO lhrlt-6591 --- [nio-8080-exec-3] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 20:19:43.773  INFO lhrlt-6591 --- [nio-8080-exec-4] c.e.i.c.PartnerController                : Request fetchAllProduct
+2021-11-08 20:19:49.048  INFO lhrlt-6591 --- [nio-8080-exec-6] c.e.i.c.PartnerController                : Request fetchAllMtoPartner
+2021-11-08 20:19:53.771  INFO lhrlt-6591 --- [nio-8080-exec-7] c.e.i.c.PartnerController                : Request fetchAllMtoPartner

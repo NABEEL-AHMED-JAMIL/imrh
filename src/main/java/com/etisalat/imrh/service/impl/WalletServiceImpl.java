@@ -1,5 +1,6 @@
 package com.etisalat.imrh.service.impl;
 
+import com.etisalat.imrh.dto.CountryDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.dto.WalletDto;
@@ -96,6 +97,12 @@ public class WalletServiceImpl implements WalletService {
             walletDto.setWalletName(wallet.get().getWalletName());
             walletDto.setWalletImageUrl(wallet.get().getWalletImageUrl());
             walletDto.setEnabled(Enable.valueOf(wallet.get().getEnabled()));
+            CountryDto countryDto = new CountryDto();
+            countryDto.setCountryCode(wallet.get().getCountry().getCountryCode());
+            countryDto.setCountryName(wallet.get().getCountry().getCountryName());
+            countryDto.setEnabled(Enable.valueOf(wallet.get().getCountry().getEnabled()));
+            countryDto.setCountryImageUrl(wallet.get().getCountry().getCountryImageUrl());
+            walletDto.setCountry(countryDto);
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(), 
                     String.format("Wallet find successfully with %d.", walletId));
         }
@@ -119,7 +126,7 @@ public class WalletServiceImpl implements WalletService {
         if (wallet.isPresent()) {
             wallet.get().setWalletName(walletDto.getWalletName());
             wallet.get().setEnabled(walletDto.getEnabled().name());
-            walletDto.setWalletImageUrl(wallet.get().getWalletImageUrl());
+            wallet.get().setWalletImageUrl(walletDto.getWalletImageUrl());
             this.walletRepository.save(wallet.get());
             return CommonUtils.getResponseWithData(walletDto, HttpStatus.OK.series().name(),
                 String.format("Wallet update successfully with %d.", walletDto.getWalletId()));
@@ -132,7 +139,7 @@ public class WalletServiceImpl implements WalletService {
     public GenericResponseDto<Object> deleteWallet(Long walletId) {
         this.partnerRepository.deletePartnerWalletByWalletId(walletId);
         this.walletRepository.deleteById(walletId);
-        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
                 String.format("Wallet delete successfully with %d.", walletId));
     }
 

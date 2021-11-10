@@ -30,7 +30,7 @@ public class City extends BaseEntity {
     @Column(name="CITY_ID", unique=true, nullable=false)
     private Long cityId;
 
-    @Column(name="CITY_NAME", unique=true, nullable=false)
+    @Column(name="CITY_NAME", nullable=false)
     private String cityName;
 
     @ManyToOne(fetch = FetchType.LAZY)

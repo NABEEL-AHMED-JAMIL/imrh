@@ -89,7 +89,7 @@ public class CountryServiceImpl implements CountryService {
                 return cityDto;
             }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                    String.format("Country fetch successfully with %s.", countryDto.getCountryCode()));
+                    String.format("Country city fetch successfully with %s.", countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Country not found with %s.", countryCode));
@@ -114,7 +114,7 @@ public class CountryServiceImpl implements CountryService {
                 return bankDto;
             }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                    String.format("Country fetch successfully with %s.", countryDto.getCountryCode()));
+                    String.format("Country bank fetch successfully with %s.", countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Country not found with %s.", countryCode));
@@ -140,7 +140,7 @@ public class CountryServiceImpl implements CountryService {
                     return walletDto;
                }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                    String.format("Country fetch successfully with %s.", countryDto.getCountryCode()));
+                    String.format("Country wallet fetch successfully with %s.", countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
                 String.format("Country not found with %s.", countryCode));

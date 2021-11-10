@@ -1,6 +1,7 @@
 package com.etisalat.imrh.service.impl;
 
 import com.etisalat.imrh.dto.BankDto;
+import com.etisalat.imrh.dto.CountryDto;
 import com.etisalat.imrh.dto.Enable;
 import com.etisalat.imrh.dto.GenericResponseDto;
 import com.etisalat.imrh.entity.Bank;
@@ -96,6 +97,12 @@ public class BankServiceImpl implements BankService {
             bankDto.setBankName(bank.get().getBankName());
             bankDto.setBankImageUrl(bank.get().getBankImageUrl());
             bankDto.setEnabled(Enable.valueOf(bank.get().getEnabled()));
+            CountryDto countryDto = new CountryDto();
+            countryDto.setCountryCode(bank.get().getCountry().getCountryCode());
+            countryDto.setCountryName(bank.get().getCountry().getCountryName());
+            countryDto.setEnabled(Enable.valueOf(bank.get().getCountry().getEnabled()));
+            countryDto.setCountryImageUrl(bank.get().getCountry().getCountryImageUrl());
+            bankDto.setCountry(countryDto);
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(), 
                     String.format("Bank find successfully with %d.", bankId));
         }
@@ -132,7 +139,7 @@ public class BankServiceImpl implements BankService {
     public GenericResponseDto<Object> deleteBank(Long bankId) {
         this.partnerRepository.deletePartnerBankByBankId(bankId);
         this.bankRepository.deleteById(bankId);
-        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
                 String.format("Bank delete successfully with %d.", bankId));
     }
 
