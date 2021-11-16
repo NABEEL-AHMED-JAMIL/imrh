@@ -330,11 +330,15 @@ public class PartnerServiceImpl implements PartnerService {
     }
 
     /**
-     * If country delete it will delete the
+     * If country delete it will delete the wallet,bank,city link with mto-partner-country
      * **/
     @Override
     public GenericResponseDto<Object> deleteMtoCountryLinkMtoPartner(Long partnerId, String countryCode) {
         this.partnerRepository.deletePartnerCountryByPartnerIdAndCountryCode(partnerId, countryCode);
+        this.partnerCountryProductRepository.deleteMtoPartnerCountryProduct(partnerId, countryCode);
+        this.partnerRepository.deletePartnerCityByPartnerIdAndCountryCode(partnerId, countryCode);
+        this.partnerRepository.deletePartnerBankByPartnerIdAndCountryCode(partnerId, countryCode);
+        this.partnerRepository.deletePartnerWalletByPartnerIdAndCountryCode(partnerId, countryCode);
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
             String.format("Mto Country delete from mto partner successfully with %d.", partnerId));
     }

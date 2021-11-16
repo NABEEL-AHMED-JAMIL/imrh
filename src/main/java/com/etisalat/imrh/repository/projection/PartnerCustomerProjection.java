@@ -16,6 +16,8 @@ public interface PartnerCustomerProjection {
 
     public String getPartnerImageUrl();
 
+    public Long getCustomerId();
+
     public String getPartnerCustomer();
 
 }

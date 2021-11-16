@@ -2,11 +2,20 @@ package com.etisalat.imrh.util;
 
 import com.etisalat.imrh.dto.GenericResponseDto;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Nabeel Ahmed
  */
 public class CommonUtils {
+
+    private final static String phoneRegex = "^((\\+92)|(0092))-{0,1}\\d{3}-{0,1}\\d{7}$|^\\d{11}$|^\\d{4}-\\d{7}$";
+    private final static Pattern pattern;
+
+    static {
+        pattern = Pattern.compile(phoneRegex);
+    }
 
     public static boolean isNull(Object str) {
         if (str == null) {
@@ -52,6 +61,11 @@ public class CommonUtils {
             return true;
         }
         return false;
+    }
+
+    public static boolean isValidMsisdn(String msisdn) {
+        Matcher matcher = pattern.matcher(msisdn);
+        return matcher.matches();
     }
 
     public static <T> GenericResponseDto<T> getResponseWithMessageOnly(String message) {

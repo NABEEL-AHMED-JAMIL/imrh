@@ -28,6 +28,7 @@ public class PartnerCustomerController {
     @Autowired
     private PartnerCustomerService partnerCustomerService;
 
+    // working
     @RequestMapping(value = "/searchCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> searchCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
@@ -41,6 +42,22 @@ public class PartnerCustomerController {
         }
     }
 
+    // working
+    @RequestMapping(value = "/fetchCustomerMsisdn", method = RequestMethod.GET)
+    public GenericResponseDto<Object> fetchCustomerMsisdn(@RequestParam(name = "pageNumber") Integer pageNumber,
+        @RequestParam(name = "pageSize") Integer pageSize) {
+        try {
+            logger.info("Request fetchCustomerMsisdn ==> " + String.format("pageNumber %d, pageSize %d", pageNumber, pageSize));
+            return this.partnerCustomerService.fetchCustomerMsisdn(pageNumber, pageSize);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logger.error("An error occurred while fetchCustomerMsisdn", ExceptionUtil.getRootCause(ex));
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
+                    "Some Internal error accrue contact with support team.");
+        }
+    }
+
+    // working
     @RequestMapping(value = "/createCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> createCustomerMsisdn(@RequestBody Set<PartnerCustomerDto> partnerCustomer) {
         try {
@@ -54,6 +71,7 @@ public class PartnerCustomerController {
         }
     }
 
+    // working
     @RequestMapping(value = "/updatePartnerCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> updatePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
@@ -67,6 +85,7 @@ public class PartnerCustomerController {
         }
     }
 
+    // working
     @RequestMapping(value = "/deletePartnerCustomerMsisdn", method = RequestMethod.POST)
     public GenericResponseDto<Object> deletePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
@@ -80,6 +99,7 @@ public class PartnerCustomerController {
         }
     }
 
+    // working
     @RequestMapping(value = "/downloadMtoPartnerCustomer", method = RequestMethod.GET)
     public ResponseEntity<?> downloadMtoPartnerCustomer() {
         try {
@@ -93,6 +113,7 @@ public class PartnerCustomerController {
         }
     }
 
+    // working
     @RequestMapping(value = "/uploadMtoPartnerCustomer", method = RequestMethod.POST)
     public GenericResponseDto<Object> uploadMtoPartnerCustomer(@RequestParam(name = "file") MultipartFile file) {
         try {

@@ -30,6 +30,7 @@ public class PartnerController {
     /**
      * User will send the partner id and partner name with country code and country name
      * */
+    // working
     @RequestMapping(path = "/attachMtoCountryWithMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> attachMtoCountryWithMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
@@ -46,6 +47,7 @@ public class PartnerController {
     /**
      * User will send the partner id and partner name with city id and city name
      * */
+    // working
     @RequestMapping(path = "/attachMtoCityWithMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> attachMtoCityWithMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
@@ -62,6 +64,7 @@ public class PartnerController {
     /**
      * User will send the partner id and partner name with wallet id and wallet name
      * */
+    // working
     @RequestMapping(path = "/attachMtoWalletWithMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> attachMtoWalletWithMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
@@ -78,6 +81,7 @@ public class PartnerController {
     /**
      * User will send the partner id and partner name with bank id and bank name
      * */
+    // working
     @RequestMapping(path = "/attachMtoBankWithMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> attachMtoBankWithMtoPartner(@RequestBody PartnerDto partnerDto) {
         try {
@@ -174,6 +178,7 @@ public class PartnerController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findMtoCityByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> findMtoCityByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "countryCode") String countryCode) {
@@ -202,6 +207,7 @@ public class PartnerController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findMtoWalletByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> findMtoWalletByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "countryCode") String countryCode) {
@@ -216,6 +222,7 @@ public class PartnerController {
         }
     }
 
+    // working
     @RequestMapping(path = "/findMtoBankByMtoPartnerIdAndMtoCountryCode", method = RequestMethod.GET)
     public GenericResponseDto<Object> findMtoBankByMtoPartnerIdAndMtoCountryCode(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "countryCode") String countryCode) {
@@ -287,6 +294,7 @@ public class PartnerController {
         }
     }
 
+    // working
     @RequestMapping(path = "/deleteMtoCityLinkMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteMtoCityLinkMtoPartner(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "cityId") Long cityId) {
@@ -301,6 +309,7 @@ public class PartnerController {
         }
     }
 
+    // working
     @RequestMapping(path = "/deleteMtoWalletLinkMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteMtoWalletLinkMtoPartner(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "walletId") Long walletId) {
@@ -315,6 +324,7 @@ public class PartnerController {
         }
     }
 
+    // working
     @RequestMapping(path = "/deleteMtoBankLinkMtoPartner", method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteMtoBankLinkMtoPartner(@RequestParam(name = "partnerId") Long partnerId,
         @RequestParam(name = "bankId") Long bankId) {

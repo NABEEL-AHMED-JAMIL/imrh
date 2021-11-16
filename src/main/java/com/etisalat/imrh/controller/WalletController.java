@@ -84,6 +84,7 @@ public class WalletController {
         }
     }
 
+    // working
     @RequestMapping(path = "/updateWallet", method = RequestMethod.POST)
     public GenericResponseDto<Object> updateWallet(@RequestBody WalletDto walletDto) {
         try {

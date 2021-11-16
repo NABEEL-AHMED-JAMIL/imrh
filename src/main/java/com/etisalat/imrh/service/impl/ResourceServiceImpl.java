@@ -10,18 +10,15 @@ import com.google.firebase.cloud.StorageClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Random;
 import java.util.UUID;
 
 /**
  * @author Nabeel Ahmed
  */
 @Service
-@Transactional
 public class ResourceServiceImpl implements ResourceService {
 
     public Logger logger = LogManager.getLogger(ResourceServiceImpl.class);

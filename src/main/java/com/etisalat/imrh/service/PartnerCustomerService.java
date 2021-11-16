@@ -14,6 +14,8 @@ public interface PartnerCustomerService {
 
     public GenericResponseDto<Object> searchCustomerMsisdn(PartnerCustomerDto partnerCustomer);
 
+    public GenericResponseDto<Object> fetchCustomerMsisdn(Integer pageNumber, Integer pageSize);
+
     public GenericResponseDto<Object> createCustomerMsisdn(Set<PartnerCustomerDto> partnerCustomerSet);
 
     public GenericResponseDto<Object> updatePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer);

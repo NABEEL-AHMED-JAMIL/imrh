@@ -67,6 +67,7 @@ public class ProductController {
         }
     }
 
+    // working
     @RequestMapping(path = "/enableDisableAllProduct", method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllProduct(@RequestParam(name = "enable") Enable enable) {
         try {

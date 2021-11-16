@@ -40,7 +40,13 @@ public interface PartnerCountryProductRepository extends JpaRepository<PartnerCo
      * Note :- this query help to delete all link partner product country
      * */
     @Modifying
+    @Query(value = "DELETE FROM partner_country_product WHERE partner_id = ?1 AND country_code = ?2", nativeQuery = true)
+    public void deleteMtoPartnerCountryProduct(Long partnerId, String countryCode);
+
+    /**
+     * Note :- this query help to delete all link partner product country
+     * */
+    @Modifying
     @Query(value = "DELETE FROM partner_country_product WHERE partner_id = ?1 AND product_id = ?2 AND country_code = ?3", nativeQuery = true)
     public void deleteMtoPartnerCountryProduct(Long partnerId, Long productId, String countryCode);
-
 }
