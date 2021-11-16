@@ -1,0 +1,61 @@
+version: '3'
+# Define Services
+services:
+  # App Service
+  app-server:
+    # Configuration for building the docker image for the service
+    container_name: imrh_container
+    build:
+      context: . # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+    ports:
+      - "9200:9200" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: unless-stopped
+    depends_on:
+      - postgres # This service depends on postgres. Start that first.
+    environment: # Pass environment variables to the service
+      PROFILE: dev
+      IMRH_DATABASE_HOST: stage
+      IMRH_DATABASE_USER: postgres
+      IMRH_DATABASE_PASSWORD: changeme
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+        - backend
+
+  # Postgres
+  postgres:
+    container_name: postgress_container
+    image: postgres
+    environment:
+      - POSTGRES_DB=datacenter
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    restart: unless-stopped
+
+  # PG-Admin
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:4.18
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "8090:80"
+    networks:
+      - backend
+    restart: unless-stopped
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  pgadmin-data:
