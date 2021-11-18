@@ -2,6 +2,11 @@
 INSERT INTO product (product_id, enabled, product_name) VALUES (nextval('product_seq'), 'Y', 'Send to Bank');
 INSERT INTO product (product_id, enabled, product_name) VALUES (nextval('product_seq'), 'Y', 'Send to wallet');
 INSERT INTO product (product_id, enabled, product_name) VALUES (nextval('product_seq'), 'Y', 'Cash pickup');
+
+update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FCash pickup.svg?alt=media' where product_id = 1001;
+update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to wallet.svg?alt=media' where product_id = 1002;
+update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to bank.svg?alt=media' where product_id = 1000;
+
 --- Country
 INSERT INTO country (country_code, enabled, country_legacy_code, country_name) VALUES ('PAK', 'Y', 'PK', 'Pakistan');
 INSERT INTO country (country_code, enabled, country_legacy_code, country_name) VALUES ('IND', 'Y', 'IN', 'India');
