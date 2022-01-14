@@ -58,6 +58,18 @@ public class AppUser extends BaseEntity  {
 
     public AppUser() {}
 
+    public AppUser(String firstName, String lastName, String email, String password,
+        Timestamp lastLoginAt, String imageUrl, BaseMasterEntity baseMasterEntity, Profile profile) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.lastLoginAt = lastLoginAt;
+        this.imageUrl = imageUrl;
+        this.baseMasterEntity = baseMasterEntity;
+        this.profile = profile;
+    }
+
     public Long getAppUserId() {
         return appUserId;
     }

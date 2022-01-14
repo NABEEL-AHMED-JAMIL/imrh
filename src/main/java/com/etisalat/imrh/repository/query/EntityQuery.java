@@ -1,6 +1,7 @@
 package com.etisalat.imrh.repository.query;
 
 import com.etisalat.imrh.dto.PartnerDto;
+import com.etisalat.imrh.repository.view.*;
 import com.etisalat.imrh.util.CommonUtils;
 import com.etisalat.imrh.repository.validate.MtoPartnerCustomerValidation;
 import org.apache.logging.log4j.LogManager;
@@ -76,6 +77,162 @@ public class EntityQuery {
         int rowsUpdated = query.executeUpdate();
         logger.info("Transaction End with update rows " + rowsUpdated);
         return rowsUpdated;
+    }
+
+    public List executeQuery(String queryStr, Class<?> entityType) {
+        logger.info("Execute Query :- " + queryStr);
+        Query query = this.entityManager.createNativeQuery(queryStr);
+        List<Object[]> list = query.getResultList();
+        List result = null;
+        if (entityType.isAssignableFrom(FetchAllGlobalCountryDetailForReportView.class)) {
+            result = new ArrayList<FetchAllGlobalCountryDetailForReportView>();
+            for (Object[] object: list) {
+                FetchAllGlobalCountryDetailForReportView fetchAllGlobalCountryDetailForReportView = new FetchAllGlobalCountryDetailForReportView();
+                if (object[0] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryName(String.valueOf(object[0]));
+                }
+                if (object[1] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryCode(String.valueOf(object[1]));
+                }
+                if (object[2] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryStatus(String.valueOf(object[2]));
+                }
+                if (object[3] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryImageUrl(String.valueOf(object[3]));
+                }
+                if (object[4] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setTotalCity(Long.valueOf(String.valueOf(object[4])));
+                }
+                if (object[5] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setTotalWallet(Long.valueOf(String.valueOf(object[5])));
+                }
+                if (object[6] != null) {
+                    fetchAllGlobalCountryDetailForReportView.setTotalBank(Long.valueOf(String.valueOf(object[6])));
+                }
+                result.add(fetchAllGlobalCountryDetailForReportView);
+            }
+        } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryView.class)) {
+            result = new ArrayList<FetchMtoPartnerCountryView>();
+            for (Object[] object: list) {
+                FetchMtoPartnerCountryView fetchMtoPartnerCountryView = new FetchMtoPartnerCountryView();
+                if (object[0] != null) {
+                    fetchMtoPartnerCountryView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                }
+                if (object[1] != null) {
+                    fetchMtoPartnerCountryView.setPartnerName(String.valueOf(object[1]));
+                }
+                if (object[2] != null) {
+                    fetchMtoPartnerCountryView.setCountryName(String.valueOf(object[2]));
+                }
+                result.add(fetchMtoPartnerCountryView);
+            }
+        } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryBankView.class)) {
+            result = new ArrayList<FetchMtoPartnerCountryBankView>();
+            for (Object[] object: list) {
+                FetchMtoPartnerCountryBankView fetchMtoPartnerCountryBankView = new FetchMtoPartnerCountryBankView();
+                if (object[0] != null) {
+                    fetchMtoPartnerCountryBankView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                }
+                if (object[1] != null) {
+                    fetchMtoPartnerCountryBankView.setPartnerName(String.valueOf(object[1]));
+                }
+                if (object[2] != null) {
+                    fetchMtoPartnerCountryBankView.setPartnerImageUrl(String.valueOf(object[2]));
+                }
+                if (object[3] != null) {
+                    fetchMtoPartnerCountryBankView.setCountryCode(String.valueOf(object[3]));
+                }
+                if (object[4] != null) {
+                    fetchMtoPartnerCountryBankView.setCountryName(String.valueOf(object[4]));
+                }
+                if (object[5] != null) {
+                    fetchMtoPartnerCountryBankView.setCountryImageUrl(String.valueOf(object[5]));
+                }
+                if (object[6] != null) {
+                    fetchMtoPartnerCountryBankView.setBankId(Long.valueOf(String.valueOf(object[6])));
+                }
+                if (object[7] != null) {
+                    fetchMtoPartnerCountryBankView.setBankName(String.valueOf(object[7]));
+                }
+                if (object[8] != null) {
+                    fetchMtoPartnerCountryBankView.setBankImageUrl(String.valueOf(object[8]));
+                }
+                if (object[9] != null) {
+                    fetchMtoPartnerCountryBankView.setBankEnabled(String.valueOf(object[9]));
+                }
+                result.add(fetchMtoPartnerCountryBankView);
+            }
+        } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryCityView.class)) {
+            result = new ArrayList<FetchMtoPartnerCountryCityView>();
+            for (Object[] object: list) {
+                FetchMtoPartnerCountryCityView fetchMtoPartnerCountryCityView = new FetchMtoPartnerCountryCityView();
+                if (object[0] != null) {
+                    fetchMtoPartnerCountryCityView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                }
+                if (object[1] != null) {
+                    fetchMtoPartnerCountryCityView.setPartnerName(String.valueOf(object[1]));
+                }
+                if (object[2] != null) {
+                    fetchMtoPartnerCountryCityView.setPartnerImageUrl(String.valueOf(object[2]));
+                }
+                if (object[3] != null) {
+                    fetchMtoPartnerCountryCityView.setCountryCode(String.valueOf(object[3]));
+                }
+                if (object[4] != null) {
+                    fetchMtoPartnerCountryCityView.setCountryName(String.valueOf(object[4]));
+                }
+                if (object[5] != null) {
+                    fetchMtoPartnerCountryCityView.setCountryImageUrl(String.valueOf(object[5]));
+                }
+                if (object[6] != null) {
+                    fetchMtoPartnerCountryCityView.setCityId(Long.valueOf(String.valueOf(object[6])));
+                }
+                if (object[7] != null) {
+                    fetchMtoPartnerCountryCityView.setCityName(String.valueOf(object[7]));
+                }
+                if (object[8] != null) {
+                    fetchMtoPartnerCountryCityView.setCityEnabled(String.valueOf(object[8]));
+                }
+                result.add(fetchMtoPartnerCountryCityView);
+            }
+        } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryWalletView.class)) {
+            result = new ArrayList<FetchMtoPartnerCountryWalletView>();
+            for (Object[] object: list) {
+                FetchMtoPartnerCountryWalletView fetchMtoPartnerCountryWalletView = new FetchMtoPartnerCountryWalletView();
+                if (object[0] != null) {
+                    fetchMtoPartnerCountryWalletView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                }
+                if (object[1] != null) {
+                    fetchMtoPartnerCountryWalletView.setPartnerName(String.valueOf(object[1]));
+                }
+                if (object[2] != null) {
+                    fetchMtoPartnerCountryWalletView.setPartnerImageUrl(String.valueOf(object[2]));
+                }
+                if (object[3] != null) {
+                    fetchMtoPartnerCountryWalletView.setCountryCode(String.valueOf(object[3]));
+                }
+                if (object[4] != null) {
+                    fetchMtoPartnerCountryWalletView.setCountryName(String.valueOf(object[4]));
+                }
+                if (object[5] != null) {
+                    fetchMtoPartnerCountryWalletView.setCountryImageUrl(String.valueOf(object[5]));
+                }
+                if (object[6] != null) {
+                    fetchMtoPartnerCountryWalletView.setWalletId(Long.valueOf(String.valueOf(object[6])));
+                }
+                if (object[7] != null) {
+                    fetchMtoPartnerCountryWalletView.setWalletName(String.valueOf(object[7]));
+                }
+                if (object[8] != null) {
+                    fetchMtoPartnerCountryWalletView.setWalletImageUrl(String.valueOf(object[8]));
+                }
+                if (object[9] != null) {
+                    fetchMtoPartnerCountryWalletView.setWalletEnabled(String.valueOf(object[9]));
+                }
+                result.add(fetchMtoPartnerCountryWalletView);
+            }
+        }
+        return result;
     }
 
     /**

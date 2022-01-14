@@ -45,7 +45,17 @@ public class UserVerification extends BaseEntity {
     @Embedded
     private BaseMasterEntity baseMasterEntity;
 
-    public UserVerification() {}
+    public UserVerification() { }
+
+    public UserVerification(String enabled, String token, Timestamp expiryDate,
+        Boolean passwordAdded, Boolean isConsumed, BaseMasterEntity baseMasterEntity) {
+        super(enabled);
+        this.token = token;
+        this.expiryDate = expiryDate;
+        this.passwordAdded = passwordAdded;
+        this.isConsumed = isConsumed;
+        this.baseMasterEntity = baseMasterEntity;
+    }
 
     public Long getUserVerificationId() {
         return userVerificationId;

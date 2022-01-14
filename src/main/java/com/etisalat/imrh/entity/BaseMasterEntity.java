@@ -27,6 +27,13 @@ public class BaseMasterEntity {
 
     public BaseMasterEntity() {}
 
+    public BaseMasterEntity(Timestamp createdAt, Long createdBy,
+        Timestamp modifiedAt) {
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.modifiedAt = modifiedAt;
+    }
+
     @PreUpdate
     protected void onUpdate() {
         this.modifiedAt = new Timestamp(System.currentTimeMillis());

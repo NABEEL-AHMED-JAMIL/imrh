@@ -40,7 +40,13 @@ public class Bank extends BaseEntity {
     @JoinColumn(name="COUNTRY_CODE", nullable=false)
     private Country country;
 
-    public Bank() { }
+    public Bank() {}
+
+    public Bank(String bankName, String bankImageUrl, Country country) {
+        this.bankName = bankName;
+        this.bankImageUrl = bankImageUrl;
+        this.country = country;
+    }
 
     public Long getBankId() {
         return bankId;

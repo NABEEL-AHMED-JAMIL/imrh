@@ -42,6 +42,14 @@ public class Wallet extends BaseEntity {
 
     public Wallet() { }
 
+    public Wallet(String enabled, String walletName,
+        String walletImageUrl, Country country) {
+        super(enabled);
+        this.walletName = walletName;
+        this.walletImageUrl = walletImageUrl;
+        this.country = country;
+    }
+
     public Long getWalletId() {
         return walletId;
     }

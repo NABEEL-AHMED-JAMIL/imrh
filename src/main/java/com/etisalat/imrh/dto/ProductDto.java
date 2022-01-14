@@ -18,6 +18,12 @@ public class ProductDto {
 
     public ProductDto() {}
 
+    public ProductDto(String productName, String productImageUrl, Enable enabled) {
+        this.productName = productName;
+        this.productImageUrl = productImageUrl;
+        this.enabled = enabled;
+    }
+
     public Long getProductId() {
         return productId;
     }

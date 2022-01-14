@@ -39,6 +39,11 @@ public class PartnerCustomer {
 
     public PartnerCustomer() {}
 
+    public PartnerCustomer(String customerNumber, Partner partner) {
+        this.customerNumber = customerNumber;
+        this.partner = partner;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

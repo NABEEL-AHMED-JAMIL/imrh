@@ -18,7 +18,11 @@ public class BaseEntity {
         columnDefinition = "CHAR(1)", nullable = false)
     private String enabled;
 
-    public BaseEntity() { }
+    public BaseEntity() {}
+
+    public BaseEntity(String enabled) {
+        this.enabled = enabled;
+    }
 
     public String getEnabled() {
         return enabled;

@@ -17,6 +17,12 @@ public class GenericResponseDto<T> {
 
     public GenericResponseDto() {}
 
+    public GenericResponseDto(String status, String message, T data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+
     public String getStatus() {
         return status;
     }

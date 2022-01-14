@@ -23,6 +23,17 @@ public class CountryDto {
 
     public CountryDto() { }
 
+    public CountryDto(String countryName, String countryLegacyCode, String countryImageUrl,
+        Enable enabled, List<CityDto> cities, List<BankDto> banks, List<WalletDto> wallets) {
+        this.countryName = countryName;
+        this.countryLegacyCode = countryLegacyCode;
+        this.countryImageUrl = countryImageUrl;
+        this.enabled = enabled;
+        this.cities = cities;
+        this.banks = banks;
+        this.wallets = wallets;
+    }
+
     public String getCountryCode() {
         return countryCode;
     }

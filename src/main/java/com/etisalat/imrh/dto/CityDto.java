@@ -18,6 +18,12 @@ public class CityDto {
 
     public CityDto() { }
 
+    public CityDto(String cityName, Enable enabled, CountryDto country) {
+        this.cityName = cityName;
+        this.enabled = enabled;
+        this.country = country;
+    }
+
     public Long getCityId() {
         return cityId;
     }

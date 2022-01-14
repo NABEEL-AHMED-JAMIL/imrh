@@ -17,6 +17,11 @@ public class PartnerCountryProductDto {
 
     public PartnerCountryProductDto() {}
 
+    public PartnerCountryProductDto(Long productId, String countryCode) {
+        this.productId = productId;
+        this.countryCode = countryCode;
+    }
+
     public Long getPartnerId() {
         return partnerId;
     }

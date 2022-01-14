@@ -19,6 +19,14 @@ public class BankDto {
 
     public BankDto() { }
 
+    public BankDto(String bankName, String bankImageUrl,
+        Enable enabled, CountryDto country) {
+        this.bankName = bankName;
+        this.bankImageUrl = bankImageUrl;
+        this.enabled = enabled;
+        this.country = country;
+    }
+
     public Long getBankId() {
         return bankId;
     }

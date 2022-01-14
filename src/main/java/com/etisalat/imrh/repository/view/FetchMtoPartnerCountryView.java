@@ -1,44 +1,46 @@
-package com.etisalat.imrh.entity.view;
+package com.etisalat.imrh.repository.view;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
-import org.hibernate.annotations.Immutable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
  * @author Nabeel Ahmed
  */
-@Entity
-@Immutable
 @JsonIgnoreProperties(ignoreUnknown=true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FetchMtoPartnerCountryView {
 
-    @Id
-    @Column(name="partner_id")
     private Long partnerId;
-
-    @Column(name="partner_name")
     private String partnerName;
-
-    @Column(name="country_name")
     private String countryName;
 
     public FetchMtoPartnerCountryView() {}
 
+    public FetchMtoPartnerCountryView(Long partnerId, String partnerName, String countryName) {
+        this.partnerId = partnerId;
+        this.partnerName = partnerName;
+        this.countryName = countryName;
+    }
+
     public Long getPartnerId() {
         return partnerId;
+    }
+    public void setPartnerId(Long partnerId) {
+        this.partnerId = partnerId;
     }
 
     public String getPartnerName() {
         return partnerName;
     }
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
+    }
 
     public String getCountryName() {
         return countryName;
+    }
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     @Override

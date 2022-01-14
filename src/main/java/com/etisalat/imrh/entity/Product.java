@@ -36,7 +36,13 @@ public class Product extends BaseEntity {
     @Column(name="PRODUCT_IMAGE_URl")
     private String productImageUrl;
 
-    public Product() {}
+    public Product() { }
+
+    public Product(String enabled, String productName, String productImageUrl) {
+        super(enabled);
+        this.productName = productName;
+        this.productImageUrl = productImageUrl;
+    }
 
     public Long getProductId() {
         return productId;

@@ -12,12 +12,12 @@ public class PoiWorkBookUtil {
     private final String FOUNT_NAME = "Calibri";
 
     public void fillHeading(XSSFSheet sheet, Row row, CellStyle style, Integer index,
-        Integer width, String heading, String margeCell, Boolean isMarged) {
+        Integer width, String heading, String margeCell, Boolean isMerged) {
         Cell cell = row.createCell(index);
         cell.setCellValue(heading); // heading value
         if(style != null) { cell.setCellStyle(style); } // style if have
         if(width != null) { sheet.setColumnWidth(index, width); } // width if have
-        if(isMarged) {
+        if(isMerged) {
             sheet.addMergedRegion(CellRangeAddress.valueOf(margeCell));
         }
     }

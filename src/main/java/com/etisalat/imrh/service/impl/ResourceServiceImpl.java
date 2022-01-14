@@ -38,7 +38,8 @@ public class ResourceServiceImpl implements ResourceService {
         String fileNameWithFolderPath = String.format("%s/%s", folderName, fileName);
         bucket.create(fileNameWithFolderPath, file.getInputStream(), file.getContentType());
         return CommonUtils.getResponseWithData(String.format(this.resourceAccessUrl, this.bucketName,
-            String.format("%s%s%s", folderName, F2, fileName)), HttpStatus.OK.series().name(), "File Store successfully");
+            String.format("%s%s%s", folderName, F2, fileName)), HttpStatus.OK.series().name(),
+            "File Store successfully");
     }
 
     @Override

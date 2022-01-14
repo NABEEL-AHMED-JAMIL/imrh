@@ -20,6 +20,12 @@ public class PartnerCustomerDto {
 
     public PartnerCustomerDto() {}
 
+    public PartnerCustomerDto(String customerNumber, Long partnerId, List<PartnerDto> partner) {
+        this.customerNumber = customerNumber;
+        this.partnerId = partnerId;
+        this.partner = partner;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

@@ -521,12 +521,13 @@ CASE
 END AS status, product_image_url
 FROM product;
 --================2) All Country Report => Show (Name + Status + Image) => Count Report (City, Wallet, Bank)=========
-CREATE VIEW fetch_All_Global_Country_Detail_For_Report_Query AS
+CREATE VIEW fetch_All_Global_Country_Detail_For_Report_View AS
     SELECT country.country_name, country.country_code,
     CASE
         WHEN country.enabled = 'Y' THEN 'Enabled'
         WHEN country.enabled = 'N' THEN 'Disable'
-    END AS status, country.country_image_url,
+    END AS country_status,
+    country.country_image_url,
     COALESCE(city.total_city, 0) AS total_city,
     COALESCE(wallet.total_wallet, 0) AS total_wallet,
     COALESCE(bank.total_bank, 0) AS total_bank
@@ -586,7 +587,7 @@ city.city_id, city.city_name,
 CASE
     WHEN city.enabled = 'Y' THEN 'Enabled'
     WHEN city.enabled = 'N' THEN 'Disable'
-END AS status
+END AS city_enabled
 FROM partner
 INNER JOIN partner_city ON partner_city.partner_id = partner.partner_id
 INNER JOIN city ON city.city_id = partner_city.city_id
@@ -599,7 +600,7 @@ bank.bank_id, bank.bank_name, bank.bank_image_url,
 CASE
     WHEN bank.enabled = 'Y' THEN 'Enabled'
     WHEN bank.enabled = 'N' THEN 'Disable'
-END AS status
+END AS bank_enabled
 FROM partner
 INNER JOIN partner_bank ON partner_bank.partner_id = partner.partner_id
 INNER JOIN bank ON bank.bank_id = partner_bank.bank_id
@@ -612,12 +613,13 @@ wallet.wallet_id, wallet.wallet_name, wallet.wallet_image_url,
 CASE
     WHEN wallet.enabled = 'Y' THEN 'Enabled'
     WHEN wallet.enabled = 'N' THEN 'Disable'
-END AS bank_enabled
+END AS wallet_enabled
 FROM partner
 INNER JOIN partner_wallet ON partner_wallet.partner_id = partner.partner_id
 INNER JOIN wallet ON wallet.wallet_id = partner_wallet.wallet_id
 INNER JOIN country ON country.country_code = wallet.country_code;
 -- for profile-permission to check the permission
+
 CREATE VIEW PROFILE_PERMISSIONS_VIEW AS
 SELECT PROFILE_PERMISSION.PROFILE_PERMISSION_ID, PROFILE_PERMISSION.PROFILE_ID, PROFILE.PROFILE_NAME, PROFILE_PERMISSION.PERMISSION_ID, PERMISSION.PERMISSION_NAME
 FROM PROFILE_PERMISSION

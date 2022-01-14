@@ -19,6 +19,14 @@ public class WalletDto {
 
     public WalletDto() { }
 
+    public WalletDto(String walletName, String walletImageUrl,
+        Enable enabled, CountryDto country) {
+        this.walletName = walletName;
+        this.walletImageUrl = walletImageUrl;
+        this.enabled = enabled;
+        this.country = country;
+    }
+
     public Long getWalletId() {
         return walletId;
     }

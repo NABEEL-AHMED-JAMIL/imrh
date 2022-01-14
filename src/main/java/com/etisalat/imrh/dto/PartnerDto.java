@@ -38,6 +38,29 @@ public class PartnerDto {
         this.preferenceOrder = preferenceOrder;
     }
 
+    public PartnerDto(String partnerName, String partnerImageUrl, Enable enabled, Integer preferenceOrder,
+        Double forexMarginShare, Double partnerShare, String transferSpeed, String partnerCategory,
+        String partnerTxtIdLabel, CountryDto country, Set<CountryDto> countries, CityDto city,
+        Set<CityDto> cities, BankDto bank, Set<BankDto> banks, WalletDto wallet, Set<WalletDto> wallets) {
+        this.partnerName = partnerName;
+        this.partnerImageUrl = partnerImageUrl;
+        this.enabled = enabled;
+        this.preferenceOrder = preferenceOrder;
+        this.forexMarginShare = forexMarginShare;
+        this.partnerShare = partnerShare;
+        this.transferSpeed = transferSpeed;
+        this.partnerCategory = partnerCategory;
+        this.partnerTxtIdLabel = partnerTxtIdLabel;
+        this.country = country;
+        this.countries = countries;
+        this.city = city;
+        this.cities = cities;
+        this.bank = bank;
+        this.banks = banks;
+        this.wallet = wallet;
+        this.wallets = wallets;
+    }
+
     public Long getPartnerId() {
         return partnerId;
     }

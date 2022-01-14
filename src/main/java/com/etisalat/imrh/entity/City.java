@@ -37,7 +37,13 @@ public class City extends BaseEntity {
     @JoinColumn(name="COUNTRY_CODE", nullable=false)
     private Country country;
 
-    public City() { }
+    public City() {}
+
+    public City(String enabled, String cityName, Country country) {
+        super(enabled);
+        this.cityName = cityName;
+        this.country = country;
+    }
 
     public Long getCityId() {
         return cityId;

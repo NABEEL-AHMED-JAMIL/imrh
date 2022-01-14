@@ -40,6 +40,12 @@ public class ProfilePermission extends BaseEntity  {
 
     public ProfilePermission() { }
 
+    public ProfilePermission(String enabled, Profile profile, Permission permission) {
+        super(enabled);
+        this.profile = profile;
+        this.permission = permission;
+    }
+
     public Long getProfilePermissionId() {
         return profilePermissionId;
     }

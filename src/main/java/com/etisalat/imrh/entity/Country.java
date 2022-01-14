@@ -40,6 +40,17 @@ public class Country extends BaseEntity {
 
     public Country() { }
 
+    public Country(String enabled, String countryName, String countryLegacyCode,
+        String countryImageUrl, List<City> cities, List<Bank> banks, List<Wallet> wallets) {
+        super(enabled);
+        this.countryName = countryName;
+        this.countryLegacyCode = countryLegacyCode;
+        this.countryImageUrl = countryImageUrl;
+        this.cities = cities;
+        this.banks = banks;
+        this.wallets = wallets;
+    }
+
     public String getCountryCode() {
         return countryCode;
     }

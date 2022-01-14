@@ -85,7 +85,28 @@ public class Partner extends BaseEntity {
     @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PartnerCustomer> partnerCustomers = new ArrayList<>();
 
-    public Partner() {}
+    public Partner() { }
+
+    public Partner(String enabled, String partnerName, String partnerImageUrl,
+        Integer preferenceOrder, Double forexMarginShare, Double partnerShare,
+        String transferSpeed, String partnerCategory, String partnerTxtIdLabel,
+        Set<Country> countries, Set<City> cities, Set<Bank> banks,
+        Set<Wallet> wallets, List<PartnerCustomer> partnerCustomers) {
+        super(enabled);
+        this.partnerName = partnerName;
+        this.partnerImageUrl = partnerImageUrl;
+        this.preferenceOrder = preferenceOrder;
+        this.forexMarginShare = forexMarginShare;
+        this.partnerShare = partnerShare;
+        this.transferSpeed = transferSpeed;
+        this.partnerCategory = partnerCategory;
+        this.partnerTxtIdLabel = partnerTxtIdLabel;
+        this.countries = countries;
+        this.cities = cities;
+        this.banks = banks;
+        this.wallets = wallets;
+        this.partnerCustomers = partnerCustomers;
+    }
 
     public Long getPartnerId() {
         return partnerId;

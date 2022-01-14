@@ -41,7 +41,15 @@ public class Profile extends BaseEntity {
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProfilePermission> profilePermissions = new ArrayList<>();
 
-    public Profile() {}
+    public Profile() { }
+
+    public Profile(String enabled, String profileName, List<AppUser> appUsers,
+        List<ProfilePermission> profilePermissions) {
+        super(enabled);
+        this.profileName = profileName;
+        this.appUsers = appUsers;
+        this.profilePermissions = profilePermissions;
+    }
 
     public Long getProfileId() {
         return profileId;
