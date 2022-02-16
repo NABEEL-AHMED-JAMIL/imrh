@@ -41,14 +41,15 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
         ScriptEngineManager mgr = new ScriptEngineManager();
         this.engine = mgr.getEngineByName("JavaScript");
 
+        int count = 0;
         List<Report> reports = new ArrayList<>();
-        reports.add(new Report(0, "Partner Id", "20*255"));
-        reports.add(new Report(1, "Partner Name", "20*255"));
-        reports.add(new Report(2, "Country Code", "20*255"));
-        reports.add(new Report(3, "Country Name", "20*255"));
-        reports.add(new Report(4, "Wallet Id", "20*255"));
-        reports.add(new Report(5, "Wallet Name", "20*255"));
-        reports.add(new Report(6, "Wallet Enabled", "20*255"));
+        reports.add(new Report(count, "Partner Id", "20*255"));
+        reports.add(new Report(count++, "Partner Name", "20*255"));
+        reports.add(new Report(count++, "Country Code", "20*255"));
+        reports.add(new Report(count++, "Country Name", "20*255"));
+        reports.add(new Report(count++, "Wallet Id", "20*255"));
+        reports.add(new Report(count++, "Wallet Name", "20*255"));
+        reports.add(new Report(count++, "Wallet Enabled", "20*255"));
         this.reportDetail.put("fetch_mto_partner_country_wallet_view", reports);
 
         reports = new ArrayList<>();

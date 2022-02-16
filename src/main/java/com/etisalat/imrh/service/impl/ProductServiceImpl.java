@@ -10,6 +10,7 @@ import com.etisalat.imrh.util.CommonUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,7 +90,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value="product")
     public GenericResponseDto<Object> fetchAllProduct() {
+        logger.info("Fetch fetchAllProduct");
         return CommonUtils.getResponseWithData(this.productRepository.findAllProduct(), HttpStatus.OK.series().name(),
             String.format("Product fetch successfully."));
     }
