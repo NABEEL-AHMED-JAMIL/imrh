@@ -94,8 +94,7 @@ INSERT INTO city (city_id, enabled, city_name, country_code) VALUES (nextval('ci
 INSERT INTO city (city_id, enabled, city_name, country_code) VALUES (nextval('city_seq'), 'Y', 'Kabal', 'IND');
 INSERT INTO city (city_id, enabled, city_name, country_code) VALUES (nextval('city_seq'), 'Y', 'Lodhran', 'IND');
 
--- wallet detail
-
+-- wallet detai
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Payoneer e-wallet', 'PAK');
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Skrill e-wallet', 'PAK');
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Neteller e-wallet', 'PAK');
@@ -103,7 +102,6 @@ INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextv
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Payeer e-wallet', 'PAK');
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'CoinBase', 'PAK');
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'WebMoney', 'PAK');
-
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Paytm', 'IND');
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'MobiKwik', 'IND');
 INSERT INTO wallet (wallet_id, enabled, wallet_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Oxigen Wallet', 'IND');
@@ -153,8 +151,6 @@ INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('wa
 INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Deutsche Bank AG', 'PAK');
 INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Industrial & Commercial Bank of China', 'PAK');
 INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('wallet_seq'), 'Y', 'Bank of China Limited', 'PAK');
-
-
 INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('bank_seq'), 'Y', 'Allahabad Bank', 'IND');
 INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('bank_seq'), 'Y', 'Andhra Bank', 'IND');
 INSERT INTO bank (bank_id, enabled, bank_name, country_code) VALUES (nextval('bank_seq'), 'Y', 'Bank of Baroda', 'IND');
@@ -543,7 +539,7 @@ CREATE VIEW fetch_All_Global_Country_Detail_For_Report_View AS
     ON bank.country_code = country.country_code
     ORDER BY country.country_name ASC;
 
-SELECT * FROM fetch_All_Global_Country_Detail_For_Report_Query;
+SELECT * FROM fetch_All_Global_Country_Detail_For_Report_View;
 --- Query call only when count is more then '0' and display as table on report
 -- fetch city table
 SELECT city_id, city_name,
