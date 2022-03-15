@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.core.io.ClassPathResource;
 import javax.script.ScriptException;
 import java.io.ByteArrayInputStream;
@@ -16,7 +17,6 @@ import java.util.Map;
 
 public interface ReportService {
 
-    public Map<String, Object> parameters = new HashMap<>();
     // pdf
     public ByteArrayOutputStream fetchMtoPartnerCountryViewPdf() throws DocumentException, IOException;
 
@@ -88,20 +88,21 @@ public interface ReportService {
      * @param report
      * @return JasperReport
      * */
-    public default JasperReport getJasperReport(Report report) throws JRException {
+    public default JasperReport getJasperReport(Report report, boolean isCompiled) throws JRException {
         String reportName = null;
         if (report.equals(Report.MtoPartnerCountryReport)) {
-            reportName ="/report/mto_partner_country_report.jrxml";
+            reportName = isCompiled == true ? Report.MtoPartnerCountryReport.reportPathJasper : Report.MtoPartnerCountryReport.reportPathJrXml;
         } else if (report.equals(Report.MtoPartnerCountryCityReport)) {
-            reportName ="/report/mto_partner_country_city_report.jrxml";
+            reportName = isCompiled == true ? Report.MtoPartnerCountryCityReport.reportPathJasper : Report.MtoPartnerCountryCityReport.reportPathJrXml;
         } else if (report.equals(Report.MtoPartnerCountryWalletReport)) {
-            reportName ="/report/mto_partner_country_wallet_report.jrxml";
+            reportName = isCompiled == true ? Report.MtoPartnerCountryWalletReport.reportPathJasper : Report.MtoPartnerCountryWalletReport.reportPathJrXml;
         } else if (report.equals(Report.MtoPartnerCountryBankReport)) {
-            reportName ="/report/mto_partner_country_bank_report.jrxml";
+            reportName = isCompiled == true ? Report.MtoPartnerCountryBankReport.reportPathJasper : Report.MtoPartnerCountryBankReport.reportPathJrXml;
         } else if (report.equals(Report.GlobalCountryDetailReport)) {
-            reportName ="/report/all_global_country_detail_for_report.jrxml";
+            reportName = isCompiled == true ? Report.GlobalCountryDetailReport.reportPathJasper : Report.GlobalCountryDetailReport.reportPathJrXml;
         }
-        return JasperCompileManager.compileReport(getClass().getResourceAsStream(reportName));
+        return isCompiled == true ? (JasperReport) JRLoader.loadObject(getClass().getResourceAsStream(reportName)) :
+                JasperCompileManager.compileReport(getClass().getResourceAsStream(reportName));
     }
 
     /**
@@ -110,6 +111,7 @@ public interface ReportService {
      * @return Map<String, Object>
      * */
     public default Map<String, Object> getParameters(Report report){
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put("subTitle", "Ministry of Interior Qatar");
         if (report.equals(Report.MtoPartnerCountryReport)) {
             parameters.put("title", "MtoPartner Country Report");

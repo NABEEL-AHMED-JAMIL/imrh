@@ -1,11 +1,12 @@
 package com.barco.imrh.service.impl;
 
+import com.barco.imrh.report.ReportHeader;
+import com.barco.imrh.report.UserDetail;
 import com.barco.imrh.repository.query.EntityQuery;
 import com.barco.imrh.repository.view.*;
 import com.barco.imrh.enums.Report;
 import com.barco.imrh.service.ReportService;
 import com.barco.imrh.util.PoiWorkBookUtil;
-import com.google.gson.Gson;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -579,76 +580,40 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     @Override
     public byte[] downloadJasperFile(Report report) throws JRException {
         try {
-            JasperReport jasperReport = this.getJasperReport(report);
-            Map<String, Object> parameters = this.getParameters(report);
-            parameters.put("imagePath", moiImagePath);
             JRDataSource jrDataSource = null;
+            JasperReport jasperReport = null;
             if (report.equals(Report.MtoPartnerCountryReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
                 "select * from fetch_mto_partner_country_view", FetchMtoPartnerCountryView.class));
+                jasperReport = this.getJasperReport(report, true);
             } else if (report.equals(Report.MtoPartnerCountryCityReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
                 "select * from fetch_mto_partner_country_city_view", FetchMtoPartnerCountryCityView.class));
+                jasperReport = this.getJasperReport(report, true);
             } else if (report.equals(Report.MtoPartnerCountryWalletReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
                 "select * from fetch_mto_partner_country_wallet_view", FetchMtoPartnerCountryWalletView.class));
+                jasperReport = this.getJasperReport(report, false);
             } else if (report.equals(Report.MtoPartnerCountryBankReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
                 "select * from fetch_mto_partner_country_bank_view", FetchMtoPartnerCountryBankView.class));
+                jasperReport = this.getJasperReport(report, true);
             } else if (report.equals(Report.GlobalCountryDetailReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
                 "select * from fetch_all_global_country_detail_for_report_view", FetchAllGlobalCountryDetailForReportView.class));
+                jasperReport = this.getJasperReport(report, true);
             }
             /* Map to hold Jasper report Parameters */
-            parameters.put("ItemDataSource", jrDataSource);
+            Map<String, Object> parameters = this.getParameters(report);
+            parameters.put("imagePath", this.moiImagePath);
+            parameters.put("itemDataSource", jrDataSource);
+            parameters.put("userDetail", new UserDetail());
             byte[] jasperByte = JasperExportManager.exportReportToPdf(
                 JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource()));
-            parameters.remove("ItemDataSource");
             return jasperByte;
         } catch (Exception ex) {
             logger.error("### An error occurred while export downloadJasperFile ### ", ex);
             throw ex;
-        }
-    }
-
-    public class ReportHeader {
-
-        private Integer index;
-        private String filedName;
-        private String filedWidth;
-
-        public ReportHeader() {}
-
-        public ReportHeader(Integer index, String filedName, String filedWidth) {
-            this.index = index;
-            this.filedName = filedName;
-            this.filedWidth = filedWidth;
-        }
-
-        public Integer getIndex() {
-            return index;
-        }
-        public void setIndex(Integer index) {
-            this.index = index;
-        }
-
-        public String getFiledName() {
-            return filedName;
-        }
-        public void setFiledName(String filedName) {
-            this.filedName = filedName;
-        }
-
-        public String getFiledWidth() {
-            return filedWidth;
-        }
-        public void setFiledWidth(String filedWidth) {
-            this.filedWidth = filedWidth;
-        }
-
-        @Override
-        public String toString() {
-            return new Gson().toJson(this);
         }
     }
 

@@ -29,7 +29,7 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="ItemDataSource" uuid="db73bd71-22dd-4bbe-8aaf-c64022548eef">
+	<subDataset name="itemDataSource" uuid="db73bd71-22dd-4bbe-8aaf-c64022548eef">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataCenter"/>
 		<queryString>
@@ -54,7 +54,7 @@
 	<parameter name="title" class="java.lang.String"/>
 	<parameter name="subTitle" class="java.lang.String"/>
 	<parameter name="imagePath" class="java.lang.String"/>
-	<parameter name="ItemDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="itemDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -117,13 +117,13 @@
 					<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="ItemDataSource" uuid="68f72fa0-209b-466d-956e-b152f0383ec9">
-						<dataSourceExpression><![CDATA[$P{ItemDataSource}]]></dataSourceExpression>
+					<datasetRun subDataset="itemDataSource" uuid="68f72fa0-209b-466d-956e-b152f0383ec9">
+						<dataSourceExpression><![CDATA[$P{itemDataSource}]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="190" uuid="1ce3fdbd-53c8-46da-aac3-3fd8539e1263">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="190" height="30" uuid="86820dc2-cd2c-44c7-908e-958c357185ab"/>
+								<reportElement x="0" y="0" width="190" height="30" forecolor="#FFFFFF" uuid="86820dc2-cd2c-44c7-908e-958c357185ab"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font isBold="true"/>
 								</textElement>
@@ -141,7 +141,7 @@
 					<jr:column width="190" uuid="be85c09c-680f-483a-81a9-b94748b2ad33">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="190" height="30" uuid="c5a096f9-2a5b-4212-9e31-fb85b5895216"/>
+								<reportElement x="0" y="0" width="190" height="30" forecolor="#FFFFFF" uuid="c5a096f9-2a5b-4212-9e31-fb85b5895216"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font isBold="true"/>
 								</textElement>
@@ -159,7 +159,7 @@
 					<jr:column width="190" uuid="72034dae-9fce-480c-81a2-5a909b782417">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="190" height="30" uuid="2242cb26-0958-43b9-b9be-50b8d13dd932"/>
+								<reportElement x="0" y="0" width="190" height="30" forecolor="#FFFFFF" uuid="2242cb26-0958-43b9-b9be-50b8d13dd932"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font isBold="true"/>
 								</textElement>
