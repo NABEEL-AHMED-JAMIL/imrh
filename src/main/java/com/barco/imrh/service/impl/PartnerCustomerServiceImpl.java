@@ -52,14 +52,14 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
     @Override
     public GenericResponseDto<Object> searchCustomerMsisdn(PartnerCustomerDto partnerCustomer) {
         if (CommonUtils.isNull(partnerCustomer.getCustomerNumber())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Customer msisdn missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.
+                BAD_REQUEST.series().name(), CUSTOMER_MSISDN_MISSING);
         } else if (!CommonUtils.isValidMsisdn(partnerCustomer.getCustomerNumber())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Customer msisdn not valid.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.
+                BAD_REQUEST.series().name(), CUSTOMER_MSISDN_NOT_VALID);
         }
         return CommonUtils.getResponseWithData(this.partnerCustomerRepository.fetchAllCustomerDetail(
-            partnerCustomer.getCustomerNumber()), HttpStatus.OK.series().name(), "Partner customer fetch successfully.");
+            partnerCustomer.getCustomerNumber()), HttpStatus.OK.series().name(), PARTNER_CUSTOMER_FETCH_SUCCESSFULLY);
     }
 
     @Override
@@ -67,33 +67,32 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
         Page<PartnerCustomerProjection> partnerCustomerProjections = this.partnerCustomerRepository
             .fetchAllCustomerDetailWithPage(PageRequest.of(pageNumber, pageSize));
         HashMap<String, Object> responseMap = new HashMap<>();
-        responseMap.put("content", partnerCustomerProjections.getContent());
-        responseMap.put("pageNumber", partnerCustomerProjections.getPageable().getPageNumber());
-        responseMap.put("pageSize", partnerCustomerProjections.getPageable().getPageSize());
-        responseMap.put("totalElements", partnerCustomerProjections.getTotalElements());
-        responseMap.put("totalPages", partnerCustomerProjections.getTotalPages());
-        return CommonUtils.getResponseWithData(responseMap, HttpStatus.OK.series().name(), "Partner customer fetch successfully.");
+        responseMap.put(CONTENT, partnerCustomerProjections.getContent());
+        responseMap.put(PAGE_NUMBER, partnerCustomerProjections.getPageable().getPageNumber());
+        responseMap.put(PAGE_SIZE, partnerCustomerProjections.getPageable().getPageSize());
+        responseMap.put(TOTAL_ELEMENTS, partnerCustomerProjections.getTotalElements());
+        responseMap.put(TOTAL_PAGES, partnerCustomerProjections.getTotalPages());
+        return CommonUtils.getResponseWithData(responseMap, HttpStatus.OK.series().name(), PARTNER_CUSTOMER_FETCH_SUCCESSFULLY);
     }
 
     @Override
     public GenericResponseDto<Object> createCustomerMsisdn(Set<PartnerCustomerDto> partnerCustomerSet) {
         for (PartnerCustomerDto partnerCustomer: partnerCustomerSet) {
             if (CommonUtils.isNull(partnerCustomer.getCustomerNumber())) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn missing.");
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                    .BAD_REQUEST.series().name(), CUSTOMER_MSISDN_MISSING);
             } else if (!CommonUtils.isValidMsisdn(partnerCustomer.getCustomerNumber())) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Customer msisdn not valid.");
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                    .BAD_REQUEST.series().name(), CUSTOMER_MSISDN_NOT_VALID);
             } else if (CommonUtils.isNull(partnerCustomer.getPartnerId())) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Partner id missing.");
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                    .BAD_REQUEST.series().name(), PARTNER_ID_MISSING);
             } else if (!this.partnerRepository.existsById(partnerCustomer.getPartnerId())) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Partner not exist.");
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                    .BAD_REQUEST.series().name(), PARTNER_NOT_EXIST);
             } else if (!this.partnerCustomerRepository.fetchAllCustomerDetail(partnerCustomer.getCustomerNumber()).isEmpty()) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), String.format("Customer %s msisdn linked with other partner.",
-                            partnerCustomer.getCustomerNumber()));
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
+                     String.format(CUSTOMER_MSISDN_LINKED_WITH_OTHER_PARTNER, partnerCustomer.getCustomerNumber()));
             }
         }
         this.partnerCustomerRepository.saveAll(partnerCustomerSet.stream()
@@ -103,32 +102,32 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                 partnerCustomer.setPartner(this.partnerRepository.getById(partnerCustomerDto.getPartnerId()));
                 return partnerCustomer;
             }).collect(Collectors.toList()));
-        return CommonUtils.getResponseWithData(partnerCustomerSet, HttpStatus.OK.series().name(), "Customer msisdn save successfully.");
+        return CommonUtils.getResponseWithData(partnerCustomerSet, HttpStatus.OK.series().name(), CUSTOMER_MSISDN_SAVE_SUCCESSFULLY);
     }
 
     @Override
     public GenericResponseDto<Object> updatePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer) {
         if (CommonUtils.isNull(partnerCustomer.getCustomerId())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                   "Partner customer id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                 .BAD_REQUEST.series().name(), PARTNER_CUSTOMER_ID_MISSING);
         } else if (CommonUtils.isNull(partnerCustomer.getPartnerId())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Partner id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                 .BAD_REQUEST.series().name(), PARTNER_ID_MISSING);
         }
-        return CommonUtils.getResponseWithData(this.partnerCustomerRepository
-            .updatePartnerCustomerMsisdn(partnerCustomer.getPartnerId(), partnerCustomer.getCustomerId()),
-            HttpStatus.OK.series().name(), "Partner customer update successfully.");
+        return CommonUtils.getResponseWithData(this.partnerCustomerRepository.updatePartnerCustomerMsisdn(
+            partnerCustomer.getPartnerId(), partnerCustomer.getCustomerId()), HttpStatus.OK.series().name(),
+            PARTNER_CUSTOMER_UPDATE_SUCCESSFULLY);
     }
 
     @Override
     public GenericResponseDto<Object> deletePartnerCustomerMsisdn(PartnerCustomerDto partnerCustomer) {
         if (CommonUtils.isNull(partnerCustomer.getCustomerId())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                    "Partner customer id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                .BAD_REQUEST.series().name(), PARTNER_CUSTOMER_ID_MISSING);
         }
         this.partnerCustomerRepository.deletePartnerCountryByCountryCode(partnerCustomer.getCustomerId());
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
-                String.format("Partner customer delete successfully with %d.", partnerCustomer.getCustomerId()));
+                String.format(PARTNER_CUSTOMER_DELETE_SUCCESSFULLY_WITH_ID, partnerCustomer.getCustomerId()));
     }
 
     @Override
@@ -137,25 +136,26 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         // fill the header
         // create the sheet for work-book
-        XSSFSheet mtoPartnerCustomerSheet = this.workbook.createSheet("Mto Partner Customer");
+        XSSFSheet mtoPartnerCustomerSheet = this.workbook.createSheet(MTO_PARTNER_CUSTOMER);
         CellStyle cellStyle = this.cellHeadingBackgroundColorStyle(IndexedColors.BLACK.getIndex(), mtoPartnerCustomerSheet);
         Row headerRow = mtoPartnerCustomerSheet.createRow(0);
-        this.fillHeading(mtoPartnerCustomerSheet, headerRow, cellStyle, 0, 20*255,
-            "MSISDN", null, false);
-        this.fillHeading(mtoPartnerCustomerSheet, headerRow, cellStyle, 1, 30*255,
-            "Mto Partner Id", null, false);
-        this.fillHeading(mtoPartnerCustomerSheet, headerRow, cellStyle, 2, 40*255,
-            "Mto Partner name", null, false);
+        this.fillHeading(mtoPartnerCustomerSheet, headerRow, cellStyle,
+            0, 20*255, MSISDN, null, false);
+        this.fillHeading(mtoPartnerCustomerSheet, headerRow, cellStyle,
+            1, 30*255, MTO_PARTNER_ID, null, false);
+        this.fillHeading(mtoPartnerCustomerSheet, headerRow, cellStyle,
+            2, 40*255, MTO_PARTNER_NAME, null, false);
         // fill the body
         List<PartnerCustomerProjection> partnerCustomerProjectionList =  this.partnerCustomerRepository.fetchAllCustomerDetail();
         if (partnerCustomerProjectionList.size() > 0) {
             CellStyle simpleStyle = this.cellBodyColorStyle(mtoPartnerCustomerSheet);
             Integer rows = 1;
             for (PartnerCustomerProjection partnerCustomerProjection: partnerCustomerProjectionList) {
+                int fillCellCount = 0;
                 Row row = mtoPartnerCustomerSheet.createRow(rows);
-                this.fillCellValue(0, row, simpleStyle, partnerCustomerProjection.getPartnerCustomer());
-                this.fillCellValue(1, row, simpleStyle, partnerCustomerProjection.getPartnerId());
-                this.fillCellValue(2, row, simpleStyle, partnerCustomerProjection.getPartnerName());
+                this.fillCellValue(fillCellCount, row, simpleStyle, partnerCustomerProjection.getPartnerCustomer());
+                this.fillCellValue(++fillCellCount, row, simpleStyle, partnerCustomerProjection.getPartnerId());
+                this.fillCellValue(++fillCellCount, row, simpleStyle, partnerCustomerProjection.getPartnerName());
                 rows = rows+1;
             }
         }
@@ -164,8 +164,8 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
         byteArrayOutputStream.close();
         this.workbook.close();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=Mto Partner Customer.xlsx");
-        headers.add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        headers.add(CONTENT_DISPOSITION, ATTACHMENT_FILENAME_MTO_PARTNER_CUSTOMER_XLSX);
+        headers.add(CONTENT_TYPE, APPLICATION_VND_OPEN_XML_FORMATS_OFFICE_DOCUMENT_SPREAD_SHEET);
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(byteArrayInputStream));
     }
 
@@ -173,14 +173,14 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
     public GenericResponseDto<Object> uploadMtoPartnerCustomer(MultipartFile file) throws IOException {
         this.workbook = new XSSFWorkbook(file.getInputStream());
         if (this.workbook == null || this.workbook.getNumberOfSheets() == 0) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "You upload empty source file.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                  .BAD_REQUEST.series().name(), YOU_UPLOAD_EMPTY_SOURCE_FILE);
         }
-        XSSFSheet sheet = this.workbook.getSheet("Mto Partner Customer");
+        XSSFSheet sheet = this.workbook.getSheet(MTO_PARTNER_CUSTOMER);
         if (sheet != null) {
             if (sheet.getLastRowNum() < 1) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                    "You can't upload empty source file.");
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus
+                    .BAD_REQUEST.series().name(), YOU_CONT_UPLOAD_EMPTY_SOURCE_FILE);
             }
             List<String> errors = new ArrayList<>();
             // we use set here bz we need to handle the unique row as per the ssd
@@ -192,13 +192,13 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                 if (currentRow.getRowNum() == 0) {
                     if (currentRow.getPhysicalNumberOfCells() != 2 && currentRow.getPhysicalNumberOfCells() != 2) {
                         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                            "Source at row " + (currentRow.getRowNum() + 1) + " some headings missing (MSISDN,Mto Partner Id).");
-                    } else if (!currentRow.getCell(0).getStringCellValue().equals("MSISDN")) {
+                            String.format(SOURCE_AT_ROW_SOME_HEADINGS_MISSING,(currentRow.getRowNum() + 1)));
+                    } else if (!currentRow.getCell(0).getStringCellValue().equals(MSISDN)) {
                         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                        "Source at row " + (currentRow.getRowNum() + 1) + " MSISDN headings missing.");
-                    } else if (!currentRow.getCell(1).getStringCellValue().equals("Mto Partner Id")) {
+                            String.format(SOURCE_AT_ROW_MSISDN_HEADINGS_MISSING, (currentRow.getRowNum() + 1)));
+                    } else if (!currentRow.getCell(1).getStringCellValue().equals(MTO_PARTNER_ID)) {
                         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                        "Source at row " + (currentRow.getRowNum() + 1) + " Mto Partner Id headings missing.");
+                            String.format(SOURCE_AT_ROW_MTO_PARTNER_ID_HEADINGS_MISSING, (currentRow.getRowNum() + 1)));
                     }
                 } else if (currentRow.getRowNum() > 0) {
                     MtoPartnerCustomerValidation mtoPartnerCustomerValidation = new MtoPartnerCustomerValidation();
@@ -206,10 +206,10 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                     Cell currentCell = currentRow.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
                     currentCell.setCellType(CellType.STRING);
                     if (CommonUtils.isNull(currentCell.getStringCellValue())) {
-                        errors.add("Source at row " + (currentRow.getRowNum() + 1) + " MSISDN missing.");
+                        errors.add(String.format(SOURCE_AT_ROW_MSISDN_MISSING, (currentRow.getRowNum() + 1)));
                     } else if (!CommonUtils.isValidMsisdn(currentCell.getStringCellValue())) {
-                        errors.add("Source at row " + (currentRow.getRowNum() + 1) +
-                            String.format(" MSISDN %s should be valid.", currentCell.getStringCellValue()));
+                        errors.add(String.format(SOURCE_AT_ROW_MSISDN_SHOULD_BE_VALID,
+                            (currentRow.getRowNum() + 1), currentCell.getStringCellValue()));
                     } else {
                         mtoPartnerCustomerValidation.setCustomerNumber(currentCell.getStringCellValue());
                     }
@@ -218,13 +218,13 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
                     currentCell.setCellType(CellType.STRING);
                     // validate process
                     if (CommonUtils.isNull(currentCell.getStringCellValue())) {
-                        errors.add("Source at row " + (currentRow.getRowNum() + 1) + " Mto Partner Id missing.");
+                        errors.add(String.format(SOURCE_AT_ROW_MTO_PARTNER_ID_MISSING, (currentRow.getRowNum() + 1)));
                     } else if (!currentCell.getStringCellValue().chars().allMatch(Character::isDigit)) {
-                        errors.add("Source at row " + (currentRow.getRowNum() + 1) + " Mto Partner Id " +
-                            currentCell.getStringCellValue() + " should be valid digit id.");
+                        errors.add(String.format(SOURCE_AT_ROW_MTO_PARTNER_ID_SHOULD_BE_VALID_DIGIT_ID,
+                             (currentRow.getRowNum() + 1), currentCell.getStringCellValue()));
                     } else if (!this.partnerRepository.existsById(Long.valueOf(currentCell.getStringCellValue()))) {
-                        errors.add("Source at row " + (currentRow.getRowNum() + 1) + " Mto Partner Id " +
-                            currentCell.getStringCellValue() + " should be valid partner id.");
+                        errors.add(String.format(SOURCE_AT_ROW_MTO_PARTNER_ID_SHOULD_BE_VALID_PARTNER_ID,
+                              (currentRow.getRowNum() + 1), currentCell.getStringCellValue()));
                     } else {
                         mtoPartnerCustomerValidation.setPartnerId(Long.valueOf(currentCell.getStringCellValue()));
                     }
@@ -238,16 +238,16 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
             }
             if (errors.size() > 0) {
                 // return work if error have
-                return CommonUtils.getResponseWithData(errors, HttpStatus.BAD_REQUEST.series().name(),
-                       "Source validation fail.");
+                return CommonUtils.getResponseWithData(errors,
+                    HttpStatus.BAD_REQUEST.series().name(), SOURCE_VALIDATION_FAIL);
             }
             // return if no error then process detail in thread
             this.processMtoPartnerCustomerFileDetail(mtoPartnerCustomerValidations);
             return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
-                "Source file successfully validate and processing in backend.");
+                    SOURCE_FILE_SUCCESSFULLY_VALIDATE_AND_PROCESSING_IN_BACKEND);
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-            "Sheet not found with (Mto Partner Customer).");
+                SHEET_NOT_FOUND_WITH_MTO_PARTNER_CUSTOMER);
     }
 
     /**
@@ -255,14 +255,15 @@ public class PartnerCustomerServiceImpl extends PoiWorkBookUtil implements Partn
      * */
     private void processMtoPartnerCustomerFileDetail(Set<MtoPartnerCustomerValidation> mtoPartnerCustomerValidations) {
         Thread thread1 = new Thread(() -> {
-            List<PartnerCustomer> partnerCustomerList = null;
+            Iterable<PartnerCustomer> partnerCustomerList = null;
             try {
                 if (mtoPartnerCustomerValidations.size() > 0) {
                     partnerCustomerList = this.partnerCustomerRepository.findAll();
                     // truncate the partner customer
                     this.partnerCustomerRepository.truncatePartnerCustomer();
                     // add new data into mto partner customer
-                    this.queryUtils.executeInsertQuery(this.queryUtils.mtoPartnerCountryQuery(mtoPartnerCustomerValidations));
+                    this.queryUtils.executeInsertQuery(
+                        this.queryUtils.mtoPartnerCountryQuery(mtoPartnerCustomerValidations));
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();

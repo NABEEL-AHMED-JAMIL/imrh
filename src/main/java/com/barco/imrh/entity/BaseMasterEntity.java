@@ -16,7 +16,8 @@ import java.sql.Timestamp;
 public class BaseMasterEntity {
 
     @Column(name = "CREATED_AT",
-    columnDefinition = "timestamp default CURRENT_TIMESTAMP", nullable = false)
+        columnDefinition = "timestamp default CURRENT_TIMESTAMP",
+        nullable = false)
     private Timestamp createdAt;
 
     @Column(name = "CREATED_BY")
@@ -69,4 +70,5 @@ public class BaseMasterEntity {
     public String toString() {
         return new Gson().toJson(this);
     }
+
 }

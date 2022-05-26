@@ -56,9 +56,8 @@ public class AppUserDevice extends BaseEntity {
 
     public AppUserDevice() {}
 
-    public AppUserDevice(Long appUserId, String deviceId, String fcmId,
-        String lastLoginTime, String deviceOs, String osVersion, String deviceModel,
-        String additionalInfo) {
+    public AppUserDevice(Long appUserId, String deviceId, String fcmId, String lastLoginTime,
+        String deviceOs, String osVersion, String deviceModel, String additionalInfo) {
         this.appUserId = appUserId;
         this.deviceId = deviceId;
         this.fcmId = fcmId;

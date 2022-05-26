@@ -3,9 +3,14 @@ INSERT INTO product (product_id, enabled, product_name) VALUES (nextval('product
 INSERT INTO product (product_id, enabled, product_name) VALUES (nextval('product_seq'), 'Y', 'Send to wallet');
 INSERT INTO product (product_id, enabled, product_name) VALUES (nextval('product_seq'), 'Y', 'Cash pickup');
 
-update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FCash pickup.svg?alt=media' where product_id = 1001;
-update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to wallet.svg?alt=media' where product_id = 1002;
-update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to bank.svg?alt=media' where product_id = 1000;
+-- product
+update product set product_image_url = 'assets/product/Send to bank.svg' where product_id = 1000;
+update product set product_image_url = 'assets/product/Send to wallet.svg' where product_id = 1002;
+update product set product_image_url = 'assets/product/Cash pickup.svg' where product_id = 1001;
+-- product
+-- update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FCash pickup.svg?alt=media' where product_id = 1001;
+-- update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to wallet.svg?alt=media' where product_id = 1002;
+-- update product set product_image_url = 'https://firebasestorage.googleapis.com/v0/b/imrh-7db21.appspot.com/o/product%2FSend to bank.svg?alt=media' where product_id = 1000;
 
 --- Country
 INSERT INTO country (country_code, enabled, country_legacy_code, country_name) VALUES ('PAK', 'Y', 'PK', 'Pakistan');
@@ -483,6 +488,8 @@ INSERT INTO partner_bank (partner_id, bank_id) VALUES (1002, 1117);
 INSERT INTO partner_bank (partner_id, bank_id) VALUES (1000, 1118);
 
 INSERT INTO profile (profile_id, enabled, profile_name) VALUES (1000, 'Y', 'IMRH Master admin profile');
+INSERT INTO profile (profile_id, enabled, profile_name) VALUES (1001, 'Y', 'IMRH user profile');
+
 INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1000, 'Y', 'Global Partner');
 INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1001, 'Y', 'Global Country');
 INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1002, 'Y', 'Global City');
@@ -495,6 +502,12 @@ INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1008, '
 INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1009, 'Y', 'Mto Wallet');
 INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1010, 'Y', 'Mto Partner Customer');
 INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1011, 'Y', 'Mto Partner Country Product');
+INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1012, 'Y', 'Manage Users');
+INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1013, 'Y', 'Manage Profile Permission');
+INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1014, 'Y', 'Manage AppSetting');
+INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1015, 'Y', 'Manage Resource');
+INSERT INTO permission (permission_id, enabled, permission_name) VALUES (1016, 'Y', 'Manage Notifaction');
+
 
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1000, 'Y', 1000, 1000);
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1001, 'Y', 1001, 1000);
@@ -508,6 +521,11 @@ INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, p
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1009, 'Y', 1009, 1000);
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1010, 'Y', 1010, 1000);
 INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1011, 'Y', 1011, 1000);
+INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1012, 'Y', 1012, 1000);
+INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1013, 'Y', 1013, 1000);
+INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1014, 'Y', 1014, 1000);
+INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1015, 'Y', 1015, 1000);
+INSERT INTO profile_permission (profile_permission_id, enabled, permission_id, profile_id) VALUES (1016, 'Y', 1016, 1000);
 
 --================1) All Product Report => Show (Name + Status + Image)=========
 SELECT product_id, product_name,
@@ -623,4 +641,3 @@ INNER JOIN PROFILE ON PROFILE.PROFILE_ID = PROFILE_PERMISSION.PROFILE_ID
 INNER JOIN PERMISSION ON PERMISSION.PERMISSION_ID = PROFILE_PERMISSION.PERMISSION_ID;
 
 --
-SELECT setval('partner_customer_seq', 42000, true);

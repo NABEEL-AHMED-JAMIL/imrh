@@ -39,66 +39,77 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     @Autowired
     private EntityQuery entityQuery;
 
-    @Value("${moiImagePath}")
+    @Value(value = MOI_IMAGE_PATH)
     private String moiImagePath;
-    @Value("${etisalatImagePath}")
+    @Value(value = ETISALAT_IMAGE_PATH)
     private String etisalatImagePath;
+
+    private final String FETCH_MTO_PARTNER_COUNTRY_VIEW_QUERY ="select * from fetch_mto_partner_country_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW_QUERY  = "select * from fetch_mto_partner_country_wallet_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW_QUERY = "select * from fetch_mto_partner_country_city_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW_QUERY = "select * from fetch_mto_partner_country_bank_view";
+    private final String FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW_QUERY = "select * from fetch_all_global_country_detail_for_report_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW= "fetch_mto_partner_country_wallet_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_VIEW = "fetch_mto_partner_country_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW = "fetch_mto_partner_country_city_view";
+    private final String FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW = "fetch_mto_partner_country_bank_view";
+    private final String FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW = "fetch_all_global_country_detail_for_report_view";
 
     private ScriptEngine engine;
     private Map<String, List<ReportHeader>> reportDetail = new HashMap<>();
 
     {
         ScriptEngineManager mgr = new ScriptEngineManager();
-        this.engine = mgr.getEngineByName("JavaScript");
+        this.engine = mgr.getEngineByName(JAVA_SCRIPT);
         int count = 0;
         List<ReportHeader> reports = new ArrayList<>();
-        reports.add(new ReportHeader(count, "Partner Id", "20*255"));
-        reports.add(new ReportHeader(++count, "Partner Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Code", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Wallet Id", "20*255"));
-        reports.add(new ReportHeader(++count, "Wallet Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Wallet Enabled", "20*255"));
-        this.reportDetail.put("fetch_mto_partner_country_wallet_view", reports);
+        reports.add(new ReportHeader(count, PARTNER_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, PARTNER_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_CODE, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, WALLET_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, WALLET_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, WALLET_ENABLED, CELL_SIZE_20_225));
+        this.reportDetail.put(FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW, reports);
 
         count = 0;
         reports = new ArrayList<>();
-        reports.add(new ReportHeader(count, "Partner Id", "20*255"));
-        reports.add(new ReportHeader(++count, "Partner Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Name", "20*255"));
-        this.reportDetail.put("fetch_mto_partner_country_view", reports);
+        reports.add(new ReportHeader(count, PARTNER_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, PARTNER_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_NAME, CELL_SIZE_20_225));
+        this.reportDetail.put(FETCH_MTO_PARTNER_COUNTRY_VIEW, reports);
 
         count = 0;
         reports = new ArrayList<>();
-        reports.add(new ReportHeader(count, "Partner Id", "20*255"));
-        reports.add(new ReportHeader(++count, "Partner Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Code", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Name", "20*255"));
-        reports.add(new ReportHeader(++count, "City Id", "20*255"));
-        reports.add(new ReportHeader(++count, "City Name", "20*255"));
-        reports.add(new ReportHeader(++count, "City Status", "20*255"));
-        this.reportDetail.put("fetch_mto_partner_country_city_view", reports);
+        reports.add(new ReportHeader(count, PARTNER_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, PARTNER_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_CODE, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, CITY_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, CITY_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, CITY_STATUS, CELL_SIZE_20_225));
+        this.reportDetail.put(FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW, reports);
 
         count = 0;
         reports = new ArrayList<>();
-        reports.add(new ReportHeader(count, "Partner Id", "20*255"));
-        reports.add(new ReportHeader(++count, "Partner Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Code", "20*255"));
-        reports.add(new ReportHeader(++count, "Country Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Bank Id", "20*255"));
-        reports.add(new ReportHeader(++count, "Bank Name", "20*255"));
-        reports.add(new ReportHeader(++count, "Bank Enabled", "20*255"));
-        this.reportDetail.put("fetch_mto_partner_country_bank_view", reports);
+        reports.add(new ReportHeader(count, PARTNER_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, PARTNER_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_CODE, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, COUNTRY_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, BANK_ID, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, BANK_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, BANK_ENABLED, CELL_SIZE_20_225));
+        this.reportDetail.put(FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW, reports);
 
         count = 0;
         reports = new ArrayList<>();
-        reports.add(new ReportHeader(count,"Country Name", "20*255"));
-        reports.add(new ReportHeader(++count,"Country Code", "20*255"));
-        reports.add(new ReportHeader(++count,"Country Status", "20*255"));
-        reports.add(new ReportHeader(++count,"Total City", "20*255"));
-        reports.add(new ReportHeader(++count,"Total Wallet", "20*255"));
-        reports.add(new ReportHeader(++count,"Total Bank", "20*255"));
-        this.reportDetail.put("fetch_all_global_country_detail_for_report_view", reports);
+        reports.add(new ReportHeader(count,COUNTRY_NAME, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count,COUNTRY_CODE, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count,COUNTRY_STATUS, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count,TOTAL_CITY, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count, TOTAL_WALLET, CELL_SIZE_20_225));
+        reports.add(new ReportHeader(++count,TOTAL_BANK, CELL_SIZE_20_225));
+        this.reportDetail.put(FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW, reports);
     }
 
     @Override
@@ -108,15 +119,15 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
         PdfWriter writer = null;
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
-            document = new Document(PageSize.A4, 20, 20, 20, 20);
+            document = new Document(PageSize.A4, MARGIN, MARGIN, MARGIN, MARGIN);
             writer = PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
             // adding image
             this.addHeaderImage(this.etisalatImagePath, document);
-            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryReport).get("title").toString(),
-                this.getParameters(Report.MtoPartnerCountryReport).get("subTitle").toString(), document);
+            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryReport).get(TITLE).toString(),
+                this.getParameters(Report.MtoPartnerCountryReport).get(SUB_TITLE).toString(), document);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryReportDetail = this.reportDetail.get("fetch_mto_partner_country_view");
+            List<ReportHeader> mtoPartnerCountryReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_VIEW);
             PdfPTable pdfPTable = this.getPdfPTable(mtoPartnerCountryReportDetail.size());
             com.itextpdf.text.Font font = this.getFont();
             mtoPartnerCountryReportDetail.forEach(report -> {
@@ -128,8 +139,8 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
                 pdfHeaderCell.setBorderWidth(0.5f);
                 pdfPTable.addCell(pdfHeaderCell);
             });
-            List<FetchMtoPartnerCountryView> fetchMtoPartnerCountryViews = this.entityQuery.executeQuery(
-                    "select * from fetch_mto_partner_country_view", FetchMtoPartnerCountryView.class);
+            List<FetchMtoPartnerCountryView> fetchMtoPartnerCountryViews =
+                this.entityQuery.executeQuery(FETCH_MTO_PARTNER_COUNTRY_VIEW_QUERY, FetchMtoPartnerCountryView.class);
             for (FetchMtoPartnerCountryView fetchMtoPartnerCountry: fetchMtoPartnerCountryViews) {
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountry.getPartnerId()), font)));
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountry.getPartnerName()), font)));
@@ -138,7 +149,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             document.add(pdfPTable);
             return byteArrayOutputStream;
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_REPORT_ERROR, ex);
             throw ex;
         } finally {
             if (writer != null) {
@@ -160,15 +171,15 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
         PdfWriter writer = null;
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
-            document = new Document(PageSize.A4, 20, 20, 20, 20);
+            document = new Document(PageSize.A4, MARGIN, MARGIN, MARGIN, MARGIN);
             writer = PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
             // adding image
             this.addHeaderImage(this.etisalatImagePath, document);
-            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryWalletReport).get("title").toString(),
-                this.getParameters(Report.MtoPartnerCountryWalletReport).get("subTitle").toString(), document);
+            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryWalletReport).get(TITLE).toString(),
+                this.getParameters(Report.MtoPartnerCountryWalletReport).get(SUB_TITLE).toString(), document);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryWalletReportDetail = this.reportDetail.get("fetch_mto_partner_country_wallet_view");
+            List<ReportHeader> mtoPartnerCountryWalletReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW);
             PdfPTable pdfPTable = this.getPdfPTable(mtoPartnerCountryWalletReportDetail.size());
             com.itextpdf.text.Font font = this.getFont();
             mtoPartnerCountryWalletReportDetail.forEach(report -> {
@@ -181,7 +192,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
                 pdfPTable.addCell(pdfHeaderCell);
             });
             List<FetchMtoPartnerCountryWalletView> fetchMtoPartnerCountryWalletViewLis = this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_wallet_view", FetchMtoPartnerCountryWalletView.class);
+                    FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW_QUERY, FetchMtoPartnerCountryWalletView.class);
             for (FetchMtoPartnerCountryWalletView fetchMtoPartnerCountryWallet: fetchMtoPartnerCountryWalletViewLis) {
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountryWallet.getPartnerId()), font)));
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountryWallet.getPartnerName()), font)));
@@ -194,7 +205,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             document.add(pdfPTable);
             return byteArrayOutputStream;
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country Wallet Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_WALLET_REPORT_ERROR, ex);
             throw ex;
         } finally {
             if (writer != null) {
@@ -216,15 +227,15 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
         PdfWriter writer = null;
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
-            document = new Document(PageSize.A4, 20, 20, 20, 20);
+            document = new Document(PageSize.A4, MARGIN, MARGIN, MARGIN, MARGIN);
             writer = PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
             // adding image
             this.addHeaderImage(this.etisalatImagePath, document);
-            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryCityReport).get("title").toString(),
-                this.getParameters(Report.MtoPartnerCountryCityReport).get("subTitle").toString(), document);
+            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryCityReport).get(TITLE).toString(),
+                this.getParameters(Report.MtoPartnerCountryCityReport).get(SUB_TITLE).toString(), document);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryCityReportDetail = this.reportDetail.get("fetch_mto_partner_country_city_view");
+            List<ReportHeader> mtoPartnerCountryCityReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW);
             PdfPTable pdfPTable = this.getPdfPTable(mtoPartnerCountryCityReportDetail.size());
             com.itextpdf.text.Font font = this.getFont();
             mtoPartnerCountryCityReportDetail.forEach(report -> {
@@ -237,7 +248,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
                 pdfPTable.addCell(pdfHeaderCell);
             });
             List<FetchMtoPartnerCountryCityView> fetchMtoPartnerCountryCityViews = this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_city_view", FetchMtoPartnerCountryCityView.class);
+                    FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW_QUERY, FetchMtoPartnerCountryCityView.class);
             for (FetchMtoPartnerCountryCityView fetchMtoPartnerCountryCity: fetchMtoPartnerCountryCityViews) {
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountryCity.getPartnerId()), font)));
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountryCity.getPartnerName()), font)));
@@ -250,7 +261,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             document.add(pdfPTable);
             return byteArrayOutputStream;
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country City Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_CITY_REPORT_ERROR, ex);
             throw ex;
         } finally {
             if (writer != null) {
@@ -272,15 +283,15 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
         PdfWriter writer = null;
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
-            document = new Document(PageSize.A4, 20, 20, 20, 20);
+            document = new Document(PageSize.A4, MARGIN, MARGIN, MARGIN, MARGIN);
             writer = PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
             // adding image
             this.addHeaderImage(this.etisalatImagePath, document);
-            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryBankReport).get("title").toString(),
-                this.getParameters(Report.MtoPartnerCountryBankReport).get("subTitle").toString(), document);
+            this.addHeadingDetail(this.getParameters(Report.MtoPartnerCountryBankReport).get(TITLE).toString(),
+                this.getParameters(Report.MtoPartnerCountryBankReport).get(SUB_TITLE).toString(), document);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryBankReportDetail = this.reportDetail.get("fetch_mto_partner_country_bank_view");
+            List<ReportHeader> mtoPartnerCountryBankReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW);
             PdfPTable pdfPTable = this.getPdfPTable(mtoPartnerCountryBankReportDetail.size());
             com.itextpdf.text.Font font = this.getFont();
             mtoPartnerCountryBankReportDetail.forEach(report -> {
@@ -293,7 +304,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
                 pdfPTable.addCell(pdfHeaderCell);
             });
             List<FetchMtoPartnerCountryBankView> fetchMtoPartnerCountryBankViewList = this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_bank_view", FetchMtoPartnerCountryBankView.class);
+                    FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW_QUERY, FetchMtoPartnerCountryBankView.class);
             for (FetchMtoPartnerCountryBankView fetchMtoPartnerCountryBankView: fetchMtoPartnerCountryBankViewList) {
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountryBankView.getPartnerId()), font)));
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchMtoPartnerCountryBankView.getPartnerName()), font)));
@@ -306,7 +317,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             document.add(pdfPTable);
             return byteArrayOutputStream;
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country Bank Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_BANK_REPORT_ERROR, ex);
             throw ex;
         } finally {
             if (writer != null) {
@@ -329,15 +340,15 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
         PdfWriter writer = null;
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
-            document = new Document(PageSize.A4, 20, 20, 20, 20);
+            document = new Document(PageSize.A4, MARGIN, MARGIN, MARGIN, MARGIN);
             writer = PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
             // adding image
             this.addHeaderImage(this.etisalatImagePath, document);
-            this.addHeadingDetail(this.getParameters(Report.GlobalCountryDetailReport).get("title").toString(),
-                this.getParameters(Report.GlobalCountryDetailReport).get("subTitle").toString(), document);
+            this.addHeadingDetail(this.getParameters(Report.GlobalCountryDetailReport).get(TITLE).toString(),
+                this.getParameters(Report.GlobalCountryDetailReport).get(SUB_TITLE).toString(), document);
             //===============================Header-Field======================
-            List<ReportHeader> globalCountryDetailReportDetail = this.reportDetail.get("fetch_all_global_country_detail_for_report_view");
+            List<ReportHeader> globalCountryDetailReportDetail = this.reportDetail.get(FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW);
             PdfPTable pdfPTable = this.getPdfPTable(globalCountryDetailReportDetail.size());
             com.itextpdf.text.Font font = this.getFont();
             globalCountryDetailReportDetail.forEach(report -> {
@@ -350,7 +361,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
                 pdfPTable.addCell(pdfHeaderCell);
             });
             List<FetchAllGlobalCountryDetailForReportView> fetchAllGlobalCountryDetailForReportViews = this.entityQuery.executeQuery(
-                "select * from fetch_all_global_country_detail_for_report_view", FetchAllGlobalCountryDetailForReportView.class);
+                    FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW_QUERY, FetchAllGlobalCountryDetailForReportView.class);
             for (FetchAllGlobalCountryDetailForReportView fetchAllGlobalCountryDetailForReport: fetchAllGlobalCountryDetailForReportViews) {
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchAllGlobalCountryDetailForReport.getCountryName()), font)));
                 pdfPTable.addCell(new PdfPCell(new Phrase(String.valueOf(fetchAllGlobalCountryDetailForReport.getCountryCode()), font)));
@@ -362,7 +373,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             document.add(pdfPTable);
             return byteArrayOutputStream;
         } catch (Exception ex) {
-            logger.error("### An error occurred while export All Global Country Detail Report ### ", ex);
+            logger.error(ALL_GLOBAL_COUNTRY_DETAIL_REPORT_ERROR, ex);
             throw ex;
         } finally {
             if (writer != null) {
@@ -382,26 +393,27 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     public ByteArrayInputStream fetchMtoPartnerCountryViewXlsx() throws IOException, ScriptException {
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet mtoPartnerCountryReportSheet = workbook.createSheet("MtoPartner Country Report");
+            XSSFSheet mtoPartnerCountryReportSheet = workbook.createSheet(MTO_PARTNER_COUNTRY_REPORT_SHEET);
             Row row = mtoPartnerCountryReportSheet.createRow(0);
             CellStyle style = this.cellHeadingBackgroundColorStyle(IndexedColors.BLACK.getIndex(), mtoPartnerCountryReportSheet);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryReportDetail = this.reportDetail.get("fetch_mto_partner_country_view");
+            List<ReportHeader> mtoPartnerCountryReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_VIEW);
             for (ReportHeader reportHeader: mtoPartnerCountryReportDetail) {
                 this.fillHeading(mtoPartnerCountryReportSheet, row, style, reportHeader.getIndex(),
                     Integer.valueOf(String.valueOf(this.engine.eval(reportHeader.getFiledWidth()))),
-                        reportHeader.getFiledName(), null, false);
+                    reportHeader.getFiledName(), null, false);
             }
             //===============================Detail-Field======================
             Integer rowCount = 1;
             style = this.cellBodyColorStyle(mtoPartnerCountryReportSheet);
             List<FetchMtoPartnerCountryView> fetchMtoPartnerCountryViews = this.entityQuery.executeQuery(
-            "select * from fetch_mto_partner_country_view", FetchMtoPartnerCountryView.class);
+                 FETCH_MTO_PARTNER_COUNTRY_VIEW_QUERY, FetchMtoPartnerCountryView.class);
             for (FetchMtoPartnerCountryView fetchMtoPartnerCountry: fetchMtoPartnerCountryViews) {
+                int fillCellCount = 0;
                 row = mtoPartnerCountryReportSheet.createRow(rowCount);
-                this.fillCellValue(0, row, style, fetchMtoPartnerCountry.getPartnerId());
-                this.fillCellValue(1, row, style, fetchMtoPartnerCountry.getPartnerName());
-                this.fillCellValue(2, row, style, fetchMtoPartnerCountry.getCountryName());
+                this.fillCellValue(fillCellCount, row, style, fetchMtoPartnerCountry.getPartnerId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountry.getPartnerName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountry.getCountryName());
                 rowCount++;
             }
             //========================End-Work-Book==================
@@ -409,7 +421,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_REPORT_ERROR, ex);
             throw ex;
         }
     }
@@ -418,11 +430,11 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     public ByteArrayInputStream fetchMtoPartnerCountryWalletViewXlsx() throws IOException, ScriptException {
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet mtoPartnerCountryWalletReportSheet = workbook.createSheet("MtoPartner Country Wallet Report");
+            XSSFSheet mtoPartnerCountryWalletReportSheet = workbook.createSheet(MTO_PARTNER_COUNTRY_WALLET_REPORT_SHEET);
             Row row = mtoPartnerCountryWalletReportSheet.createRow(0);
             CellStyle style = this.cellHeadingBackgroundColorStyle(IndexedColors.BLACK.getIndex(), mtoPartnerCountryWalletReportSheet);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryWalletReportDetail = this.reportDetail.get("fetch_mto_partner_country_wallet_view");
+            List<ReportHeader> mtoPartnerCountryWalletReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW);
             for (ReportHeader report: mtoPartnerCountryWalletReportDetail) {
                 try {
                     this.fillHeading(mtoPartnerCountryWalletReportSheet, row, style, report.getIndex(),
@@ -436,16 +448,17 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             Integer rowCount = 1;
             style = this.cellBodyColorStyle(mtoPartnerCountryWalletReportSheet);
             List<FetchMtoPartnerCountryWalletView> fetchMtoPartnerCountryWalletViews = this.entityQuery.executeQuery(
-                    "select * from fetch_mto_partner_country_wallet_view", FetchMtoPartnerCountryWalletView.class);
+                    FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW_QUERY, FetchMtoPartnerCountryWalletView.class);
             for (FetchMtoPartnerCountryWalletView fetchMtoPartnerCountryWallet: fetchMtoPartnerCountryWalletViews) {
+                int fillCellCount = 0;
                 row = mtoPartnerCountryWalletReportSheet.createRow(rowCount);
-                this.fillCellValue(0, row, style, fetchMtoPartnerCountryWallet.getPartnerId());
-                this.fillCellValue(1, row, style, fetchMtoPartnerCountryWallet.getPartnerName());
-                this.fillCellValue(2, row, style, fetchMtoPartnerCountryWallet.getCountryCode());
-                this.fillCellValue(3, row, style, fetchMtoPartnerCountryWallet.getCountryName());
-                this.fillCellValue(4, row, style, fetchMtoPartnerCountryWallet.getWalletId());
-                this.fillCellValue(5, row, style, fetchMtoPartnerCountryWallet.getWalletName());
-                this.fillCellValue(6, row, style, fetchMtoPartnerCountryWallet.getWalletEnabled());
+                this.fillCellValue(fillCellCount, row, style, fetchMtoPartnerCountryWallet.getPartnerId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryWallet.getPartnerName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryWallet.getCountryCode());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryWallet.getCountryName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryWallet.getWalletId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryWallet.getWalletName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryWallet.getWalletEnabled());
                 rowCount++;
             }
             //========================End-Work-Book==================
@@ -453,7 +466,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country Wallet Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_WALLET_REPORT_ERROR, ex);
             throw ex;
         }
     }
@@ -462,11 +475,11 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     public ByteArrayInputStream fetchMtoPartnerCountryCityViewXlsx() throws IOException, ScriptException {
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet mtoPartnerCountryCityReportSheet = workbook.createSheet("MtoPartner Country City Report");
+            XSSFSheet mtoPartnerCountryCityReportSheet = workbook.createSheet(MTO_PARTNER_COUNTRY_CITY_REPORT_SHEET);
             Row row = mtoPartnerCountryCityReportSheet.createRow(0);
             CellStyle style = this.cellHeadingBackgroundColorStyle(IndexedColors.BLACK.getIndex(), mtoPartnerCountryCityReportSheet);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryCityReportDetail = this.reportDetail.get("fetch_mto_partner_country_city_view");
+            List<ReportHeader> mtoPartnerCountryCityReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW);
             for (ReportHeader reportHeader: mtoPartnerCountryCityReportDetail) {
                 this.fillHeading(mtoPartnerCountryCityReportSheet, row, style, reportHeader.getIndex(),
                     Integer.valueOf(String.valueOf(this.engine.eval(reportHeader.getFiledWidth()))),
@@ -476,16 +489,17 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             Integer rowCount = 1;
             style = this.cellBodyColorStyle(mtoPartnerCountryCityReportSheet);
             List<FetchMtoPartnerCountryCityView> fetchMtoPartnerCountryCityViews = this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_city_view", FetchMtoPartnerCountryCityView.class);
+                    FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW_QUERY, FetchMtoPartnerCountryCityView.class);
             for (FetchMtoPartnerCountryCityView fetchMtoPartnerCountryCity: fetchMtoPartnerCountryCityViews) {
+                int fillCellCount = 0;
                 row = mtoPartnerCountryCityReportSheet.createRow(rowCount);
-                this.fillCellValue(0, row, style, fetchMtoPartnerCountryCity.getPartnerId());
-                this.fillCellValue(1, row, style, fetchMtoPartnerCountryCity.getPartnerName());
-                this.fillCellValue(2, row, style, fetchMtoPartnerCountryCity.getCountryCode());
-                this.fillCellValue(3, row, style, fetchMtoPartnerCountryCity.getCountryName());
-                this.fillCellValue(4, row, style, fetchMtoPartnerCountryCity.getCityId());
-                this.fillCellValue(5, row, style, fetchMtoPartnerCountryCity.getCityName());
-                this.fillCellValue(6, row, style, fetchMtoPartnerCountryCity.getCityEnabled());
+                this.fillCellValue(fillCellCount, row, style, fetchMtoPartnerCountryCity.getPartnerId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryCity.getPartnerName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryCity.getCountryCode());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryCity.getCountryName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryCity.getCityId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryCity.getCityName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryCity.getCityEnabled());
                 rowCount++;
             }
             //========================End-Work-Book==================
@@ -493,7 +507,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country City Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_CITY_REPORT_ERROR, ex);
             throw ex;
         }
     }
@@ -502,11 +516,11 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     public ByteArrayInputStream fetchMtoPartnerCountryBankViewXlsx() throws IOException, ScriptException {
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet mtoPartnerCountryBankReportSheet = workbook.createSheet("MtoPartner Country Bank Report");
+            XSSFSheet mtoPartnerCountryBankReportSheet = workbook.createSheet(MTO_PARTNER_COUNTRY_BANK_REPORT_SHEET);
             Row row = mtoPartnerCountryBankReportSheet.createRow(0);
             CellStyle style = this.cellHeadingBackgroundColorStyle(IndexedColors.BLACK.getIndex(), mtoPartnerCountryBankReportSheet);
             //===============================Header-Field======================
-            List<ReportHeader> mtoPartnerCountryBankReportDetail = this.reportDetail.get("fetch_mto_partner_country_bank_view");
+            List<ReportHeader> mtoPartnerCountryBankReportDetail = this.reportDetail.get(FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW);
             for (ReportHeader reportHeader: mtoPartnerCountryBankReportDetail) {
                 this.fillHeading(mtoPartnerCountryBankReportSheet, row, style, reportHeader.getIndex(),
                     Integer.valueOf(String.valueOf(this.engine.eval(reportHeader.getFiledWidth()))),
@@ -516,16 +530,17 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             Integer rowCount = 1;
             style = this.cellBodyColorStyle(mtoPartnerCountryBankReportSheet);
             List<FetchMtoPartnerCountryBankView> fetchMtoPartnerCountryBankViews = this.entityQuery.executeQuery(
-                    "select * from fetch_mto_partner_country_bank_view", FetchMtoPartnerCountryBankView.class);
+                 FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW_QUERY, FetchMtoPartnerCountryBankView.class);
             for (FetchMtoPartnerCountryBankView fetchMtoPartnerCountryBankView: fetchMtoPartnerCountryBankViews) {
+                int fillCellCount = 0;
                 row = mtoPartnerCountryBankReportSheet.createRow(rowCount);
-                this.fillCellValue(0, row, style, fetchMtoPartnerCountryBankView.getPartnerId());
-                this.fillCellValue(1, row, style, fetchMtoPartnerCountryBankView.getPartnerName());
-                this.fillCellValue(2, row, style, fetchMtoPartnerCountryBankView.getCountryCode());
-                this.fillCellValue(3, row, style, fetchMtoPartnerCountryBankView.getCountryName());
-                this.fillCellValue(4, row, style, fetchMtoPartnerCountryBankView.getBankId());
-                this.fillCellValue(5, row, style, fetchMtoPartnerCountryBankView.getBankName());
-                this.fillCellValue(6, row, style, fetchMtoPartnerCountryBankView.getBankEnabled());
+                this.fillCellValue(fillCellCount, row, style, fetchMtoPartnerCountryBankView.getPartnerId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryBankView.getPartnerName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryBankView.getCountryCode());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryBankView.getCountryName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryBankView.getBankId());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryBankView.getBankName());
+                this.fillCellValue(++fillCellCount, row, style, fetchMtoPartnerCountryBankView.getBankEnabled());
                 rowCount++;
             }
             //========================End-Work-Book==================
@@ -533,7 +548,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());
         } catch (Exception ex) {
-            logger.error("### An error occurred while export MtoPartner Country Bank Report ### ", ex);
+            logger.error(MTO_PARTNER_COUNTRY_BANK_REPORT_ERROR, ex);
             throw ex;
         }
     }
@@ -542,11 +557,11 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
     public ByteArrayInputStream fetchAllGlobalCountryDetailForReportViewXlsx() throws IOException, ScriptException {
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet globalCountryDetailReportSheet = workbook.createSheet("Global Country Detail Report");
+            XSSFSheet globalCountryDetailReportSheet = workbook.createSheet(GLOBAL_COUNTRY_DETAIL_REPORT_SHEET);
             Row row = globalCountryDetailReportSheet.createRow(0);
             CellStyle style = this.cellHeadingBackgroundColorStyle(IndexedColors.BLACK.getIndex(), globalCountryDetailReportSheet);
             //===============================Header-Field======================
-            List<ReportHeader> globalCountryDetailReportDetail = this.reportDetail.get("fetch_all_global_country_detail_for_report_view");
+            List<ReportHeader> globalCountryDetailReportDetail = this.reportDetail.get(FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW);
             for (ReportHeader reportHeader: globalCountryDetailReportDetail) {
                 this.fillHeading(globalCountryDetailReportSheet, row, style, reportHeader.getIndex(),
                     Integer.valueOf(String.valueOf(this.engine.eval(reportHeader.getFiledWidth()))), reportHeader.getFiledName() ,
@@ -556,15 +571,16 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             Integer rowCount = 1;
             style = this.cellBodyColorStyle(globalCountryDetailReportSheet);
             List<FetchAllGlobalCountryDetailForReportView> fetchAllGlobalCountryDetailForReportViews = this.entityQuery.executeQuery(
-                "select * from fetch_all_global_country_detail_for_report_view", FetchAllGlobalCountryDetailForReportView.class);
+                 FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW_QUERY, FetchAllGlobalCountryDetailForReportView.class);
             for (FetchAllGlobalCountryDetailForReportView fetchAllGlobalCountryDetailForReport: fetchAllGlobalCountryDetailForReportViews) {
+                int fillCellCount = 0;
                 row = globalCountryDetailReportSheet.createRow(rowCount);
-                this.fillCellValue(0, row, style, fetchAllGlobalCountryDetailForReport.getCountryName());
-                this.fillCellValue(1, row, style, fetchAllGlobalCountryDetailForReport.getCountryCode());
-                this.fillCellValue(2, row, style, fetchAllGlobalCountryDetailForReport.getCountryStatus());
-                this.fillCellValue(3, row, style, fetchAllGlobalCountryDetailForReport.getTotalCity());
-                this.fillCellValue(4, row, style, fetchAllGlobalCountryDetailForReport.getTotalWallet());
-                this.fillCellValue(5, row, style, fetchAllGlobalCountryDetailForReport.getTotalBank());
+                this.fillCellValue(fillCellCount, row, style, fetchAllGlobalCountryDetailForReport.getCountryName());
+                this.fillCellValue(++fillCellCount, row, style, fetchAllGlobalCountryDetailForReport.getCountryCode());
+                this.fillCellValue(++fillCellCount, row, style, fetchAllGlobalCountryDetailForReport.getCountryStatus());
+                this.fillCellValue(++fillCellCount, row, style, fetchAllGlobalCountryDetailForReport.getTotalCity());
+                this.fillCellValue(++fillCellCount, row, style, fetchAllGlobalCountryDetailForReport.getTotalWallet());
+                this.fillCellValue(++fillCellCount, row, style, fetchAllGlobalCountryDetailForReport.getTotalBank());
                 rowCount++;
             }
             //========================End-Work-Book==================
@@ -572,7 +588,7 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());
         } catch (Exception ex) {
-            logger.error("### An error occurred while export All Global Country Detail Report ### ", ex);
+            logger.error(ALL_GLOBAL_COUNTRY_DETAIL_REPORT_ERROR, ex);
             throw ex;
         }
     }
@@ -584,35 +600,34 @@ public class ReportServiceImpl extends PoiWorkBookUtil implements ReportService 
             JasperReport jasperReport = null;
             if (report.equals(Report.MtoPartnerCountryReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_view", FetchMtoPartnerCountryView.class));
+                    FETCH_MTO_PARTNER_COUNTRY_VIEW_QUERY, FetchMtoPartnerCountryView.class));
                 jasperReport = this.getJasperReport(report, true);
             } else if (report.equals(Report.MtoPartnerCountryCityReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_city_view", FetchMtoPartnerCountryCityView.class));
+                    FETCH_MTO_PARTNER_COUNTRY_CITY_VIEW_QUERY, FetchMtoPartnerCountryCityView.class));
                 jasperReport = this.getJasperReport(report, true);
             } else if (report.equals(Report.MtoPartnerCountryWalletReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_wallet_view", FetchMtoPartnerCountryWalletView.class));
+                    FETCH_MTO_PARTNER_COUNTRY_WALLET_VIEW_QUERY, FetchMtoPartnerCountryWalletView.class));
                 jasperReport = this.getJasperReport(report, false);
             } else if (report.equals(Report.MtoPartnerCountryBankReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
-                "select * from fetch_mto_partner_country_bank_view", FetchMtoPartnerCountryBankView.class));
+                    FETCH_MTO_PARTNER_COUNTRY_BANK_VIEW_QUERY, FetchMtoPartnerCountryBankView.class));
                 jasperReport = this.getJasperReport(report, true);
             } else if (report.equals(Report.GlobalCountryDetailReport)) {
                 jrDataSource = new JRBeanCollectionDataSource(this.entityQuery.executeQuery(
-                "select * from fetch_all_global_country_detail_for_report_view", FetchAllGlobalCountryDetailForReportView.class));
+                    FETCH_ALL_GLOBAL_COUNTRY_DETAIL_FOR_REPORT_VIEW_QUERY, FetchAllGlobalCountryDetailForReportView.class));
                 jasperReport = this.getJasperReport(report, true);
             }
             /* Map to hold Jasper report Parameters */
             Map<String, Object> parameters = this.getParameters(report);
-            parameters.put("imagePath", this.moiImagePath);
-            parameters.put("itemDataSource", jrDataSource);
-            parameters.put("userDetail", new UserDetail());
-            byte[] jasperByte = JasperExportManager.exportReportToPdf(
-                JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource()));
-            return jasperByte;
+            parameters.put(IMAGE_PATH, this.moiImagePath);
+            parameters.put(ITEM_DATA_SOURCE, jrDataSource);
+            parameters.put(USER_DETAIL, new UserDetail());
+            return JasperExportManager.exportReportToPdf(JasperFillManager
+                   .fillReport(jasperReport, parameters, new JREmptyDataSource()));
         } catch (Exception ex) {
-            logger.error("### An error occurred while export downloadJasperFile ### ", ex);
+            logger.error(DOWNLOAD_JASPER_FILE_ERROR, ex);
             throw ex;
         }
     }

@@ -1,5 +1,10 @@
 package com.barco.imrh.enums;
 
+import com.google.gson.Gson;
+
+/**
+ * @author Nabeel Ahmed
+ */
 public enum Report {
 
     MtoPartnerCountryReport("/report/mto_partner_country_report.jasper", "/report/mto_partner_country_report.jrxml"),
@@ -15,4 +20,18 @@ public enum Report {
         this.reportPathJasper = reportPathJasper;
         this.reportPathJrXml = reportPathJrXml;
     }
+
+    public String getReportPathJasper() {
+        return reportPathJasper;
+    }
+
+    public String getReportPathJrXml() {
+        return reportPathJrXml;
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
+    }
+
 }

@@ -39,17 +39,17 @@ public class CityServiceImpl implements CityService {
     public GenericResponseDto<Object> createCity(CityDto cityDto) {
         if (CommonUtils.isNull(cityDto.getCityName())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "City name missing.");
+                HttpStatus.BAD_REQUEST.series().name(), CITY_NAME_MISSING);
         } else if (this.cityRepository.findByCityName(cityDto.getCityName()).isPresent()) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "City name already exist.");
+                HttpStatus.BAD_REQUEST.series().name(), CITY_NAME_ALREADY_EXIST);
         }
         if (!CommonUtils.isNull(cityDto.getCountry()) &&
             !CommonUtils.isNull(cityDto.getCountry().getCountryCode())) {
             Optional<Country> country = this.countryRepository.findById(cityDto.getCountry().getCountryCode());
             if (!country.isPresent()) {
                 return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Country not exist.");
+                        HttpStatus.BAD_REQUEST.series().name(), COUNTRY_NOT_EXIST);
             }
             City city = new City();
             city.setCityName(cityDto.getCityName());
@@ -57,34 +57,33 @@ public class CityServiceImpl implements CityService {
             city.setCountry(country.get());
             this.cityRepository.save(city);
             return CommonUtils.getResponseWithData(cityDto, HttpStatus.OK.series().name(),
-                "City create successfully");
+                    CITY_CREATE_SUCCESSFULLY);
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "Country code missing.");
+                HttpStatus.BAD_REQUEST.series().name(), COUNTRY_CODE_MISSING);
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableCity(CityDto cityDto) {
         if (CommonUtils.isNull(cityDto.getCityId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "City id missing.");
+                HttpStatus.BAD_REQUEST.series().name(), CITY_ID_MISSING);
         }
         Optional<City> city = this.cityRepository.findById(cityDto.getCityId());
         if (city.isPresent()) {
             city.get().setEnabled(cityDto.getEnabled().name());
             this.cityRepository.save(city.get());
             return CommonUtils.getResponseWithData(cityDto, HttpStatus.OK.series().name(),
-                    String.format("City update successfully with %d.", cityDto.getCityId()));
+                    String.format(CITY_UPDATE_SUCCESSFULLY_WITH_ID, cityDto.getCityId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("City not found with %d.", cityDto.getCityId()));
+                String.format(CITY_NOT_FOUND_WITH_ID, cityDto.getCityId()));
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableAllCityByCountryCode(String countryCode, Enable enable) {
-        return CommonUtils.getResponseWithData(this.cityRepository
-                .setAllCityStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
-        "All City update successfully.");
+        return CommonUtils.getResponseWithData(this.cityRepository.setAllCityStatusByCountryCode(
+               enable.name(), countryCode), HttpStatus.OK.series().name(), ALL_CITY_UPDATE_SUCCESSFULLY);
     }
 
     @Override
@@ -102,23 +101,23 @@ public class CityServiceImpl implements CityService {
             countryDto.setCountryImageUrl(city.get().getCountry().getCountryImageUrl());
             cityDto.setCountry(countryDto);
             return CommonUtils.getResponseWithData(cityDto, HttpStatus.OK.series().name(),
-                    String.format("City find successfully with %d.", ctyId));
+                    String.format(CITY_FIND_SUCCESSFULLY_WITH_ID, ctyId));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("City not found with %d.", ctyId));
+                String.format(CITY_NOT_FOUND_WITH_ID, ctyId));
     }
 
     @Override
     public GenericResponseDto<Object> updateCity(CityDto cityDto) {
         if (CommonUtils.isNull(cityDto.getCityId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "City id missing.");
+                HttpStatus.BAD_REQUEST.series().name(), CITY_ID_MISSING);
         } else if (CommonUtils.isNull(cityDto.getCityName())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "City name missing.");
+                HttpStatus.BAD_REQUEST.series().name(), CITY_NAME_MISSING);
         } else if (this.cityRepository.findByCityName(cityDto.getCityName()).isPresent()) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "City name already exist.");
+                HttpStatus.BAD_REQUEST.series().name(), CITY_NAME_ALREADY_EXIST);
         }
         Optional<City> city = this.cityRepository.findById(cityDto.getCityId());
         if (city.isPresent()) {
@@ -126,10 +125,10 @@ public class CityServiceImpl implements CityService {
             city.get().setEnabled(cityDto.getEnabled().name());
             this.cityRepository.save(city.get());
             return CommonUtils.getResponseWithData(cityDto, HttpStatus.OK.series().name(),
-                    String.format("City update successfully with %d.", cityDto.getCityId()));
+                   String.format(CITY_UPDATE_SUCCESSFULLY_WITH_ID, cityDto.getCityId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("City not found with %d.", cityDto.getCityId()));
+                String.format(CITY_NOT_FOUND_WITH_ID, cityDto.getCityId()));
     }
 
     @Override
@@ -137,7 +136,7 @@ public class CityServiceImpl implements CityService {
         this.partnerRepository.deletePartnerCityByCityId(cityId);
         this.cityRepository.deleteById(cityId);
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
-                String.format("City delete successfully with %d.", cityId));
+                String.format(CITY_DELETE_SUCCESSFULLY_WITH_ID, cityId));
     }
 
 }

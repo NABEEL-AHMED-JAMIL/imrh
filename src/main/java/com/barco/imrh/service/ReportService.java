@@ -15,7 +15,49 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Nabeel Ahmed
+ */
 public interface ReportService {
+
+    public static final Integer MARGIN = 20;
+    public static final String MOI_IMAGE_PATH = "${moiImagePath}";
+    public static final String ETISALAT_IMAGE_PATH = "${etisalatImagePath}";
+    public static final String JAVA_SCRIPT = "JavaScript";
+    public static final String CELL_SIZE_20_225= "20*255";
+    public static final String PARTNER_ID = "Partner Id";
+    public static final String PARTNER_NAME = "Partner Name";
+    public static final String COUNTRY_CODE = "Country Code";
+    public static final String COUNTRY_NAME = "Country Name";
+    public static final String CITY_ID = "City Id";
+    public static final String CITY_NAME = "City Name";
+    public static final String CITY_STATUS = "City Status";
+    public static final String WALLET_ID = "Wallet Id";
+    public static final String WALLET_NAME = "Wallet Name";
+    public static final String WALLET_ENABLED = "Wallet Enabled";
+    public static final String BANK_ID = "Bank Id";
+    public static final String BANK_NAME = "Bank Name";
+    public static final String BANK_ENABLED = "Bank Enabled";
+    public static final String COUNTRY_STATUS = "Country Status";
+    public static final String TOTAL_CITY = "Total City";
+    public static final String TOTAL_WALLET = "Total Wallet";
+    public static final String TOTAL_BANK = "Total Bank";
+    public static final String TITLE = "title";
+    public static final String SUB_TITLE = "subTitle";
+    public static final String IMAGE_PATH = "imagePath";
+    public static final String ITEM_DATA_SOURCE = "itemDataSource";
+    public static final String USER_DETAIL = "userDetail";
+    public static final String MTO_PARTNER_COUNTRY_REPORT_SHEET = "MtoPartner Country Report";
+    public static final String MTO_PARTNER_COUNTRY_WALLET_REPORT_SHEET = "MtoPartner Country Wallet Report";
+    public static final String MTO_PARTNER_COUNTRY_CITY_REPORT_SHEET = "MtoPartner Country City Report";
+    public static final String MTO_PARTNER_COUNTRY_BANK_REPORT_SHEET = "MtoPartner Country Bank Report";
+    public static final String GLOBAL_COUNTRY_DETAIL_REPORT_SHEET = "Global Country Detail Report";
+    public static final String MTO_PARTNER_COUNTRY_REPORT_ERROR = "### An error occurred while export MtoPartner Country Report ### ";
+    public static final String MTO_PARTNER_COUNTRY_WALLET_REPORT_ERROR = "### An error occurred while export MtoPartner Country Wallet Report ### ";
+    public static final String MTO_PARTNER_COUNTRY_CITY_REPORT_ERROR = "### An error occurred while export MtoPartner Country City Report ### ";
+    public static final String MTO_PARTNER_COUNTRY_BANK_REPORT_ERROR = "### An error occurred while export MtoPartner Country Bank Report ### ";
+    public static final String ALL_GLOBAL_COUNTRY_DETAIL_REPORT_ERROR = "### An error occurred while export All Global Country Detail Report ### ";
+    public static final String DOWNLOAD_JASPER_FILE_ERROR = "### An error occurred while export downloadJasperFile ### ";
 
     // pdf
     public ByteArrayOutputStream fetchMtoPartnerCountryViewPdf() throws DocumentException, IOException;
@@ -27,7 +69,6 @@ public interface ReportService {
     public ByteArrayOutputStream fetchMtoPartnerCountryBankViewPdf() throws DocumentException, IOException;
 
     public ByteArrayOutputStream fetchAllGlobalCountryDetailForReportViewPdf() throws DocumentException, IOException;
-
     // xlsx
     public ByteArrayInputStream fetchMtoPartnerCountryViewXlsx() throws IOException, ScriptException;
 

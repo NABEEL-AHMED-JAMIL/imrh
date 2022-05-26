@@ -2,9 +2,10 @@ package com.barco.imrh.repository;
 
 import com.barco.imrh.repository.projection.CountryProjection;
 import com.barco.imrh.entity.Country;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.barco.imrh.util.ConstantUtils.CountryRepositoryConst;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -14,15 +15,13 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public interface CountryRepository extends JpaRepository<Country, String> {
+public interface CountryRepository extends CrudRepository<Country, String> {
 
-    @Query(value = "SELECT COUNTRY_CODE AS countryCode, COUNTRY_NAME AS countryName, COUNTRY_IMAGE_URl AS countryImageUrl,\n" +
-        "COUNTRY_LEGACY_CODE AS countryLegacyCode, ENABLED AS enabled FROM COUNTRY ORDER BY COUNTRY_NAME ASC", nativeQuery = true)
-    @Transactional(readOnly = true)
+    @Query(value = CountryRepositoryConst.FIND_ALL_COUNTRY, nativeQuery = true)
     public List<CountryProjection> findAllCountry();
 
     @Modifying
-    @Query("UPDATE Country country SET country.enabled = ?1")
+    @Query(value = CountryRepositoryConst.SET_ALL_COUNTRY_STATUS)
     public int setAllCountryStatus(String enabled);
 
 }

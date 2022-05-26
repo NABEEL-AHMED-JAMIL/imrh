@@ -5,6 +5,8 @@ import com.barco.imrh.dto.Enable;
 import com.barco.imrh.dto.GenericResponseDto;
 import com.barco.imrh.service.CityService;
 import com.barco.imrh.util.CommonUtils;
+import com.barco.imrh.util.ConstantUtils;
+import com.barco.imrh.util.ConstantUtils.CityControllerConst;
 import com.barco.imrh.util.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/imrh/city")
+@CrossOrigin(origins = CityControllerConst.ORIGINS)
+@RequestMapping(CityControllerConst.IMRH_CITY)
 public class CityController {
 
     public Logger logger = LogManager.getLogger(CityController.class);
@@ -26,7 +28,7 @@ public class CityController {
     private CityService cityService;
 
     // working
-    @RequestMapping(path = "/createCity", method = RequestMethod.POST)
+    @RequestMapping(path = CityControllerConst.CREATE_CITY, method = RequestMethod.POST)
     public GenericResponseDto<Object> createCity(@RequestBody CityDto cityDto) {
         try {
             logger.info("Request createCity cityDto ==> " + cityDto);
@@ -34,13 +36,13 @@ public class CityController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while createCity", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/enableDisableCity", method = RequestMethod.POST)
+    @RequestMapping(path = CityControllerConst.ENABLE_DISABLE_CITY, method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableCity(@RequestBody CityDto cityDto) {
         try {
             logger.info("Request enableDisableCity cityDto ==> " + cityDto);
@@ -48,15 +50,14 @@ public class CityController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableCity", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/enableDisableAllCityByCountryCode", method = RequestMethod.POST)
-    public GenericResponseDto<Object> enableDisableAllCityByCountryCode(
-        @RequestParam(name = "countryCode") String countryCode,
+    @RequestMapping(path = CityControllerConst.ENABLE_DISABLE_ALL_CITY_BY_COUNTRY_CODE, method = RequestMethod.POST)
+    public GenericResponseDto<Object> enableDisableAllCityByCountryCode(@RequestParam(name = "countryCode") String countryCode,
         @RequestParam(name = "enable") Enable enable) {
         try {
             logger.info("Request enableDisableAllCityByCountryCode ==> " + String.format("countryCode %s enable %s", countryCode, enable.name()));
@@ -64,13 +65,13 @@ public class CityController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableAllCityByCountryCode", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/findByCityId", method = RequestMethod.GET)
+    @RequestMapping(path = CityControllerConst.FIND_BY_CITY_ID, method = RequestMethod.GET)
     public GenericResponseDto<Object> findByCityId(@RequestParam(name = "ctyId") Long ctyId) {
         try {
             logger.info("Request findByCityId ctyId ==> " + ctyId);
@@ -78,13 +79,13 @@ public class CityController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while findByCityId", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/updateCity", method = RequestMethod.POST)
+    @RequestMapping(path = CityControllerConst.UPDATE_CITY, method = RequestMethod.POST)
     public GenericResponseDto<Object> updateCity(@RequestBody CityDto cityDto) {
         try {
             logger.info("Request updateCity ==> " + cityDto);
@@ -92,13 +93,13 @@ public class CityController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while updateCity", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/deleteCity", method = RequestMethod.POST)
+    @RequestMapping(path = CityControllerConst.DELETE_CITY, method = RequestMethod.POST)
     public GenericResponseDto<Object> deleteCity(@RequestParam(name = "cityId") Long cityId) {
         try {
             logger.info("Request deleteCity cityId ==> " + cityId);
@@ -106,8 +107,8 @@ public class CityController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while deleteCity", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 

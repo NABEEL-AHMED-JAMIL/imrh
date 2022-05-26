@@ -5,6 +5,8 @@ import com.barco.imrh.service.ProductService;
 import com.barco.imrh.dto.Enable;
 import com.barco.imrh.dto.ProductDto;
 import com.barco.imrh.util.CommonUtils;
+import com.barco.imrh.util.ConstantUtils;
+import com.barco.imrh.util.ConstantUtils.ProductControllerConst;
 import com.barco.imrh.util.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
  * @author Nabeel Ahmed
  */
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/imrh/product")
+@CrossOrigin(origins = ProductControllerConst.ORIGINS)
+@RequestMapping(ProductControllerConst.IMRH_PRODUCT)
 public class ProductController {
 
     public Logger logger = LogManager.getLogger(PartnerController.class);
@@ -26,7 +28,7 @@ public class ProductController {
     private ProductService productService;
 
     // working
-    @RequestMapping(path = "/findByProductId", method = RequestMethod.GET)
+    @RequestMapping(path = ProductControllerConst.FIND_BY_PRODUCT_ID, method = RequestMethod.GET)
     public GenericResponseDto<Object> findByProductId(@RequestParam(name = "productId") Long productId) {
         try {
             logger.info("Request findByProductId productId ==> " + productId);
@@ -34,13 +36,13 @@ public class ProductController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while findByProductId", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/updateProduct", method = RequestMethod.POST)
+    @RequestMapping(path = ProductControllerConst.UPDATE_PRODUCT, method = RequestMethod.POST)
     public GenericResponseDto<Object> updateProduct(@RequestBody ProductDto productDto) {
         try {
             logger.info("Request updateProduct " + productDto);
@@ -48,13 +50,13 @@ public class ProductController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while updateProduct", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/enableDisableProduct", method = RequestMethod.POST)
+    @RequestMapping(path = ProductControllerConst.ENABLE_DISABLE_PRODUCT, method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableProduct(@RequestBody ProductDto productDto) {
         try {
             logger.info("Request enableDisableProduct " + productDto);
@@ -62,13 +64,13 @@ public class ProductController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while enableDisableProduct", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/enableDisableAllProduct", method = RequestMethod.POST)
+    @RequestMapping(path = ProductControllerConst.ENABLE_DISABLE_ALL_PRODUCT, method = RequestMethod.POST)
     public GenericResponseDto<Object> enableDisableAllProduct(@RequestParam(name = "enable") Enable enable) {
         try {
             logger.info("Request enableDisableAllProduct enable ==> " + enable.name());
@@ -76,13 +78,13 @@ public class ProductController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while updateAllProduct", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(path = "/fetchAllProduct", method = RequestMethod.GET)
+    @RequestMapping(path = ProductControllerConst.FETCH_ALL_PRODUCT, method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchAllProduct() {
         try {
             logger.info("Request fetchAllProduct");
@@ -90,8 +92,8 @@ public class ProductController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while fetchAllProduct", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 

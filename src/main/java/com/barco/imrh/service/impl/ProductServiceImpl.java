@@ -10,7 +10,6 @@ import com.barco.imrh.util.CommonUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,20 +37,20 @@ public class ProductServiceImpl implements ProductService {
             productDto.setProductImageUrl(product.get().getProductImageUrl());
             productDto.setEnabled(Enable.valueOf(product.get().getEnabled()));
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
-                String.format("Product find successfully with %d.", productDto.getProductId()));
+                   String.format(PRODUCT_FIND_SUCCESSFULLY_WITH_ID, productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Product not found with %d.", productId));
+                String.format(PRODUCT_NOT_FOUND_WITH_ID, productId));
     }
 
     @Override
     public GenericResponseDto<Object> updateProduct(ProductDto productDto) {
         if (CommonUtils.isNull(productDto.getProductId())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Product id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                    .series().name(), PRODUCT_ID_MISSING);
         } else if (CommonUtils.isNull(productDto.getProductName())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Product name missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                    .series().name(), PRODUCT_NAME_MISSING);
         }
         Optional<Product> product = this.productRepository.findById(productDto.getProductId());
         if (product.isPresent()) {
@@ -60,40 +59,40 @@ public class ProductServiceImpl implements ProductService {
             productDto.setProductImageUrl(product.get().getProductImageUrl());
             this.productRepository.save(product.get());
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
-            String.format("Product update successfully with %d.", productDto.getProductId()));
+            String.format(PRODUCT_UPDATE_SUCCESSFULLY_WITH_ID, productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-            String.format("Product not found with %d.", productDto.getProductId()));
+            String.format(PRODUCT_NOT_FOUND_WITH_ID, productDto.getProductId()));
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableProduct(ProductDto productDto) {
         if (CommonUtils.isNull(productDto.getProductId())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                "Product id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                    .series().name(), PRODUCT_ID_MISSING);
         }
         Optional<Product> product = this.productRepository.findById(productDto.getProductId());
         if (product.isPresent()) {
             product.get().setEnabled(productDto.getEnabled().name());
             this.productRepository.save(product.get());
             return CommonUtils.getResponseWithData(productDto, HttpStatus.OK.series().name(),
-                String.format("Product update successfully with %d.", productDto.getProductId()));
+                String.format(PRODUCT_UPDATE_SUCCESSFULLY_WITH_ID, productDto.getProductId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Product not found with %d.", productDto.getProductId()));
+                String.format(PRODUCT_NOT_FOUND_WITH_ID, productDto.getProductId()));
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableAllProduct(Enable enable) {
         return CommonUtils.getResponseWithData(this.productRepository.setAllProductStatus(enable.name()),
-            HttpStatus.OK.series().name(), "All Product update successfully.");
+            HttpStatus.OK.series().name(), ALL_PRODUCT_UPDATE_SUCCESSFULLY);
     }
 
     @Override
-    @Cacheable(value="product")
     public GenericResponseDto<Object> fetchAllProduct() {
         logger.info("Fetch fetchAllProduct");
-        return CommonUtils.getResponseWithData(this.productRepository.findAllProduct(), HttpStatus.OK.series().name(),
-            String.format("Product fetch successfully."));
+        return CommonUtils.getResponseWithData(
+            this.productRepository.findAllProduct(), HttpStatus.OK.series().name(),
+            String.format(PRODUCT_FETCH_SUCCESSFULLY));
     }
 }

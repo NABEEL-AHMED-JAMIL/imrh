@@ -1,9 +1,10 @@
 package com.barco.imrh.repository;
 
 import com.barco.imrh.entity.Bank;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.barco.imrh.util.ConstantUtils.BankRepositoryConst;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
@@ -13,12 +14,11 @@ import java.util.Optional;
  */
 @Repository
 @Transactional
-public interface BankRepository extends JpaRepository<Bank, Long> {
+public interface BankRepository extends CrudRepository<Bank, Long> {
 
     public Optional<Bank> findByBankName(String bankName);
-
     @Modifying
-    @Query(value = "UPDATE BANK SET ENABLED = ?1 WHERE COUNTRY_CODE = ?2 ", nativeQuery = true)
+    @Query(value = BankRepositoryConst.SET_ALL_BANK_STATUS_BY_COUNTRY_CODE, nativeQuery = true)
     public int setAllBankStatusByCountryCode(String enabled, String countryCode);
 
 }

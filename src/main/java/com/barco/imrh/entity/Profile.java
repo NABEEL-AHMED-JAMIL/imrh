@@ -36,19 +36,20 @@ public class Profile extends BaseEntity {
     private String profileName;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<AppUser> appUsers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProfilePermission> profilePermissions = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name="COMPANY_ID")
+    private Company company;
 
     public Profile() { }
 
-    public Profile(String enabled, String profileName, List<AppUser> appUsers,
-        List<ProfilePermission> profilePermissions) {
+    public Profile(String enabled, String profileName,
+        List<ProfilePermission> profilePermissions, Company company) {
         super(enabled);
         this.profileName = profileName;
-        this.appUsers = appUsers;
         this.profilePermissions = profilePermissions;
+        this.company = company;
     }
 
     public Long getProfileId() {
@@ -65,18 +66,17 @@ public class Profile extends BaseEntity {
         this.profileName = profileName;
     }
 
-    public List<AppUser> getAppUsers() {
-        return appUsers;
-    }
-    public void setAppUsers(List<AppUser> appUsers) {
-        this.appUsers = appUsers;
-    }
-
     public List<ProfilePermission> getProfilePermissions() {
         return profilePermissions;
     }
     public void setProfilePermissions(List<ProfilePermission> profilePermissions) {
         this.profilePermissions = profilePermissions;
+    }
+    public Company getCompany() {
+        return company;
+    }
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override

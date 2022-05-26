@@ -87,147 +87,186 @@ public class EntityQuery {
         if (entityType.isAssignableFrom(FetchAllGlobalCountryDetailForReportView.class)) {
             result = new ArrayList<FetchAllGlobalCountryDetailForReportView>();
             for (Object[] object: list) {
+                int dataCounter = 0;
                 FetchAllGlobalCountryDetailForReportView fetchAllGlobalCountryDetailForReportView = new FetchAllGlobalCountryDetailForReportView();
-                if (object[0] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setCountryName(String.valueOf(object[0]));
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryName(String.valueOf(object[dataCounter]));
                 }
-                if (object[1] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setCountryCode(String.valueOf(object[1]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryCode(String.valueOf(object[dataCounter]));
                 }
-                if (object[2] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setCountryStatus(String.valueOf(object[2]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryStatus(String.valueOf(object[dataCounter]));
                 }
-                if (object[3] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setCountryImageUrl(String.valueOf(object[3]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setCountryImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[4] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setTotalCity(Long.valueOf(String.valueOf(object[4])));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setTotalCity(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[5] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setTotalWallet(Long.valueOf(String.valueOf(object[5])));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setTotalWallet(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[6] != null) {
-                    fetchAllGlobalCountryDetailForReportView.setTotalBank(Long.valueOf(String.valueOf(object[6])));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchAllGlobalCountryDetailForReportView.setTotalBank(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
                 result.add(fetchAllGlobalCountryDetailForReportView);
             }
         } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryView.class)) {
             result = new ArrayList<FetchMtoPartnerCountryView>();
             for (Object[] object: list) {
+                int dataCounter = 0;
                 FetchMtoPartnerCountryView fetchMtoPartnerCountryView = new FetchMtoPartnerCountryView();
-                if (object[0] != null) {
-                    fetchMtoPartnerCountryView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryView.setPartnerId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[1] != null) {
-                    fetchMtoPartnerCountryView.setPartnerName(String.valueOf(object[1]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryView.setPartnerName(String.valueOf(object[dataCounter]));
                 }
-                if (object[2] != null) {
-                    fetchMtoPartnerCountryView.setCountryName(String.valueOf(object[2]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryView.setCountryName(String.valueOf(object[dataCounter]));
                 }
                 result.add(fetchMtoPartnerCountryView);
             }
         } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryBankView.class)) {
             result = new ArrayList<FetchMtoPartnerCountryBankView>();
             for (Object[] object: list) {
+                int dataCounter = 0;
                 FetchMtoPartnerCountryBankView fetchMtoPartnerCountryBankView = new FetchMtoPartnerCountryBankView();
-                if (object[0] != null) {
-                    fetchMtoPartnerCountryBankView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setPartnerId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[1] != null) {
-                    fetchMtoPartnerCountryBankView.setPartnerName(String.valueOf(object[1]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setPartnerName(String.valueOf(object[dataCounter]));
                 }
-                if (object[2] != null) {
-                    fetchMtoPartnerCountryBankView.setPartnerImageUrl(String.valueOf(object[2]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setPartnerImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[3] != null) {
-                    fetchMtoPartnerCountryBankView.setCountryCode(String.valueOf(object[3]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setCountryCode(String.valueOf(object[dataCounter]));
                 }
-                if (object[4] != null) {
-                    fetchMtoPartnerCountryBankView.setCountryName(String.valueOf(object[4]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setCountryName(String.valueOf(object[dataCounter]));
                 }
-                if (object[5] != null) {
-                    fetchMtoPartnerCountryBankView.setCountryImageUrl(String.valueOf(object[5]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setCountryImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[6] != null) {
-                    fetchMtoPartnerCountryBankView.setBankId(Long.valueOf(String.valueOf(object[6])));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setBankId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[7] != null) {
-                    fetchMtoPartnerCountryBankView.setBankName(String.valueOf(object[7]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setBankName(String.valueOf(object[dataCounter]));
                 }
-                if (object[8] != null) {
-                    fetchMtoPartnerCountryBankView.setBankImageUrl(String.valueOf(object[8]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setBankImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[9] != null) {
-                    fetchMtoPartnerCountryBankView.setBankEnabled(String.valueOf(object[9]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryBankView.setBankEnabled(String.valueOf(object[dataCounter]));
                 }
                 result.add(fetchMtoPartnerCountryBankView);
             }
         } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryCityView.class)) {
             result = new ArrayList<FetchMtoPartnerCountryCityView>();
             for (Object[] object: list) {
+                int dataCounter = 0;
                 FetchMtoPartnerCountryCityView fetchMtoPartnerCountryCityView = new FetchMtoPartnerCountryCityView();
-                if (object[0] != null) {
-                    fetchMtoPartnerCountryCityView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setPartnerId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[1] != null) {
-                    fetchMtoPartnerCountryCityView.setPartnerName(String.valueOf(object[1]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setPartnerName(String.valueOf(object[dataCounter]));
                 }
-                if (object[2] != null) {
-                    fetchMtoPartnerCountryCityView.setPartnerImageUrl(String.valueOf(object[2]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setPartnerImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[3] != null) {
-                    fetchMtoPartnerCountryCityView.setCountryCode(String.valueOf(object[3]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setCountryCode(String.valueOf(object[dataCounter]));
                 }
-                if (object[4] != null) {
+                dataCounter++;
+                if (!CommonUtils.isNull(object[4])) {
                     fetchMtoPartnerCountryCityView.setCountryName(String.valueOf(object[4]));
                 }
-                if (object[5] != null) {
-                    fetchMtoPartnerCountryCityView.setCountryImageUrl(String.valueOf(object[5]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setCountryImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[6] != null) {
-                    fetchMtoPartnerCountryCityView.setCityId(Long.valueOf(String.valueOf(object[6])));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setCityId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[7] != null) {
-                    fetchMtoPartnerCountryCityView.setCityName(String.valueOf(object[7]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setCityName(String.valueOf(object[dataCounter]));
                 }
-                if (object[8] != null) {
-                    fetchMtoPartnerCountryCityView.setCityEnabled(String.valueOf(object[8]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryCityView.setCityEnabled(String.valueOf(object[dataCounter]));
                 }
                 result.add(fetchMtoPartnerCountryCityView);
             }
         } else if (entityType.isAssignableFrom(FetchMtoPartnerCountryWalletView.class)) {
             result = new ArrayList<FetchMtoPartnerCountryWalletView>();
             for (Object[] object: list) {
+                int dataCounter = 0;
                 FetchMtoPartnerCountryWalletView fetchMtoPartnerCountryWalletView = new FetchMtoPartnerCountryWalletView();
-                if (object[0] != null) {
-                    fetchMtoPartnerCountryWalletView.setPartnerId(Long.valueOf(String.valueOf(object[0])));
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setPartnerId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[1] != null) {
-                    fetchMtoPartnerCountryWalletView.setPartnerName(String.valueOf(object[1]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setPartnerName(String.valueOf(object[dataCounter]));
                 }
-                if (object[2] != null) {
-                    fetchMtoPartnerCountryWalletView.setPartnerImageUrl(String.valueOf(object[2]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setPartnerImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[3] != null) {
-                    fetchMtoPartnerCountryWalletView.setCountryCode(String.valueOf(object[3]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setCountryCode(String.valueOf(object[dataCounter]));
                 }
-                if (object[4] != null) {
-                    fetchMtoPartnerCountryWalletView.setCountryName(String.valueOf(object[4]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setCountryName(String.valueOf(object[dataCounter]));
                 }
-                if (object[5] != null) {
-                    fetchMtoPartnerCountryWalletView.setCountryImageUrl(String.valueOf(object[5]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setCountryImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[6] != null) {
-                    fetchMtoPartnerCountryWalletView.setWalletId(Long.valueOf(String.valueOf(object[6])));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setWalletId(Long.valueOf(String.valueOf(object[dataCounter])));
                 }
-                if (object[7] != null) {
-                    fetchMtoPartnerCountryWalletView.setWalletName(String.valueOf(object[7]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setWalletName(String.valueOf(object[dataCounter]));
                 }
-                if (object[8] != null) {
-                    fetchMtoPartnerCountryWalletView.setWalletImageUrl(String.valueOf(object[8]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setWalletImageUrl(String.valueOf(object[dataCounter]));
                 }
-                if (object[9] != null) {
-                    fetchMtoPartnerCountryWalletView.setWalletEnabled(String.valueOf(object[9]));
+                dataCounter++;
+                if (!CommonUtils.isNull(object[dataCounter])) {
+                    fetchMtoPartnerCountryWalletView.setWalletEnabled(String.valueOf(object[dataCounter]));
                 }
                 result.add(fetchMtoPartnerCountryWalletView);
             }

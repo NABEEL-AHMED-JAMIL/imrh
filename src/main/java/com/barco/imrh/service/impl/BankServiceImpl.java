@@ -38,18 +38,17 @@ public class BankServiceImpl implements BankService {
     @Override
     public GenericResponseDto<Object> createBank(BankDto bankDto) {
         if (CommonUtils.isNull(bankDto.getBankName())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(
-                    HttpStatus.BAD_REQUEST.series().name(), "Bank name missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                    .series().name(), BANK_NAME_MISSING);
         } else if (this.bankRepository.findByBankName(bankDto.getBankName()).isPresent()) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(
-                    HttpStatus.BAD_REQUEST.series().name(), "Bank name already exist.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                    .series().name(), BANK_NAME_ALREADY_EXIST);
         }
-        if (!CommonUtils.isNull(bankDto.getCountry()) &&
-                !CommonUtils.isNull(bankDto.getCountry().getCountryCode())) {
+        if (!CommonUtils.isNull(bankDto.getCountry()) && !CommonUtils.isNull(bankDto.getCountry().getCountryCode())) {
             Optional<Country> country = this.countryRepository.findById(bankDto.getCountry().getCountryCode());
             if (!country.isPresent()) {
-                return CommonUtils.getResponseWithStatusAndMessageOnly(
-                        HttpStatus.BAD_REQUEST.series().name(), "Country not exist.");
+                return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                    .series().name(), COUNTRY_NOT_EXIST);
             }
             Bank bank = new Bank();
             bank.setBankName(bankDto.getBankName());
@@ -57,35 +56,34 @@ public class BankServiceImpl implements BankService {
             bank.setEnabled(bankDto.getEnabled().name());
             bank.setCountry(country.get());
             this.bankRepository.save(bank);
-            return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                     "Bank create successfully");
+            return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK
+                    .series().name(), BANK_CREATE_SUCCESSFULLY);
         }
-        return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "Country code missing.");
+        return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                .series().name(), COUNTRY_CODE_MISSING);
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableBank(BankDto bankDto) {
         if (CommonUtils.isNull(bankDto.getBankId())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(
-                    HttpStatus.BAD_REQUEST.series().name(), "Bank id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST
+                .series().name(), BANK_ID_MISSING);
         }
         Optional<Bank> bank = this.bankRepository.findById(bankDto.getBankId());
         if (bank.isPresent()) {
             bank.get().setEnabled(bankDto.getEnabled().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                 String.format("Bank update successfully with %d.", bankDto.getBankId()));
+                 String.format(BANK_UPDATE_SUCCESSFULLY_WITH_ID, bankDto.getBankId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Bank not found with %d.", bankDto.getBankId()));
+                String.format(BANK_NOT_FOUND_WITH_ID, bankDto.getBankId()));
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableAllBankByCountryCode(String countryCode, Enable enable) {
-        return CommonUtils.getResponseWithData(this.bankRepository
-            .setAllBankStatusByCountryCode(enable.name(), countryCode), HttpStatus.OK.series().name(),
-             "All Bank update successfully.");
+        return CommonUtils.getResponseWithData(this.bankRepository.setAllBankStatusByCountryCode(
+            enable.name(), countryCode), HttpStatus.OK.series().name(), ALL_BANK_UPDATE_SUCCESSFULLY);
     }
 
     @Override
@@ -104,23 +102,23 @@ public class BankServiceImpl implements BankService {
             countryDto.setCountryImageUrl(bank.get().getCountry().getCountryImageUrl());
             bankDto.setCountry(countryDto);
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(), 
-                    String.format("Bank find successfully with %d.", bankId));
+                    String.format(BANK_FIND_SUCCESSFULLY_WITH_ID, bankId));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Bank not found with %d.", bankId));
+                String.format(BANK_NOT_FOUND_WITH_ID, bankId));
     }
 
     @Override
     public GenericResponseDto<Object> updateBank(BankDto bankDto) {
         if (CommonUtils.isNull(bankDto.getBankId())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "Bank id missing.");
+                HttpStatus.BAD_REQUEST.series().name(), BANK_ID_MISSING);
         } else if (CommonUtils.isNull(bankDto.getBankName())) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "Bank name missing.");
+                HttpStatus.BAD_REQUEST.series().name(), BANK_NAME_MISSING);
         } else if (this.bankRepository.findByBankName(bankDto.getBankName()).isPresent()) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "Bank name already exist.");
+                HttpStatus.BAD_REQUEST.series().name(), BANK_NAME_ALREADY_EXIST);
         }
         Optional<Bank> bank = this.bankRepository.findById(bankDto.getBankId());
         if (bank.isPresent()) {
@@ -129,10 +127,10 @@ public class BankServiceImpl implements BankService {
             bank.get().setEnabled(bankDto.getEnabled().name());
             this.bankRepository.save(bank.get());
             return CommonUtils.getResponseWithData(bankDto, HttpStatus.OK.series().name(),
-                 String.format("Bank update successfully with %d.", bankDto.getBankId()));
+                 String.format(BANK_UPDATE_SUCCESSFULLY_WITH_ID, bankDto.getBankId()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Bank not found with %d.", bankDto.getBankId()));
+                String.format(BANK_NOT_FOUND_WITH_ID, bankDto.getBankId()));
     }
 
     @Override
@@ -140,7 +138,7 @@ public class BankServiceImpl implements BankService {
         this.partnerRepository.deletePartnerBankByBankId(bankId);
         this.bankRepository.deleteById(bankId);
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.OK.series().name(),
-                String.format("Bank delete successfully with %d.", bankId));
+                String.format(BANK_DELETE_SUCCESSFULLY_WITH_ID, bankId));
     }
 
 }

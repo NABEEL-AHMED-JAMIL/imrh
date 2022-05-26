@@ -31,8 +31,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfo("IMR Cron API", "Basic IMR Api.", "1.0", "Terms of service",
-            new Contact("Nabeel Ahmed", "www.barco.cron.com", "nabeel.amd93@gmail.com"),
+        return new ApiInfo("IMR Cron API", "Basic IMR Api.","1.0", "Terms of service",
+            new Contact("Nabeel Ahmed", "www.imrh.com", "nabeel.amd93@gmail.com"),
             "License of API", "API license URL", Collections.emptyList());
     }
 

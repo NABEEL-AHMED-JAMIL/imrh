@@ -25,24 +25,28 @@ public class ResourceServiceImpl implements ResourceService {
 
     public Logger logger = LogManager.getLogger(ResourceServiceImpl.class);
 
-    private String F2 = "%2F";
-    @Value("${firebase.bucket-name}")
+    @Value(value = FIRE_BASE_BUCKET_NAME)
     private String bucketName;
-    @Value("${firebase.image-url}")
+    @Value(value = FIRE_BASE_IMAGE_URL)
     private String resourceAccessUrl;
 
+    /**
+     * Method use to upload the file to firebase
+     * */
     @Override
     public GenericResponseDto<Object> uploadFile(MultipartFile file,
         String folderName) throws IOException {
         String fileName = UUID.randomUUID().toString();
         Bucket bucket = StorageClient.getInstance().bucket();
-        String fileNameWithFolderPath = String.format("%s/%s", folderName, fileName);
+        String fileNameWithFolderPath = String.format(SS, folderName, fileName);
         bucket.create(fileNameWithFolderPath, file.getInputStream(), file.getContentType());
         return CommonUtils.getResponseWithData(String.format(this.resourceAccessUrl, this.bucketName,
-            String.format("%s%s%s", folderName, F2, fileName)), HttpStatus.OK.series().name(),
-            "File Store successfully");
+            String.format(SSS, folderName, F2, fileName)), HttpStatus.OK.series().name(), FILE_STORE_SUCCESSFULLY);
     }
 
+    /**
+     * Method use to download the file to firebase
+     * */
     @Override
     public ByteArrayOutputStream downloadImageFile(String fileName) {
         Bucket bucket = StorageClient.getInstance().bucket();
@@ -51,17 +55,20 @@ public class ResourceServiceImpl implements ResourceService {
         return out;
     }
 
+    /**
+     * Method use to delete the file to firebase
+     * */
     @Override
     public GenericResponseDto<Object> deleteImageFile(String fileName) {
         Bucket bucket = StorageClient.getInstance().bucket();
         Blob blob = bucket.get(fileName);
         if (CommonUtils.isNull(blob)) {
             return CommonUtils.getResponseWithStatusAndMessageOnly(
-                HttpStatus.BAD_REQUEST.series().name(), "file not found.");
+                HttpStatus.BAD_REQUEST.series().name(), FILE_NOTE_FOUND);
         }
         blob.delete();
         return CommonUtils.getResponseWithData(fileName, HttpStatus.OK.series().name(),
-        "File delete successfully");
+                FILE_DELETE_SUCCESSFULLY);
     }
 
 }

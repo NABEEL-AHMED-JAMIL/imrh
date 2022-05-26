@@ -4,6 +4,8 @@ import com.barco.imrh.dto.GenericResponseDto;
 import com.barco.imrh.dto.PartnerCustomerDto;
 import com.barco.imrh.service.PartnerCustomerService;
 import com.barco.imrh.util.CommonUtils;
+import com.barco.imrh.util.ConstantUtils;
+import com.barco.imrh.util.ConstantUtils.PartnerCustomerControllerConst;
 import com.barco.imrh.util.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,18 +20,17 @@ import java.util.Set;
  * @author Nabeel Ahmed
  */
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/imrh/partnerCustomer")
+@CrossOrigin(origins = PartnerCustomerControllerConst.ORIGINS)
+@RequestMapping(PartnerCustomerControllerConst.IMRH_PARTNER_CUSTOMER)
 public class PartnerCustomerController {
 
     public Logger logger = LogManager.getLogger(PartnerCustomerController.class);
 
     @Autowired
     private PartnerCustomerService partnerCustomerService;
-    private final String DOC_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
     // working
-    @RequestMapping(value = "/searchCustomerMsisdn", method = RequestMethod.POST)
+    @RequestMapping(value = PartnerCustomerControllerConst.SEARCH_CUSTOMER_MSISDN, method = RequestMethod.POST)
     public GenericResponseDto<Object> searchCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
             logger.info("Request searchCustomerMsisdn ==> " + partnerCustomer);
@@ -37,13 +38,13 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while searchCustomerMsisdn", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(value = "/fetchCustomerMsisdn", method = RequestMethod.GET)
+    @RequestMapping(value = PartnerCustomerControllerConst.FETCH_CUSTOMER_MSISDN, method = RequestMethod.GET)
     public GenericResponseDto<Object> fetchCustomerMsisdn(@RequestParam(name = "pageNumber") Integer pageNumber,
         @RequestParam(name = "pageSize") Integer pageSize) {
         try {
@@ -52,13 +53,13 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while fetchCustomerMsisdn", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(value = "/createCustomerMsisdn", method = RequestMethod.POST)
+    @RequestMapping(value = PartnerCustomerControllerConst.CREATE_CUSTOMER_MSISDN, method = RequestMethod.POST)
     public GenericResponseDto<Object> createCustomerMsisdn(@RequestBody Set<PartnerCustomerDto> partnerCustomer) {
         try {
             logger.info("Request createCustomerMsisdn ==> " + partnerCustomer);
@@ -66,13 +67,13 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while createCustomerMsisdn", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(value = "/updatePartnerCustomerMsisdn", method = RequestMethod.POST)
+    @RequestMapping(value = PartnerCustomerControllerConst.UPDATE_PARTNER_CUSTOMER_MSISDN, method = RequestMethod.POST)
     public GenericResponseDto<Object> updatePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
             logger.info("Request updatePartnerCustomerMsisdn ==> " + partnerCustomer);
@@ -80,13 +81,13 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while updatePartnerCustomerMsisdn", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(value = "/deletePartnerCustomerMsisdn", method = RequestMethod.POST)
+    @RequestMapping(value = PartnerCustomerControllerConst.DELETE_PARTNER_CUSTOMER_MSISDN, method = RequestMethod.POST)
     public GenericResponseDto<Object> deletePartnerCustomerMsisdn(@RequestBody PartnerCustomerDto partnerCustomer) {
         try {
             logger.info("Request deletePartnerCustomerMsisdn ==> " + partnerCustomer);
@@ -94,13 +95,13 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while deletePartnerCustomerMsisdn", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                    "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                    .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 
     // working
-    @RequestMapping(value = "/downloadMtoPartnerCustomer", method = RequestMethod.GET)
+    @RequestMapping(value = PartnerCustomerControllerConst.DOWNLOAD_MTO_PARTNER_CUSTOMER, method = RequestMethod.GET)
     public ResponseEntity<?> downloadMtoPartnerCustomer() {
         try {
             logger.info("Request downloadMtoPartnerCustomer");
@@ -108,26 +109,26 @@ public class PartnerCustomerController {
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while downloadMtoPartnerCustomer", ExceptionUtil.getRootCause(ex));
-            return new ResponseEntity<>(CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-            "Some Internal error accrue contact with support team."), HttpStatus.OK);
+            return new ResponseEntity<>(CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                       .series().name(), ConstantUtils.SOME_INTERNAL_ERROR), HttpStatus.OK);
         }
     }
 
     // working
-    @RequestMapping(value = "/uploadMtoPartnerCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = PartnerCustomerControllerConst.UPLOAD_MTO_PARTNER_CUSTOMER, method = RequestMethod.POST)
     public GenericResponseDto<Object> uploadMtoPartnerCustomer(@RequestParam(name = "file") MultipartFile file) {
         try {
             logger.info("Request uploadMtoPartnerCustomer File " + file.getOriginalFilename());
-            if (!file.getContentType().equalsIgnoreCase(DOC_TYPE)) {
+            if (!file.getContentType().equalsIgnoreCase(ConstantUtils.DOC_TYPE)) {
                 return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                    "You can upload only .xlsx extension file.");
+                   ConstantUtils.UPLOAD_ONLY_XLSX_EXTENSION_FILE);
             }
             return this.partnerCustomerService.uploadMtoPartnerCustomer(file);
         } catch (Exception ex) {
             ex.printStackTrace();
             logger.error("An error occurred while uploadMtoPartnerCustomer", ExceptionUtil.getRootCause(ex));
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR.series().name(),
-                "Some Internal error accrue contact with support team.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.INTERNAL_SERVER_ERROR
+                   .series().name(), ConstantUtils.SOME_INTERNAL_ERROR);
         }
     }
 

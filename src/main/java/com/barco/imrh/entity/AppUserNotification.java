@@ -55,8 +55,7 @@ public class AppUserNotification extends BaseEntity {
     public AppUserNotification() {}
 
     public AppUserNotification(Long appUserId, BaseMasterEntity baseMasterEntity,
-        String action, String subject, String message,
-        Timestamp expiryAt, String status) {
+        String action, String subject, String message, Timestamp expiryAt, String status) {
         this.appUserId = appUserId;
         this.baseMasterEntity = baseMasterEntity;
         this.action = action;

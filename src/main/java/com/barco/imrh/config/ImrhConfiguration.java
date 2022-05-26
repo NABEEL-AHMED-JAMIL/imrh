@@ -41,7 +41,8 @@ public class ImrhConfiguration {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-            logger.error("An error occurred while getFirebaseApp", ExceptionUtil.getRootCause(ex));
+            logger.error("An error occurred while getFirebaseApp",
+                ExceptionUtil.getRootCause(ex));
         }
         return firebaseApp;
     }

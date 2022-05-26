@@ -1,9 +1,9 @@
 package com.barco.imrh.util;
 
-import com.barco.imrh.dto.GenericResponseDto;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.barco.imrh.dto.GenericResponseDto;
 
 /**
  * @author Nabeel Ahmed
@@ -134,7 +134,8 @@ public class CommonUtils {
      * @param message
      * @return T
      * */
-    public static <T> GenericResponseDto<T> getResponseWithData(Object data, String status, String message) {
+    public static <T> GenericResponseDto<T> getResponseWithData(Object data,
+        String status, String message) {
         GenericResponseDto<Object> response = new GenericResponseDto<>();
         response.setData(data);
         response.setStatus(status);

@@ -29,23 +29,24 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public GenericResponseDto<Object> enableDisableCountry(CountryDto countryDto) {
         if (CommonUtils.isNull(countryDto.getCountryCode())) {
-            return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(), "Country id missing.");
+            return CommonUtils.getResponseWithStatusAndMessageOnly(
+                  HttpStatus.BAD_REQUEST.series().name(), COUNTRY_ID_MISSING);
         }
         Optional<Country> country = this.countryRepository.findById(countryDto.getCountryCode());
         if (country.isPresent()) {
             country.get().setEnabled(countryDto.getEnabled().name());
             this.countryRepository.save(country.get());
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                String.format("Country update successfully with %s.", countryDto.getCountryCode()));
+                String.format(COUNTRY_UPDATE_SUCCESSFULLY_WITH_ID, countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Country not found with %s.", countryDto.getCountryCode()));
+                String.format(COUNTRY_NOT_FOUND_WITH_CODE, countryDto.getCountryCode()));
     }
 
     @Override
     public GenericResponseDto<Object> enableDisableAllCountry(Enable enable) {
-        return CommonUtils.getResponseWithData(this.countryRepository.setAllCountryStatus(enable.name()), HttpStatus.OK.series().name(),
-            "All Country update successfully.");
+        return CommonUtils.getResponseWithData(this.countryRepository.setAllCountryStatus(
+            enable.name()), HttpStatus.OK.series().name(), ALL_COUNTRY_UPDATE_SUCCESSFULLY);
     }
 
     @Override
@@ -59,16 +60,16 @@ public class CountryServiceImpl implements CountryService {
             countryDto.setCountryLegacyCode(country.get().getCountryLegacyCode());
             countryDto.setEnabled(Enable.valueOf(country.get().getEnabled()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                String.format("Country fetch successfully with %s.", countryDto.getCountryCode()));
+                String.format(COUNTRY_FETCH_SUCCESSFULLY_WITH_CODE, countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-            String.format("Country not found with %s.", countryCode));
+            String.format(COUNTRY_NOT_FOUND_WITH_CODE, countryCode));
     }
 
     @Override
     public GenericResponseDto<Object> fetchAllCountry() {
-        return CommonUtils.getResponseWithData(this.countryRepository.findAllCountry(), HttpStatus.OK.series().name(),
-            String.format("Product fetch successfully."));
+        return CommonUtils.getResponseWithData(this.countryRepository.findAllCountry(),
+             HttpStatus.OK.series().name(), String.format(PRODUCT_FETCH_SUCCESSFULLY));
     }
 
     @Override
@@ -81,18 +82,19 @@ public class CountryServiceImpl implements CountryService {
             countryDto.setCountryImageUrl(country.get().getCountryImageUrl());
             countryDto.setCountryLegacyCode(country.get().getCountryLegacyCode());
             countryDto.setEnabled(Enable.valueOf(country.get().getEnabled()));
-            countryDto.setCities(country.get().getCities().stream().map(city -> {
-                CityDto cityDto = new CityDto();
-                cityDto.setCityId(city.getCityId());
-                cityDto.setCityName(city.getCityName());
-                cityDto.setEnabled(Enable.valueOf(city.getEnabled()));
-                return cityDto;
-            }).collect(Collectors.toList()));
+            countryDto.setCities(country.get().getCities()
+                .stream().map(city -> {
+                    CityDto cityDto = new CityDto();
+                    cityDto.setCityId(city.getCityId());
+                    cityDto.setCityName(city.getCityName());
+                    cityDto.setEnabled(Enable.valueOf(city.getEnabled()));
+                    return cityDto;
+                }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                    String.format("Country city fetch successfully with %s.", countryDto.getCountryCode()));
+                    String.format(COUNTRY_CITY_FETCH_SUCCESSFULLY_WITH_CODE, countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Country not found with %s.", countryCode));
+                String.format(COUNTRY_NOT_FOUND_WITH_CODE, countryCode));
     }
 
     @Override
@@ -105,19 +107,20 @@ public class CountryServiceImpl implements CountryService {
             countryDto.setCountryImageUrl(country.get().getCountryImageUrl());
             countryDto.setCountryLegacyCode(country.get().getCountryLegacyCode());
             countryDto.setEnabled(Enable.valueOf(country.get().getEnabled()));
-            countryDto.setBanks(country.get().getBanks().stream().map(bank -> {
-                BankDto bankDto = new BankDto();
-                bankDto.setBankId(bank.getBankId());
-                bankDto.setBankName(bank.getBankName());
-                bankDto.setBankImageUrl(bank.getBankImageUrl());
-                bankDto.setEnabled(Enable.valueOf(bank.getEnabled()));
-                return bankDto;
-            }).collect(Collectors.toList()));
+            countryDto.setBanks(country.get().getBanks()
+                .stream().map(bank -> {
+                    BankDto bankDto = new BankDto();
+                    bankDto.setBankId(bank.getBankId());
+                    bankDto.setBankName(bank.getBankName());
+                    bankDto.setBankImageUrl(bank.getBankImageUrl());
+                    bankDto.setEnabled(Enable.valueOf(bank.getEnabled()));
+                    return bankDto;
+                }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                    String.format("Country bank fetch successfully with %s.", countryDto.getCountryCode()));
+                    String.format(COUNTRY_BANK_FETCH_SUCCESSFULLY_WITH_CODE, countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Country not found with %s.", countryCode));
+                String.format(COUNTRY_NOT_FOUND_WITH_CODE, countryCode));
     }
 
     @Override
@@ -140,10 +143,10 @@ public class CountryServiceImpl implements CountryService {
                     return walletDto;
                }).collect(Collectors.toList()));
             return CommonUtils.getResponseWithData(countryDto, HttpStatus.OK.series().name(),
-                    String.format("Country wallet fetch successfully with %s.", countryDto.getCountryCode()));
+                    String.format(COUNTRY_WALLET_FETCH_SUCCESSFULLY_WITH_CODE, countryDto.getCountryCode()));
         }
         return CommonUtils.getResponseWithStatusAndMessageOnly(HttpStatus.BAD_REQUEST.series().name(),
-                String.format("Country not found with %s.", countryCode));
+                String.format(COUNTRY_NOT_FOUND_WITH_CODE, countryCode));
     }
 
 }

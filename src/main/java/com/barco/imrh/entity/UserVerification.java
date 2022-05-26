@@ -36,30 +36,37 @@ public class UserVerification extends BaseEntity {
     @Column(name="EXPIRE_DATE", nullable=false)
     private Timestamp expiryDate;
 
-    @Column(name="PASSWORD_ADDED", nullable=false)
-    private Boolean passwordAdded;
-
     @Column(name="IS_CONSUMED", nullable=false)
     private Boolean isConsumed;
+
+    @Column(name="VERIFICATION_TYPE", nullable=false)
+    private String verificationType;
+
+    @Lob
+    private String payload;
 
     @Embedded
     private BaseMasterEntity baseMasterEntity;
 
     public UserVerification() { }
 
-    public UserVerification(String enabled, String token, Timestamp expiryDate,
-        Boolean passwordAdded, Boolean isConsumed, BaseMasterEntity baseMasterEntity) {
+    public UserVerification(String enabled, Long userVerificationId, String token, Timestamp expiryDate,
+        Boolean isConsumed, String verificationType, String payload,
+        BaseMasterEntity baseMasterEntity) {
         super(enabled);
+        this.userVerificationId = userVerificationId;
         this.token = token;
         this.expiryDate = expiryDate;
-        this.passwordAdded = passwordAdded;
         this.isConsumed = isConsumed;
+        this.verificationType = verificationType;
+        this.payload = payload;
         this.baseMasterEntity = baseMasterEntity;
     }
 
     public Long getUserVerificationId() {
         return userVerificationId;
     }
+
     public void setUserVerificationId(Long userVerificationId) {
         this.userVerificationId = userVerificationId;
     }
@@ -67,6 +74,7 @@ public class UserVerification extends BaseEntity {
     public String getToken() {
         return token;
     }
+
     public void setToken(String token) {
         this.token = token;
     }
@@ -74,27 +82,39 @@ public class UserVerification extends BaseEntity {
     public Timestamp getExpiryDate() {
         return expiryDate;
     }
+
     public void setExpiryDate(Timestamp expiryDate) {
         this.expiryDate = expiryDate;
-    }
-
-    public Boolean getPasswordAdded() {
-        return passwordAdded;
-    }
-    public void setPasswordAdded(Boolean passwordAdded) {
-        this.passwordAdded = passwordAdded;
     }
 
     public Boolean getConsumed() {
         return isConsumed;
     }
+
     public void setConsumed(Boolean consumed) {
         isConsumed = consumed;
+    }
+
+    public String getVerificationType() {
+        return verificationType;
+    }
+
+    public void setVerificationType(String verificationType) {
+        this.verificationType = verificationType;
+    }
+
+    public String getPayload() {
+        return payload;
+    }
+
+    public void setPayload(String payload) {
+        this.payload = payload;
     }
 
     public BaseMasterEntity getBaseMasterEntity() {
         return baseMasterEntity;
     }
+
     public void setBaseMasterEntity(BaseMasterEntity baseMasterEntity) {
         this.baseMasterEntity = baseMasterEntity;
     }
